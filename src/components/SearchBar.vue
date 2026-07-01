@@ -99,8 +99,8 @@ function onKeydown(e) {
 
 <template>
   <div class="relative z-30">
-    <div class="flex flex-wrap items-center gap-2 sm:flex-nowrap">
-      <div class="relative min-w-0 basis-full sm:basis-auto sm:flex-1">
+    <div class="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2 sm:flex sm:flex-nowrap">
+      <div class="relative col-span-2 min-w-0 sm:col-span-1 sm:basis-auto sm:flex-1">
         <Search class="pointer-events-none absolute start-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
         <input
           v-model="input"

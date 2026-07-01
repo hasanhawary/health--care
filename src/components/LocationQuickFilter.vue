@@ -76,7 +76,7 @@ onBeforeUnmount(() => document.removeEventListener('mousedown', onDocClick))
 </script>
 
 <template>
-  <div ref="root" class="no-scrollbar flex min-w-0 flex-1 items-center gap-1.5 overflow-x-auto sm:flex-none sm:overflow-visible">
+  <div ref="root" class="no-scrollbar flex min-w-0 items-center gap-1.5 overflow-x-auto sm:flex-none sm:overflow-visible">
     <div v-for="panel in panels" :key="panel.name" class="relative shrink-0">
       <button
         type="button"

@@ -45,11 +45,11 @@ const cards = computed(() => [
       </button>
     </div>
   </div>
-  <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 lg:grid-cols-6">
+  <div class="grid grid-cols-1 gap-2 min-[380px]:grid-cols-2 sm:grid-cols-3 sm:gap-3 lg:grid-cols-6">
     <button
       v-for="c in cards"
       :key="c.key"
-      class="card group relative overflow-hidden p-3 text-start transition duration-200 hover:-translate-y-0.5 hover:shadow-card-hover sm:p-4"
+      class="card group relative min-w-0 overflow-hidden p-3 text-start transition duration-200 hover:-translate-y-0.5 hover:shadow-card-hover sm:p-4"
       @click="c.filter ? setCategory(c.filter) : null"
     >
       <div class="flex items-center gap-3">
@@ -59,7 +59,7 @@ const cards = computed(() => [
         >
           <component :is="c.icon" class="h-5 w-5" />
         </div>
-        <div class="min-w-0">
+        <div class="min-w-0 flex-1">
           <div class="text-lg font-extrabold leading-tight text-slate-800 dark:text-slate-100 sm:text-xl">
             <AnimatedCounter :value="c.value" />
           </div>

@@ -17,17 +17,17 @@ const { isDark, toggle: toggleTheme } = useTheme()
   <header
     class="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/80"
   >
-    <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
+    <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-3 sm:gap-3 sm:px-6">
       <!-- brand -->
       <button
         type="button"
-        class="flex min-w-0 items-center gap-3 rounded-xl text-start transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400"
+        class="flex min-w-0 flex-1 items-center gap-2 rounded-xl text-start transition hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 sm:gap-3"
         :title="t('home')"
         :aria-label="t('home')"
         @click="emit('home')"
       >
         <div
-          class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-md"
+          class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-md sm:h-10 sm:w-10"
         >
           <HeartPulse class="h-5 w-5" />
         </div>
@@ -35,12 +35,12 @@ const { isDark, toggle: toggleTheme } = useTheme()
           <h1 class="truncate text-sm font-extrabold leading-tight text-slate-800 dark:text-slate-100 sm:text-base">
             {{ t('appTitle') }}
           </h1>
-          <p class="truncate text-xs text-slate-500 dark:text-slate-400">{{ t('appSubtitle') }}</p>
+          <p class="hidden truncate text-xs text-slate-500 dark:text-slate-400 min-[380px]:block">{{ t('appSubtitle') }}</p>
         </div>
       </button>
 
       <!-- actions -->
-      <div class="flex items-center gap-1 sm:gap-2">
+      <div class="flex shrink-0 items-center gap-0.5 sm:gap-2">
         <button
           v-if="canInstall"
           class="btn-soft !px-3 !py-2 text-xs font-bold"
@@ -49,7 +49,7 @@ const { isDark, toggle: toggleTheme } = useTheme()
           <Download class="h-4 w-4" /><span class="hidden sm:inline">{{ t('installApp') }}</span>
         </button>
         <button
-          class="btn-ghost !px-2.5 !py-2 text-xs font-bold"
+          class="btn-ghost !px-2 !py-2 text-xs font-bold sm:!px-2.5"
           :title="t('language')"
           @click="toggleLocale"
         >
@@ -65,7 +65,7 @@ const { isDark, toggle: toggleTheme } = useTheme()
           <Moon v-else class="h-5 w-5" />
         </button>
         <button
-          class="relative btn-soft !px-2.5 !py-2"
+          class="relative btn-soft !px-2 !py-2 sm:!px-2.5"
           :title="t('favorites')"
           @click="emit('open-favorites')"
         >

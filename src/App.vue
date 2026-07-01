@@ -279,7 +279,7 @@ watch(
               </template>
             </div>
 
-            <div class="no-scrollbar -mx-3 flex items-center gap-2 overflow-x-auto px-3 sm:mx-0 sm:flex-wrap sm:justify-end sm:overflow-visible sm:px-0">
+            <div class="no-scrollbar flex w-full items-center gap-2 overflow-x-auto pb-1 sm:w-auto sm:flex-wrap sm:justify-end sm:overflow-visible sm:pb-0">
               <!-- location -->
               <button
                 v-if="geoSupported"
