@@ -1,0 +1,1542 @@
+- generic [ref=f1e3]:
+  - banner [ref=f1e4]:
+    - generic [ref=f1e5]:
+      - button "الرئيسية" [ref=f1e6] [cursor=pointer]:
+        - img [ref=f1e8]
+        - generic [ref=f1e11]:
+          - heading "شبكة أليانز مصر الطبية" [level=1] [ref=f1e12]
+          - paragraph [ref=f1e13]: دليل مقدمي الخدمة الطبية
+      - generic [ref=f1e14]:
+        - button "English" [ref=f1e15] [cursor=pointer]:
+          - img [ref=f1e16]
+          - generic [ref=f1e20]: English
+        - button "الوضع الليلي" [ref=f1e21] [cursor=pointer]:
+          - img [ref=f1e22]
+        - button "المفضلة" [ref=f1e24] [cursor=pointer]:
+          - img [ref=f1e25]
+          - generic [ref=f1e27]: المفضلة
+  - generic [ref=f1e30]:
+    - generic [ref=f1e31]:
+      - generic [ref=f1e32]:
+        - img
+        - combobox "ابحث بالاسم، التخصص، الخدمة، العنوان، المدينة، المحافظة، التليفون…" [expanded] [active] [ref=f1e33]: مستشفى
+        - button "مسح البحث" [ref=f1e2631] [cursor=pointer]:
+          - img [ref=f1e2632]
+      - generic [ref=f1e34]:
+        - button "المحافظة" [ref=f1e36] [cursor=pointer]:
+          - img [ref=f1e37]
+          - generic [ref=f1e40]: المحافظة
+          - img [ref=f1e41]
+        - button "المدينة" [ref=f1e44] [cursor=pointer]:
+          - img [ref=f1e45]
+          - generic [ref=f1e49]: المدينة
+          - img [ref=f1e50]
+    - listbox [ref=f1e2636]:
+      - option "المستشفى الأمريكي مستشفيات · القاهرة 0222670702-0222679638-01222255099-01065545625" [ref=f1e2637]:
+        - button "المستشفى الأمريكي مستشفيات · القاهرة 0222670702-0222679638-01222255099-01065545625" [ref=f1e2638] [cursor=pointer]:
+          - img [ref=f1e2640]
+          - generic [ref=f1e2644]:
+            - generic [ref=f1e2645]: المستشفى الأمريكي
+            - generic [ref=f1e2646]:
+              - generic [ref=f1e2647]: مستشفيات
+              - generic [ref=f1e2648]: · القاهرة
+          - generic [ref=f1e2649]:
+            - img [ref=f1e2650]
+            - text: 0222670702-0222679638-01222255099-01065545625
+      - option "المستشفى المركزي مستشفيات · القاهرة 0224140045/6-0224140356/7/8-01066696486-01002525571" [ref=f1e2653]:
+        - button "المستشفى المركزي مستشفيات · القاهرة 0224140045/6-0224140356/7/8-01066696486-01002525571" [ref=f1e2654] [cursor=pointer]:
+          - img [ref=f1e2656]
+          - generic [ref=f1e2660]:
+            - generic [ref=f1e2661]: المستشفى المركزي
+            - generic [ref=f1e2662]:
+              - generic [ref=f1e2663]: مستشفيات
+              - generic [ref=f1e2664]: · القاهرة
+          - generic [ref=f1e2665]:
+            - img [ref=f1e2666]
+            - text: 0224140045/6-0224140356/7/8-01066696486-01002525571
+      - option "مستشفى الفيروز مستشفيات · الغربية 0403330038/39-01222680005-01223980006" [ref=f1e2669]:
+        - button "مستشفى الفيروز مستشفيات · الغربية 0403330038/39-01222680005-01223980006" [ref=f1e2670] [cursor=pointer]:
+          - img [ref=f1e2672]
+          - generic [ref=f1e2676]:
+            - generic [ref=f1e2677]: مستشفى الفيروز
+            - generic [ref=f1e2678]:
+              - generic [ref=f1e2679]: مستشفيات
+              - generic [ref=f1e2680]: · الغربية
+          - generic [ref=f1e2681]:
+            - img [ref=f1e2682]
+            - text: 0403330038/39-01222680005-01223980006
+      - option "مستشفى الإقبال مستشفيات · الإسكندرية 033571691-033571692-033571693-033571694-01023079931" [ref=f1e2685]:
+        - button "مستشفى الإقبال مستشفيات · الإسكندرية 033571691-033571692-033571693-033571694-01023079931" [ref=f1e2686] [cursor=pointer]:
+          - img [ref=f1e2688]
+          - generic [ref=f1e2692]:
+            - generic [ref=f1e2693]: مستشفى الإقبال
+            - generic [ref=f1e2694]:
+              - generic [ref=f1e2695]: مستشفيات
+              - generic [ref=f1e2696]: · الإسكندرية
+          - generic [ref=f1e2697]:
+            - img [ref=f1e2698]
+            - text: 033571691-033571692-033571693-033571694-01023079931
+      - option "مستشفى البطريق مستشفيات · القاهرة 0221850200-01023705955" [ref=f1e2701]:
+        - button "مستشفى البطريق مستشفيات · القاهرة 0221850200-01023705955" [ref=f1e2702] [cursor=pointer]:
+          - img [ref=f1e2704]
+          - generic [ref=f1e2708]:
+            - generic [ref=f1e2709]: مستشفى البطريق
+            - generic [ref=f1e2710]:
+              - generic [ref=f1e2711]: مستشفيات
+              - generic [ref=f1e2712]: · القاهرة
+          - generic [ref=f1e2713]:
+            - img [ref=f1e2714]
+            - text: 0221850200-01023705955
+      - option "مستشفى الثريا مستشفيات · الجيزة 0237489427-0237489417" [ref=f1e2717]:
+        - button "مستشفى الثريا مستشفيات · الجيزة 0237489427-0237489417" [ref=f1e2718] [cursor=pointer]:
+          - img [ref=f1e2720]
+          - generic [ref=f1e2724]:
+            - generic [ref=f1e2725]: مستشفى الثريا
+            - generic [ref=f1e2726]:
+              - generic [ref=f1e2727]: مستشفيات
+              - generic [ref=f1e2728]: · الجيزة
+          - generic [ref=f1e2729]:
+            - img [ref=f1e2730]
+            - text: 0237489427-0237489417
+      - option "مستشفى الجابري مستشفيات · الجيزة 01287979645" [ref=f1e2733]:
+        - button "مستشفى الجابري مستشفيات · الجيزة 01287979645" [ref=f1e2734] [cursor=pointer]:
+          - img [ref=f1e2736]
+          - generic [ref=f1e2740]:
+            - generic [ref=f1e2741]: مستشفى الجابري
+            - generic [ref=f1e2742]:
+              - generic [ref=f1e2743]: مستشفيات
+              - generic [ref=f1e2744]: · الجيزة
+          - generic [ref=f1e2745]:
+            - img [ref=f1e2746]
+            - text: "01287979645"
+      - option "مستشفى الجابري مستشفيات · الجيزة 0235860604-5" [ref=f1e2749]:
+        - button "مستشفى الجابري مستشفيات · الجيزة 0235860604-5" [ref=f1e2750] [cursor=pointer]:
+          - img [ref=f1e2752]
+          - generic [ref=f1e2756]:
+            - generic [ref=f1e2757]: مستشفى الجابري
+            - generic [ref=f1e2758]:
+              - generic [ref=f1e2759]: مستشفيات
+              - generic [ref=f1e2760]: · الجيزة
+          - generic [ref=f1e2761]:
+            - img [ref=f1e2762]
+            - text: 0235860604-5
+  - generic [ref=f1e54]:
+    - button "الكل 503" [ref=f1e2765] [cursor=pointer]:
+      - img [ref=f1e56]
+      - generic [ref=f1e61]: الكل
+      - generic [ref=f1e465]: "503"
+    - button "physician clinic" [ref=f1e2766] [cursor=pointer]:
+      - img [ref=f1e63]
+      - generic [ref=f1e67]: physician clinic
+    - button "مستشفيات 445" [ref=f1e2767] [cursor=pointer]:
+      - img [ref=f1e69]
+      - generic [ref=f1e72]: مستشفيات
+      - generic [ref=f1e469]: "445"
+    - button "صيدليات 46" [ref=f1e2768] [cursor=pointer]:
+      - img [ref=f1e74]
+      - generic [ref=f1e77]: صيدليات
+      - generic [ref=f1e471]: "46"
+    - button "معامل التحاليل 3" [ref=f1e2769] [cursor=pointer]:
+      - img [ref=f1e79]
+      - generic [ref=f1e81]: معامل التحاليل
+      - generic [ref=f1e473]: "3"
+    - button "مراكز علاج طبيعي 1" [ref=f1e2770] [cursor=pointer]:
+      - img [ref=f1e83]
+      - generic [ref=f1e85]: مراكز علاج طبيعي
+      - generic [ref=f1e475]: "1"
+    - button "مراكز الأسنان 3" [ref=f1e2771] [cursor=pointer]:
+      - img [ref=f1e87]
+      - generic [ref=f1e90]: مراكز الأسنان
+      - generic [ref=f1e477]: "3"
+    - button "radiology center" [ref=f1e2772] [cursor=pointer]:
+      - img [ref=f1e92]
+      - generic [ref=f1e97]: radiology center
+    - button "مراكز البصريات 1" [ref=f1e2773] [cursor=pointer]:
+      - img [ref=f1e99]
+      - generic [ref=f1e102]: مراكز البصريات
+      - generic [ref=f1e481]: "1"
+  - main [ref=f1e103]:
+    - generic [ref=f1e104]:
+      - generic [ref=f1e106]:
+        - button "النتائج الحالية" [ref=f1e107] [cursor=pointer]:
+          - img [ref=f1e108]
+          - text: النتائج الحالية
+        - button "كل الشبكة" [ref=f1e110] [cursor=pointer]:
+          - img [ref=f1e111]
+          - text: كل الشبكة
+      - generic [ref=f1e116]:
+        - button "503 النتائج الحالية" [ref=f1e2774] [cursor=pointer]:
+          - generic [ref=f1e118]:
+            - img [ref=f1e120]
+            - generic [ref=f1e124]:
+              - generic [ref=f1e125]: "503"
+              - generic [ref=f1e126]: النتائج الحالية
+        - button "0 أطباء" [ref=f1e2775] [cursor=pointer]:
+          - generic [ref=f1e128]:
+            - img [ref=f1e130]
+            - generic [ref=f1e134]:
+              - generic [ref=f1e135]: "0"
+              - generic [ref=f1e136]: أطباء
+        - button "445 مستشفيات" [ref=f1e2776] [cursor=pointer]:
+          - generic [ref=f1e138]:
+            - img [ref=f1e140]
+            - generic [ref=f1e143]:
+              - generic [ref=f1e144]: "445"
+              - generic [ref=f1e145]: مستشفيات
+        - button "46 صيدليات" [ref=f1e2777] [cursor=pointer]:
+          - generic [ref=f1e147]:
+            - img [ref=f1e149]
+            - generic [ref=f1e152]:
+              - generic [ref=f1e153]: "46"
+              - generic [ref=f1e154]: صيدليات
+        - button "3 معامل" [ref=f1e2778] [cursor=pointer]:
+          - generic [ref=f1e156]:
+            - img [ref=f1e158]
+            - generic [ref=f1e160]:
+              - generic [ref=f1e161]: "3"
+              - generic [ref=f1e162]: معامل
+        - button "253 نشطون" [ref=f1e2779] [cursor=pointer]:
+          - generic [ref=f1e164]:
+            - img [ref=f1e166]
+            - generic [ref=f1e169]:
+              - generic [ref=f1e170]: "253"
+              - generic [ref=f1e171]: نشطون
+    - generic [ref=f1e172]:
+      - complementary [ref=f1e173]:
+        - generic [ref=f1e174]:
+          - heading "تصفية النتائج 1" [level=2] [ref=f1e2780]:
+            - img [ref=f1e177]
+            - text: تصفية النتائج
+            - generic [ref=f1e2781]: "1"
+          - generic [ref=f1e178]:
+            - button "مشاركة الفلاتر" [ref=f1e180] [cursor=pointer]:
+              - img [ref=f1e181]
+              - text: مشاركة الفلاتر
+            - generic [ref=f1e187]:
+              - textbox "اسم الإعداد" [ref=f1e188]
+              - button "حفظ الإعداد" [ref=f1e189] [cursor=pointer]:
+                - img [ref=f1e190]
+          - button "النشطة (LIVE) فقط" [ref=f1e194] [cursor=pointer]:
+            - generic [ref=f1e195]: النشطة (LIVE) فقط
+          - generic [ref=f1e199]:
+            - generic [ref=f1e200]:
+              - button "نوع مقدم الخدمة" [ref=f1e201] [cursor=pointer]:
+                - generic [ref=f1e202]: نوع مقدم الخدمة
+                - img [ref=f1e204]
+              - list [ref=f1e207]:
+                - listitem [ref=f1e500]:
+                  - button "مستشفيات 445" [ref=f1e2782] [cursor=pointer]:
+                    - generic [ref=f1e503]: مستشفيات
+                    - generic [ref=f1e504]: "445"
+                - listitem [ref=f1e495]:
+                  - button "صيدليات 46" [ref=f1e2783] [cursor=pointer]:
+                    - generic [ref=f1e498]: صيدليات
+                    - generic [ref=f1e499]: "46"
+                - listitem [ref=f1e530]:
+                  - button "مستشفيات 4" [ref=f1e2784] [cursor=pointer]:
+                    - generic [ref=f1e533]: مستشفيات
+                    - generic [ref=f1e534]: "4"
+                - listitem [ref=f1e505]:
+                  - button "مراكز الأسنان 3" [ref=f1e2785] [cursor=pointer]:
+                    - generic [ref=f1e508]: مراكز الأسنان
+                    - generic [ref=f1e509]: "3"
+                - listitem [ref=f1e490]:
+                  - button "معامل التحاليل 3" [ref=f1e2786] [cursor=pointer]:
+                    - generic [ref=f1e493]: معامل التحاليل
+                    - generic [ref=f1e494]: "3"
+                - listitem [ref=f1e510]:
+                  - button "مراكز البصريات 1" [ref=f1e2787] [cursor=pointer]:
+                    - generic [ref=f1e513]: مراكز البصريات
+                    - generic [ref=f1e514]: "1"
+                - listitem [ref=f1e525]:
+                  - button "مراكز علاج طبيعي 1" [ref=f1e2788] [cursor=pointer]:
+                    - generic [ref=f1e528]: مراكز علاج طبيعي
+                    - generic [ref=f1e529]: "1"
+            - generic [ref=f1e209]:
+              - button "التخصص" [ref=f1e210] [cursor=pointer]:
+                - generic [ref=f1e211]: التخصص
+                - img [ref=f1e213]
+              - generic [ref=f1e215]:
+                - generic [ref=f1e555]:
+                  - img
+                  - searchbox "بحث" [ref=f1e556]
+                - list [ref=f1e216]:
+                  - listitem [ref=f1e567]:
+                    - button "متعدد التخصصات 326" [ref=f1e2789] [cursor=pointer]:
+                      - generic [ref=f1e570]: متعدد التخصصات
+                      - generic [ref=f1e571]: "326"
+                  - listitem [ref=f1e597]:
+                    - button "أطفال 62" [ref=f1e2790] [cursor=pointer]:
+                      - generic [ref=f1e600]: أطفال
+                      - generic [ref=f1e601]: "62"
+                  - listitem [ref=f1e562]:
+                    - button "صيدلية 46" [ref=f1e2791] [cursor=pointer]:
+                      - generic [ref=f1e565]: صيدلية
+                      - generic [ref=f1e566]: "46"
+                  - listitem [ref=f1e592]:
+                    - button "عيون 29" [ref=f1e2792] [cursor=pointer]:
+                      - generic [ref=f1e595]: عيون
+                      - generic [ref=f1e596]: "29"
+                  - listitem [ref=f1e642]:
+                    - button "متعدد التخصصات 10" [ref=f1e2793] [cursor=pointer]:
+                      - generic [ref=f1e645]: متعدد التخصصات
+                      - generic [ref=f1e646]: "10"
+                  - listitem [ref=f1e572]:
+                    - button "طب وجراحة الفم والأسنان 4" [ref=f1e2794] [cursor=pointer]:
+                      - generic [ref=f1e575]: طب وجراحة الفم والأسنان
+                      - generic [ref=f1e576]: "4"
+                  - listitem [ref=f1e652]:
+                    - button "أورام 3" [ref=f1e2795] [cursor=pointer]:
+                      - generic [ref=f1e655]: أورام
+                      - generic [ref=f1e656]: "3"
+                  - listitem [ref=f1e557]:
+                    - button "تحاليل طبية 3" [ref=f1e2796] [cursor=pointer]:
+                      - generic [ref=f1e560]: تحاليل طبية
+                      - generic [ref=f1e561]: "3"
+                  - listitem [ref=f1e657]:
+                    - button "جراحة كلى ومسالك بولية 3" [ref=f1e2797] [cursor=pointer]:
+                      - generic [ref=f1e660]: جراحة كلى ومسالك بولية
+                      - generic [ref=f1e661]: "3"
+                  - listitem [ref=f1e612]:
+                    - button "قلب وأوعية دموية 2" [ref=f1e2798] [cursor=pointer]:
+                      - generic [ref=f1e615]: قلب وأوعية دموية
+                      - generic [ref=f1e616]: "2"
+                  - listitem [ref=f1e757]:
+                    - button "متعدد التخصصات 2" [ref=f1e758] [cursor=pointer]:
+                      - generic [ref=f1e760]: متعدد التخصصات
+                      - generic [ref=f1e761]: "2"
+                  - listitem [ref=f1e722]:
+                    - button "مخ وأعصاب 2" [ref=f1e2799] [cursor=pointer]:
+                      - generic [ref=f1e725]: مخ وأعصاب
+                      - generic [ref=f1e726]: "2"
+                  - listitem [ref=f1e797]:
+                    - button "أوعية الدموية و القدم السكرى 1" [ref=f1e798] [cursor=pointer]:
+                      - generic [ref=f1e800]: أوعية الدموية و القدم السكرى
+                      - generic [ref=f1e801]: "1"
+                  - listitem [ref=f1e807]:
+                    - button "العلاج الطبيعى والتأهيلى وعلاج الروماتيزم 1" [ref=f1e808] [cursor=pointer]:
+                      - generic [ref=f1e810]: العلاج الطبيعى والتأهيلى وعلاج الروماتيزم
+                      - generic [ref=f1e811]: "1"
+                  - listitem [ref=f1e622]:
+                    - button "باطنة وجهاز هضمي وكبد ومناظير 1" [ref=f1e2800] [cursor=pointer]:
+                      - generic [ref=f1e625]: باطنة وجهاز هضمي وكبد ومناظير
+                      - generic [ref=f1e626]: "1"
+                  - listitem [ref=f1e577]:
+                    - button "بصريات 1" [ref=f1e2801] [cursor=pointer]:
+                      - generic [ref=f1e580]: بصريات
+                      - generic [ref=f1e581]: "1"
+                  - listitem [ref=f1e937]:
+                    - button "عزل 1" [ref=f1e938] [cursor=pointer]:
+                      - generic [ref=f1e940]: عزل
+                      - generic [ref=f1e941]: "1"
+                  - listitem [ref=f1e942]:
+                    - button "عظام وعلاج طبيعي 1" [ref=f1e943] [cursor=pointer]:
+                      - generic [ref=f1e945]: عظام وعلاج طبيعي
+                      - generic [ref=f1e946]: "1"
+                  - listitem [ref=f1e582]:
+                    - button "علاج طبيعي 1" [ref=f1e2802] [cursor=pointer]:
+                      - generic [ref=f1e585]: علاج طبيعي
+                      - generic [ref=f1e586]: "1"
+                  - listitem [ref=f1e697]:
+                    - button "قلب 1" [ref=f1e2803] [cursor=pointer]:
+                      - generic [ref=f1e700]: قلب
+                      - generic [ref=f1e701]: "1"
+                  - listitem [ref=f1e692]:
+                    - button "قلب وقسطرة 1" [ref=f1e2804] [cursor=pointer]:
+                      - generic [ref=f1e695]: قلب وقسطرة
+                      - generic [ref=f1e696]: "1"
+                  - listitem [ref=f1e647]:
+                    - button "نسا وتوليد 1" [ref=f1e2805] [cursor=pointer]:
+                      - generic [ref=f1e650]: نسا وتوليد
+                      - generic [ref=f1e651]: "1"
+                  - listitem [ref=f1e977]:
+                    - button "نسا وتوليد - جراحة عامة - أنف وأذن وحنجرة ( داخلى فقط ) 1" [ref=f1e978] [cursor=pointer]:
+                      - generic [ref=f1e980]: نسا وتوليد - جراحة عامة - أنف وأذن وحنجرة ( داخلى فقط )
+                      - generic [ref=f1e981]: "1"
+            - generic [ref=f1e218]:
+              - button "الخدمات" [ref=f1e219] [cursor=pointer]:
+                - generic [ref=f1e220]: الخدمات
+                - img [ref=f1e222]
+              - list [ref=f1e225]:
+                - listitem [ref=f1e989]:
+                  - button "علاج داخلي / طوارئ / عيادات خارجية 392" [ref=f1e2806] [cursor=pointer]:
+                    - generic [ref=f1e992]: علاج داخلي / طوارئ / عيادات خارجية
+                    - generic [ref=f1e993]: "392"
+                - listitem [ref=f1e984]:
+                  - button "خدمات خارجية 62" [ref=f1e2807] [cursor=pointer]:
+                    - generic [ref=f1e987]: خدمات خارجية
+                    - generic [ref=f1e988]: "62"
+                - listitem [ref=f1e994]:
+                  - button "علاج داخلي / عيادات خارجية 41" [ref=f1e2808] [cursor=pointer]:
+                    - generic [ref=f1e997]: علاج داخلي / عيادات خارجية
+                    - generic [ref=f1e998]: "41"
+                - listitem [ref=f1e1009]:
+                  - button "علاج داخلي / طوارئ / عيادات خارجية 4" [ref=f1e1010] [cursor=pointer]:
+                    - generic [ref=f1e1012]: علاج داخلي / طوارئ / عيادات خارجية
+                    - generic [ref=f1e1013]: "4"
+                - listitem [ref=f1e999]:
+                  - button "علاج داخلي / طوارئ / عيادات خارجية 2" [ref=f1e2809] [cursor=pointer]:
+                    - generic [ref=f1e1002]: علاج داخلي / طوارئ / عيادات خارجية
+                    - generic [ref=f1e1003]: "2"
+                - listitem [ref=f1e1029]:
+                  - button "عزل 1" [ref=f1e1030] [cursor=pointer]:
+                    - generic [ref=f1e1032]: عزل
+                    - generic [ref=f1e1033]: "1"
+                - listitem [ref=f1e1034]:
+                  - button "علاج داخلي / طوارئ / عيادات خارجية 1" [ref=f1e1035] [cursor=pointer]:
+                    - generic [ref=f1e1037]: علاج داخلي / طوارئ / عيادات خارجية
+                    - generic [ref=f1e1038]: "1"
+            - generic [ref=f1e227]:
+              - button "نوع الشبكة" [ref=f1e228] [cursor=pointer]:
+                - generic [ref=f1e229]: نوع الشبكة
+                - img [ref=f1e231]
+              - list [ref=f1e234]:
+                - listitem [ref=f1e1044]:
+                  - button "RN 461" [ref=f1e2810] [cursor=pointer]:
+                    - generic [ref=f1e1047]: RN
+                    - generic [ref=f1e1048]: "461"
+                - listitem [ref=f1e1049]:
+                  - button "GN 25" [ref=f1e2811] [cursor=pointer]:
+                    - generic [ref=f1e1052]: GN
+                    - generic [ref=f1e1053]: "25"
+                - listitem [ref=f1e1054]:
+                  - button "EN 17" [ref=f1e1055] [cursor=pointer]:
+                    - generic [ref=f1e1057]: EN
+                    - generic [ref=f1e1058]: "17"
+            - generic [ref=f1e236]:
+              - button "رئيسي / فرع" [ref=f1e237] [cursor=pointer]:
+                - generic [ref=f1e238]: رئيسي / فرع
+                - img [ref=f1e240]
+              - list [ref=f1e243]:
+                - listitem [ref=f1e1064]:
+                  - button "Main 79" [ref=f1e2812] [cursor=pointer]:
+                    - generic [ref=f1e1067]: Main
+                    - generic [ref=f1e1068]: "79"
+                - listitem [ref=f1e1059]:
+                  - button "Branch 8" [ref=f1e2813] [cursor=pointer]:
+                    - generic [ref=f1e1062]: Branch
+                    - generic [ref=f1e1063]: "8"
+                - listitem [ref=f1e1069]:
+                  - button "Reactivation 1" [ref=f1e1070] [cursor=pointer]:
+                    - generic [ref=f1e1072]: Reactivation
+                    - generic [ref=f1e1073]: "1"
+            - generic [ref=f1e245]:
+              - button "حالة PULSE" [ref=f1e246] [cursor=pointer]:
+                - generic [ref=f1e247]: حالة PULSE
+                - img [ref=f1e249]
+              - list [ref=f1e252]:
+                - listitem [ref=f1e253]:
+                  - button "نشط 253" [ref=f1e2814] [cursor=pointer]:
+                    - generic [ref=f1e256]: نشط
+                    - generic [ref=f1e257]: "253"
+                - listitem [ref=f1e258]:
+                  - button "غير نشط 250" [ref=f1e2815] [cursor=pointer]:
+                    - generic [ref=f1e261]: غير نشط
+                    - generic [ref=f1e262]: "250"
+          - button "مسح الكل" [ref=f1e2816] [cursor=pointer]:
+            - img [ref=f1e2817]
+            - text: مسح الكل
+      - generic [ref=f1e263]:
+        - generic [ref=f1e264]:
+          - generic [ref=f1e265]: 503 نتيجة · 415 مجموعة
+          - generic [ref=f1e266]:
+            - button "تحديد موقعي" [ref=f1e267] [cursor=pointer]:
+              - img [ref=f1e268]
+              - generic [ref=f1e271]: تحديد موقعي
+            - combobox [ref=f1e273]:
+              - 'option "ترتيب حسب: أفضل تطابق" [selected]'
+              - 'option "ترتيب حسب: الاسم"'
+              - 'option "ترتيب حسب: المحافظة"'
+              - 'option "ترتيب حسب: المنطقة"'
+            - generic [ref=f1e274]:
+              - button "بطاقات" [ref=f1e275] [cursor=pointer]:
+                - img [ref=f1e276]
+                - generic [ref=f1e281]: بطاقات
+              - button "قائمة" [ref=f1e282] [cursor=pointer]:
+                - img [ref=f1e283]
+                - generic [ref=f1e285]: قائمة
+              - button "خريطة" [ref=f1e286] [cursor=pointer]:
+                - img [ref=f1e287]
+                - generic [ref=f1e289]: خريطة
+            - button "تجميع حسب المقدم" [ref=f1e290] [cursor=pointer]:
+              - img [ref=f1e291]
+              - generic [ref=f1e295]: تجميع حسب المقدم
+            - button "تصدير CSV" [ref=f1e297] [cursor=pointer]:
+              - img [ref=f1e298]
+              - generic [ref=f1e301]: تصدير CSV
+              - img [ref=f1e302]
+            - button "مسح الفلاتر" [ref=f1e2820] [cursor=pointer]:
+              - img [ref=f1e2821]
+              - text: مسح الفلاتر
+        - generic [ref=f1e1076]:
+          - article [ref=f1e2824]:
+            - generic [ref=f1e2825]:
+              - button "المستشفى الأمريكي مستشفيات نشط" [ref=f1e2826] [cursor=pointer]:
+                - heading "المستشفى الأمريكي" [level=3] [ref=f1e2827]:
+                  - text: ال
+                  - mark [ref=f1e2828]: مستشفى
+                  - text: الأمريكي
+                - generic [ref=f1e2829]:
+                  - generic [ref=f1e2830]: مستشفيات
+                  - generic [ref=f1e2831]: نشط
+              - button "إضافة للمفضلة" [ref=f1e2833] [cursor=pointer]:
+                - img [ref=f1e2834]
+            - generic [ref=f1e2836]:
+              - generic [ref=f1e2837]:
+                - img [ref=f1e2838]
+                - generic [ref=f1e2842]: متعدد التخصصات
+              - generic [ref=f1e2843]:
+                - img [ref=f1e2844]
+                - generic [ref=f1e2846]: علاج داخلي / طوارئ / عيادات خارجية
+              - generic [ref=f1e2847]:
+                - img [ref=f1e2848]
+                - generic [ref=f1e2851]:
+                  - generic [ref=f1e2852]:
+                    - generic [ref=f1e2853]: القاهرة
+                    - generic [ref=f1e2854]: · مساكن شيراتون
+                  - generic [ref=f1e2855]: 15 ش خالد بن الوليد متفرع من ش عبد الحميد بدوي - أمام محطة بنزين موبيل
+            - generic [ref=f1e2856]:
+              - generic [ref=f1e2857]:
+                - img [ref=f1e2858]
+                - text: Main
+              - generic [ref=f1e2862]:
+                - img [ref=f1e2863]
+                - text: RN
+            - generic [ref=f1e2869]:
+              - link "0222670702-0222679638-01222255099-01065545625" [ref=f1e2870] [cursor=pointer]:
+                - /url: tel:022267070202226796380122225509901065545625
+                - img [ref=f1e2871]
+                - text: 0222670702-0222679638-01222255099-01065545625
+              - link "البريد الإلكتروني" [ref=f1e2873] [cursor=pointer]:
+                - /url: mailto:Info@americanhospitaleg.com
+                - img [ref=f1e2874]
+              - link "فتح في خرائط Google" [ref=f1e2877] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D8%A3%D9%85%D8%B1%D9%8A%D9%83%D9%8A%2C%2015%20Khaled%20Ibn%20El%20Walid%20Off%20Abdel%20Hamid%20Badawy%20St.%20-%20Sheraton%20Bldgs%20-%20Infront%20of%20Mobil%20Gas%20Station%20-%20Heliopolis%20-%20Cairo%2C%20Masaken%20Sheraton%2C%20Cairo%2C%20Egypt
+                - img [ref=f1e2878]
+              - button "نسخ العنوان" [ref=f1e2880] [cursor=pointer]:
+                - img [ref=f1e2881]
+              - button "مشاركة" [ref=f1e2884] [cursor=pointer]:
+                - img [ref=f1e2885]
+              - button "التفاصيل" [ref=f1e2891] [cursor=pointer]:
+                - text: التفاصيل
+                - img [ref=f1e2892]
+          - article [ref=f1e2894]:
+            - generic [ref=f1e2895]:
+              - button "المستشفى المركزي مستشفيات غير نشط" [ref=f1e2896] [cursor=pointer]:
+                - heading "المستشفى المركزي" [level=3] [ref=f1e2897]:
+                  - text: ال
+                  - mark [ref=f1e2898]: مستشفى
+                  - text: المركزي
+                - generic [ref=f1e2899]:
+                  - generic [ref=f1e2900]: مستشفيات
+                  - generic [ref=f1e2901]: غير نشط
+              - button "إضافة للمفضلة" [ref=f1e2903] [cursor=pointer]:
+                - img [ref=f1e2904]
+            - generic [ref=f1e2906]:
+              - generic [ref=f1e2907]:
+                - img [ref=f1e2908]
+                - generic [ref=f1e2912]: متعدد التخصصات
+              - generic [ref=f1e2913]:
+                - img [ref=f1e2914]
+                - generic [ref=f1e2916]: علاج داخلي / طوارئ / عيادات خارجية
+              - generic [ref=f1e2917]:
+                - img [ref=f1e2918]
+                - generic [ref=f1e2921]:
+                  - generic [ref=f1e2922]:
+                    - generic [ref=f1e2923]: القاهرة
+                    - generic [ref=f1e2924]: · مصر الجديدة
+                  - generic [ref=f1e2925]: ش عمر بن الخطاب تقاطع ش حسن أفلاطون - أرض الجولف - بجوار سيتي ستارز
+            - generic [ref=f1e2927]:
+              - img [ref=f1e2928]
+              - text: RN
+            - generic [ref=f1e2934]:
+              - link "0224140045/6-0224140356/7/8-01066696486-01002525571" [ref=f1e2935] [cursor=pointer]:
+                - /url: tel:022414004560224140356780106669648601002525571
+                - img [ref=f1e2936]
+                - text: 0224140045/6-0224140356/7/8-01066696486-01002525571
+              - link "فتح في خرائط Google" [ref=f1e2938] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2%D9%8A%2C%20Omar%20Ibn%20El%20Khattab%20St.%20Intersection%20Of%20Hassan%20Aflatoun%20St.%2C%20Ard%20El%20Golf%20-%20Beside%20City%20Stars%2C%20Heliopolis%2C%20Cairo%2C%20Egypt
+                - img [ref=f1e2939]
+              - button "نسخ العنوان" [ref=f1e2941] [cursor=pointer]:
+                - img [ref=f1e2942]
+              - button "مشاركة" [ref=f1e2945] [cursor=pointer]:
+                - img [ref=f1e2946]
+              - button "التفاصيل" [ref=f1e2952] [cursor=pointer]:
+                - text: التفاصيل
+                - img [ref=f1e2953]
+          - article [ref=f1e2955]:
+            - generic [ref=f1e2956]:
+              - button "مستشفى الفيروز مستشفيات غير نشط" [ref=f1e2957] [cursor=pointer]:
+                - heading "مستشفى الفيروز" [level=3] [ref=f1e2958]:
+                  - mark [ref=f1e2959]: مستشفى
+                  - text: الفيروز
+                - generic [ref=f1e2960]:
+                  - generic [ref=f1e2961]: مستشفيات
+                  - generic [ref=f1e2962]: غير نشط
+              - button "إضافة للمفضلة" [ref=f1e2964] [cursor=pointer]:
+                - img [ref=f1e2965]
+            - generic [ref=f1e2967]:
+              - generic [ref=f1e2968]:
+                - img [ref=f1e2969]
+                - generic [ref=f1e2973]: متعدد التخصصات
+              - generic [ref=f1e2974]:
+                - img [ref=f1e2975]
+                - generic [ref=f1e2977]: علاج داخلي / طوارئ / عيادات خارجية
+              - generic [ref=f1e2978]:
+                - img [ref=f1e2979]
+                - generic [ref=f1e2982]:
+                  - generic [ref=f1e2983]:
+                    - generic [ref=f1e2984]: الغربية
+                    - generic [ref=f1e2985]: · طنطا
+                  - generic [ref=f1e2986]: ش النحاس - تقاطع ش كفر عصام
+            - generic [ref=f1e2988]:
+              - img [ref=f1e2989]
+              - text: RN
+            - generic [ref=f1e2995]:
+              - link "0403330038/39-01222680005-01223980006" [ref=f1e2996] [cursor=pointer]:
+                - /url: tel:0403330038390122268000501223980006
+                - img [ref=f1e2997]
+                - text: 0403330038/39-01222680005-01223980006
+              - link "البريد الإلكتروني" [ref=f1e2999] [cursor=pointer]:
+                - /url: mailto:alfayrozhospital0@gmail.com
+                - img [ref=f1e3000]
+              - link "فتح في خرائط Google" [ref=f1e3003] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D9%81%D9%8A%D8%B1%D9%88%D8%B2%2C%20El%20Nahhas%20St.%20-%20Intersection%20Of%20Kafr%20Essam%20St.%2C%20Tanta%2C%20Gharbia%2C%20Egypt
+                - img [ref=f1e3004]
+              - button "نسخ العنوان" [ref=f1e3006] [cursor=pointer]:
+                - img [ref=f1e3007]
+              - button "مشاركة" [ref=f1e3010] [cursor=pointer]:
+                - img [ref=f1e3011]
+              - button "التفاصيل" [ref=f1e3017] [cursor=pointer]:
+                - text: التفاصيل
+                - img [ref=f1e3018]
+          - article [ref=f1e3020]:
+            - generic [ref=f1e3021]:
+              - button "مستشفى الإقبال مستشفيات نشط" [ref=f1e3022] [cursor=pointer]:
+                - heading "مستشفى الإقبال" [level=3] [ref=f1e3023]:
+                  - mark [ref=f1e3024]: مستشفى
+                  - text: الإقبال
+                - generic [ref=f1e3025]:
+                  - generic [ref=f1e3026]: مستشفيات
+                  - generic [ref=f1e3027]: نشط
+              - button "إضافة للمفضلة" [ref=f1e3029] [cursor=pointer]:
+                - img [ref=f1e3030]
+            - generic [ref=f1e3032]:
+              - generic [ref=f1e3033]:
+                - img [ref=f1e3034]
+                - generic [ref=f1e3038]: متعدد التخصصات
+              - generic [ref=f1e3039]:
+                - img [ref=f1e3040]
+                - generic [ref=f1e3042]: علاج داخلي / طوارئ / عيادات خارجية
+              - generic [ref=f1e3043]:
+                - img [ref=f1e3044]
+                - generic [ref=f1e3047]:
+                  - generic [ref=f1e3048]:
+                    - generic [ref=f1e3049]: الإسكندرية
+                    - generic [ref=f1e3050]: · لوران
+                  - generic [ref=f1e3051]: 10 ش حسن أمين متفرع من ش الإقبال
+            - generic [ref=f1e3053]:
+              - img [ref=f1e3054]
+              - text: RN
+            - generic [ref=f1e3060]:
+              - link "033571691-033571692-033571693-033571694-01023079931" [ref=f1e3061] [cursor=pointer]:
+                - /url: tel:03357169103357169203357169303357169401023079931
+                - img [ref=f1e3062]
+                - text: 033571691-033571692-033571693-033571694-01023079931
+              - link "فتح في خرائط Google" [ref=f1e3064] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D8%A5%D9%82%D8%A8%D8%A7%D9%84%2C%2010%20Hassan%20Amin%20st.%2C%20from%20El-Eqbal%20st.%20-%20Louran%2C%20Laurent%2C%20Alexandria%2C%20Egypt
+                - img [ref=f1e3065]
+              - button "نسخ العنوان" [ref=f1e3067] [cursor=pointer]:
+                - img [ref=f1e3068]
+              - button "مشاركة" [ref=f1e3071] [cursor=pointer]:
+                - img [ref=f1e3072]
+              - button "التفاصيل" [ref=f1e3078] [cursor=pointer]:
+                - text: التفاصيل
+                - img [ref=f1e3079]
+          - article [ref=f1e3081]:
+            - generic [ref=f1e3082]:
+              - button "مستشفى البطريق مستشفيات غير نشط" [ref=f1e3083] [cursor=pointer]:
+                - heading "مستشفى البطريق" [level=3] [ref=f1e3084]:
+                  - mark [ref=f1e3085]: مستشفى
+                  - text: البطريق
+                - generic [ref=f1e3086]:
+                  - generic [ref=f1e3087]: مستشفيات
+                  - generic [ref=f1e3088]: غير نشط
+              - button "إضافة للمفضلة" [ref=f1e3090] [cursor=pointer]:
+                - img [ref=f1e3091]
+            - generic [ref=f1e3093]:
+              - generic [ref=f1e3094]:
+                - img [ref=f1e3095]
+                - generic [ref=f1e3099]: متعدد التخصصات
+              - generic [ref=f1e3100]:
+                - img [ref=f1e3101]
+                - generic [ref=f1e3103]: علاج داخلي / طوارئ / عيادات خارجية
+              - generic [ref=f1e3104]:
+                - img [ref=f1e3105]
+                - generic [ref=f1e3108]:
+                  - generic [ref=f1e3109]:
+                    - generic [ref=f1e3110]: القاهرة
+                    - generic [ref=f1e3111]: · عين شمس
+                  - generic [ref=f1e3112]: 2 ش محمد عباس - أمام مسجد التقوى - ش العشرين
+            - generic [ref=f1e3114]:
+              - img [ref=f1e3115]
+              - text: RN
+            - generic [ref=f1e3121]:
+              - link "0221850200-01023705955" [ref=f1e3122] [cursor=pointer]:
+                - /url: tel:022185020001023705955
+                - img [ref=f1e3123]
+                - text: 0221850200-01023705955
+              - link "فتح في خرائط Google" [ref=f1e3125] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D8%A8%D8%B7%D8%B1%D9%8A%D9%82%2C%202%20Mohamed%20Abbas%20St.%2C%20In%20Front%20Of%20El%20Taqwa%20Mosque%2C%20El%20Eshreen%20St.%2C%20Ain%20Shams%2C%20Cairo%2C%20Egypt
+                - img [ref=f1e3126]
+              - button "نسخ العنوان" [ref=f1e3128] [cursor=pointer]:
+                - img [ref=f1e3129]
+              - button "مشاركة" [ref=f1e3132] [cursor=pointer]:
+                - img [ref=f1e3133]
+              - button "التفاصيل" [ref=f1e3139] [cursor=pointer]:
+                - text: التفاصيل
+                - img [ref=f1e3140]
+          - article [ref=f1e3142]:
+            - generic [ref=f1e3143]:
+              - button "مستشفى الثريا مستشفيات غير نشط" [ref=f1e3144] [cursor=pointer]:
+                - heading "مستشفى الثريا" [level=3] [ref=f1e3145]:
+                  - mark [ref=f1e3146]: مستشفى
+                  - text: الثريا
+                - generic [ref=f1e3147]:
+                  - generic [ref=f1e3148]: مستشفيات
+                  - generic [ref=f1e3149]: غير نشط
+              - button "إضافة للمفضلة" [ref=f1e3151] [cursor=pointer]:
+                - img [ref=f1e3152]
+            - generic [ref=f1e3154]:
+              - generic [ref=f1e3155]:
+                - img [ref=f1e3156]
+                - generic [ref=f1e3160]: متعدد التخصصات
+              - generic [ref=f1e3161]:
+                - img [ref=f1e3162]
+                - generic [ref=f1e3164]: علاج داخلي / طوارئ / عيادات خارجية
+              - generic [ref=f1e3165]:
+                - img [ref=f1e3166]
+                - generic [ref=f1e3169]:
+                  - generic [ref=f1e3170]:
+                    - generic [ref=f1e3171]: الجيزة
+                    - generic [ref=f1e3172]: · الدقي
+                  - generic [ref=f1e3173]: 14 ش عبد العزيز - متفرع من ش الثورة - بجوار مدرسة جمال عبد الناصر
+            - generic [ref=f1e3175]:
+              - img [ref=f1e3176]
+              - text: RN
+            - generic [ref=f1e3182]:
+              - link "0237489427-0237489417" [ref=f1e3183] [cursor=pointer]:
+                - /url: tel:02374894270237489417
+                - img [ref=f1e3184]
+                - text: 0237489427-0237489417
+              - link "البريد الإلكتروني" [ref=f1e3186] [cursor=pointer]:
+                - /url: mailto:h.althuria@yahoo.com
+                - img [ref=f1e3187]
+              - link "فتح في خرائط Google" [ref=f1e3190] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D8%AB%D8%B1%D9%8A%D8%A7%2C%2014%20Abdel%20Aziz%20Selim%20St.%20off%20Al%20Sawra%20St.%2C%20beside%20Gamal%20Abdel%20Naser%20School%2C%20Dokki%2C%20Giza%2C%20Egypt
+                - img [ref=f1e3191]
+              - button "نسخ العنوان" [ref=f1e3193] [cursor=pointer]:
+                - img [ref=f1e3194]
+              - button "مشاركة" [ref=f1e3197] [cursor=pointer]:
+                - img [ref=f1e3198]
+              - button "التفاصيل" [ref=f1e3204] [cursor=pointer]:
+                - text: التفاصيل
+                - img [ref=f1e3205]
+          - article [ref=f1e3207]:
+            - generic [ref=f1e3208]:
+              - button "مستشفى الجابري مستشفيات غير نشط 6 موقع" [ref=f1e3209] [cursor=pointer]:
+                - heading "مستشفى الجابري" [level=3] [ref=f1e3210]:
+                  - mark [ref=f1e3211]: مستشفى
+                  - text: الجابري
+                - generic [ref=f1e3212]:
+                  - generic [ref=f1e3213]: مستشفيات
+                  - generic [ref=f1e3214]: غير نشط
+                  - generic [ref=f1e3216]:
+                    - img [ref=f1e3217]
+                    - text: 6 موقع
+              - button "إضافة للمفضلة" [ref=f1e3221] [cursor=pointer]:
+                - img [ref=f1e3222]
+            - generic [ref=f1e3224]:
+              - generic [ref=f1e3225]:
+                - img [ref=f1e3226]
+                - generic [ref=f1e3230]: أطفال
+              - generic [ref=f1e3231]:
+                - img [ref=f1e3232]
+                - generic [ref=f1e3234]: علاج داخلي / طوارئ / عيادات خارجية
+              - generic [ref=f1e3235]:
+                - img [ref=f1e3236]
+                - generic [ref=f1e3239]:
+                  - generic [ref=f1e3240]:
+                    - text: الجيزة
+                    - generic [ref=f1e3241]: · فيصل
+                  - generic [ref=f1e3242]: 130 ش فيصل - محطة الجامعة الأمريكية
+            - generic [ref=f1e3244]:
+              - link "01287979645" [ref=f1e3245] [cursor=pointer]:
+                - /url: tel:01287979645
+                - img [ref=f1e3246]
+                - text: "01287979645"
+              - link "فتح في خرائط Google" [ref=f1e3248] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D8%AC%D8%A7%D8%A8%D8%B1%D9%8A%2C%20130%20Faisal%20St.%20-%20in%20Front%20of%20El%20Mostashfa%20St.%2C%20Faisal%2C%20Giza%2C%20Egypt
+                - img [ref=f1e3249]
+              - button "نسخ العنوان" [ref=f1e3251] [cursor=pointer]:
+                - img [ref=f1e3252]
+              - button "مشاركة" [ref=f1e3255] [cursor=pointer]:
+                - img [ref=f1e3256]
+              - button "عرض الفروع (6)" [ref=f1e3262] [cursor=pointer]:
+                - text: عرض الفروع
+                - generic [ref=f1e3263]: (6)
+                - img [ref=f1e3264]
+          - article [ref=f1e3266]:
+            - generic [ref=f1e3267]:
+              - button "مستشفى الجونة مستشفيات نشط" [ref=f1e3268] [cursor=pointer]:
+                - heading "مستشفى الجونة" [level=3] [ref=f1e3269]:
+                  - mark [ref=f1e3270]: مستشفى
+                  - text: الجونة
+                - generic [ref=f1e3271]:
+                  - generic [ref=f1e3272]: مستشفيات
+                  - generic [ref=f1e3273]: نشط
+              - button "إضافة للمفضلة" [ref=f1e3275] [cursor=pointer]:
+                - img [ref=f1e3276]
+            - generic [ref=f1e3278]:
+              - generic [ref=f1e3279]:
+                - img [ref=f1e3280]
+                - generic [ref=f1e3284]: متعدد التخصصات
+              - generic [ref=f1e3285]:
+                - img [ref=f1e3286]
+                - generic [ref=f1e3288]: علاج داخلي / طوارئ / عيادات خارجية
+              - generic [ref=f1e3289]:
+                - img [ref=f1e3290]
+                - generic [ref=f1e3293]:
+                  - generic [ref=f1e3294]:
+                    - generic [ref=f1e3295]: البحر الأحمر
+                    - generic [ref=f1e3296]: · الجونة
+                  - generic [ref=f1e3297]: الكيلو 22 - جنوب الغردقة
+            - generic [ref=f1e3299]:
+              - img [ref=f1e3300]
+              - text: RN
+            - generic [ref=f1e3306]:
+              - link "16650-0653580012/3/4/5/6/7/8" [ref=f1e3307] [cursor=pointer]:
+                - /url: tel:166500653580012345678
+                - img [ref=f1e3308]
+                - text: 16650-0653580012/3/4/5/6/7/8
+              - link "البريد الإلكتروني" [ref=f1e3310] [cursor=pointer]:
+                - /url: mailto:info@elgounahospital.com.eg
+                - img [ref=f1e3311]
+              - link "فتح في خرائط Google" [ref=f1e3314] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D8%AC%D9%88%D9%86%D8%A9%2C%20KM%2022%20-%20Gouna%20City%20North%20Hurgada%20-%20Red%20Sea%2C%20Gouna%2C%20Red%20Sea%2C%20Egypt
+                - img [ref=f1e3315]
+              - button "نسخ العنوان" [ref=f1e3317] [cursor=pointer]:
+                - img [ref=f1e3318]
+              - button "مشاركة" [ref=f1e3321] [cursor=pointer]:
+                - img [ref=f1e3322]
+              - button "التفاصيل" [ref=f1e3328] [cursor=pointer]:
+                - text: التفاصيل
+                - img [ref=f1e3329]
+          - article [ref=f1e3331]:
+            - generic [ref=f1e3332]:
+              - button "مستشفى الحياة مستشفيات نشط" [ref=f1e3333] [cursor=pointer]:
+                - heading "مستشفى الحياة" [level=3] [ref=f1e3334]:
+                  - mark [ref=f1e3335]: مستشفى
+                  - text: الحياة
+                - generic [ref=f1e3336]:
+                  - generic [ref=f1e3337]: مستشفيات
+                  - generic [ref=f1e3338]: نشط
+              - button "إضافة للمفضلة" [ref=f1e3340] [cursor=pointer]:
+                - img [ref=f1e3341]
+            - generic [ref=f1e3343]:
+              - generic [ref=f1e3344]:
+                - img [ref=f1e3345]
+                - generic [ref=f1e3349]: متعدد التخصصات
+              - generic [ref=f1e3350]:
+                - img [ref=f1e3351]
+                - generic [ref=f1e3353]: علاج داخلي / طوارئ / عيادات خارجية
+              - generic [ref=f1e3354]:
+                - img [ref=f1e3355]
+                - generic [ref=f1e3358]:
+                  - generic [ref=f1e3359]:
+                    - generic [ref=f1e3360]: أسيوط
+                    - generic [ref=f1e3361]: · أسيوط
+                  - generic [ref=f1e3362]: ش مكة المكرمة ( محمود رشوان سابقا ) - بجوار مسجد مكة - شركة فريال
+            - generic [ref=f1e3364]:
+              - img [ref=f1e3365]
+              - text: RN
+            - generic [ref=f1e3371]:
+              - link "0882053915-0882053916-0882053917-01060385669" [ref=f1e3372] [cursor=pointer]:
+                - /url: tel:08820539150882053916088205391701060385669
+                - img [ref=f1e3373]
+                - text: 0882053915-0882053916-0882053917-01060385669
+              - link "البريد الإلكتروني" [ref=f1e3375] [cursor=pointer]:
+                - /url: mailto:alhayathospital2020@gmail.com;alhayatassiut@yahoo.com
+                - img [ref=f1e3376]
+              - link "فتح في خرائط Google" [ref=f1e3379] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D8%AD%D9%8A%D8%A7%D8%A9%2C%20Mecca%20El-Mokarrama%20St%2C%20(Mahmoud%20Rashwan)%20-%20Beside%20Mecca%20Mosque%20-%20Feryal%20Co.-%20Assiut%2C%20Asyut%2C%20Assiut%2C%20Egypt
+                - img [ref=f1e3380]
+              - button "نسخ العنوان" [ref=f1e3382] [cursor=pointer]:
+                - img [ref=f1e3383]
+              - button "مشاركة" [ref=f1e3386] [cursor=pointer]:
+                - img [ref=f1e3387]
+              - button "التفاصيل" [ref=f1e3393] [cursor=pointer]:
+                - text: التفاصيل
+                - img [ref=f1e3394]
+          - article [ref=f1e3396]:
+            - generic [ref=f1e3397]:
+              - button "مستشفى الخير مستشفيات غير نشط" [ref=f1e3398] [cursor=pointer]:
+                - heading "مستشفى الخير" [level=3] [ref=f1e3399]:
+                  - mark [ref=f1e3400]: مستشفى
+                  - text: الخير
+                - generic [ref=f1e3401]:
+                  - generic [ref=f1e3402]: مستشفيات
+                  - generic [ref=f1e3403]: غير نشط
+              - button "إضافة للمفضلة" [ref=f1e3405] [cursor=pointer]:
+                - img [ref=f1e3406]
+            - generic [ref=f1e3408]:
+              - generic [ref=f1e3409]:
+                - img [ref=f1e3410]
+                - generic [ref=f1e3414]: متعدد التخصصات
+              - generic [ref=f1e3415]:
+                - img [ref=f1e3416]
+                - generic [ref=f1e3418]: علاج داخلي / طوارئ / عيادات خارجية
+              - generic [ref=f1e3419]:
+                - img [ref=f1e3420]
+                - generic [ref=f1e3423]:
+                  - generic [ref=f1e3424]:
+                    - generic [ref=f1e3425]: الدقهلية
+                    - generic [ref=f1e3426]: · المنصورة
+                  - generic [ref=f1e3427]: 153 ش قناة السويس
+            - generic [ref=f1e3429]:
+              - img [ref=f1e3430]
+              - text: RN
+            - generic [ref=f1e3436]:
+              - link "0502504066" [ref=f1e3437] [cursor=pointer]:
+                - /url: tel:0502504066
+                - img [ref=f1e3438]
+                - text: "0502504066"
+              - link "فتح في خرائط Google" [ref=f1e3440] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D8%AE%D9%8A%D8%B1%2C%20153%20Qantat%20El%20Suez%20St.%2C%20Mansoura%2C%20Dakhlia%2C%20Egypt
+                - img [ref=f1e3441]
+              - button "نسخ العنوان" [ref=f1e3443] [cursor=pointer]:
+                - img [ref=f1e3444]
+              - button "مشاركة" [ref=f1e3447] [cursor=pointer]:
+                - img [ref=f1e3448]
+              - button "التفاصيل" [ref=f1e3454] [cursor=pointer]:
+                - text: التفاصيل
+                - img [ref=f1e3455]
+          - article [ref=f1e3457]:
+            - generic [ref=f1e3458]:
+              - button "مستشفى الربيع مستشفيات غير نشط" [ref=f1e3459] [cursor=pointer]:
+                - heading "مستشفى الربيع" [level=3] [ref=f1e3460]:
+                  - mark [ref=f1e3461]: مستشفى
+                  - text: الربيع
+                - generic [ref=f1e3462]:
+                  - generic [ref=f1e3463]: مستشفيات
+                  - generic [ref=f1e3464]: غير نشط
+              - button "إضافة للمفضلة" [ref=f1e3466] [cursor=pointer]:
+                - img [ref=f1e3467]
+            - generic [ref=f1e3469]:
+              - generic [ref=f1e3470]:
+                - img [ref=f1e3471]
+                - generic [ref=f1e3475]: متعدد التخصصات
+              - generic [ref=f1e3476]:
+                - img [ref=f1e3477]
+                - generic [ref=f1e3479]: علاج داخلي / طوارئ / عيادات خارجية
+              - generic [ref=f1e3480]:
+                - img [ref=f1e3481]
+                - generic [ref=f1e3484]:
+                  - generic [ref=f1e3485]:
+                    - generic [ref=f1e3486]: الغربية
+                    - generic [ref=f1e3487]: · المحلة الكبرى
+                  - generic [ref=f1e3488]: ش جمال عبد الناصر - منشية البكري - ناصية ش السلام
+            - generic [ref=f1e3490]:
+              - img [ref=f1e3491]
+              - text: RN
+            - generic [ref=f1e3497]:
+              - link "0402126266-01020442040-0121274243777-01280879893" [ref=f1e3498] [cursor=pointer]:
+                - /url: tel:040212626601020442040012127424377701280879893
+                - img [ref=f1e3499]
+                - text: 0402126266-01020442040-0121274243777-01280879893
+              - link "فتح في خرائط Google" [ref=f1e3501] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D8%B1%D8%A8%D9%8A%D8%B9%2C%20Gamal%20Abdel%20Nasser%20St.%2C%20Mansheyet%20El%20Bakry%2C%20El%20Salam%20st%2C%20AlMahalla%20Al%20Kubra%2C%20Gharbia%2C%20Egypt
+                - img [ref=f1e3502]
+              - button "نسخ العنوان" [ref=f1e3504] [cursor=pointer]:
+                - img [ref=f1e3505]
+              - button "مشاركة" [ref=f1e3508] [cursor=pointer]:
+                - img [ref=f1e3509]
+              - button "التفاصيل" [ref=f1e3515] [cursor=pointer]:
+                - text: التفاصيل
+                - img [ref=f1e3516]
+          - article [ref=f1e3518]:
+            - generic [ref=f1e3519]:
+              - button "مستشفى الرحمة مستشفيات نشط" [ref=f1e3520] [cursor=pointer]:
+                - heading "مستشفى الرحمة" [level=3] [ref=f1e3521]:
+                  - mark [ref=f1e3522]: مستشفى
+                  - text: الرحمة
+                - generic [ref=f1e3523]:
+                  - generic [ref=f1e3524]: مستشفيات
+                  - generic [ref=f1e3525]: نشط
+              - button "إضافة للمفضلة" [ref=f1e3527] [cursor=pointer]:
+                - img [ref=f1e3528]
+            - generic [ref=f1e3530]:
+              - generic [ref=f1e3531]:
+                - img [ref=f1e3532]
+                - generic [ref=f1e3536]: متعدد التخصصات
+              - generic [ref=f1e3537]:
+                - img [ref=f1e3538]
+                - generic [ref=f1e3540]: علاج داخلي / طوارئ / عيادات خارجية
+              - generic [ref=f1e3541]:
+                - img [ref=f1e3542]
+                - generic [ref=f1e3545]:
+                  - generic [ref=f1e3546]:
+                    - generic [ref=f1e3547]: الشرقية
+                    - generic [ref=f1e3548]: · بلبيس
+                  - generic [ref=f1e3549]: ش الكلية الجوية
+            - generic [ref=f1e3551]:
+              - img [ref=f1e3552]
+              - text: RN
+            - generic [ref=f1e3558]:
+              - link "0552853073" [ref=f1e3559] [cursor=pointer]:
+                - /url: tel:0552853073
+                - img [ref=f1e3560]
+                - text: "0552853073"
+              - link "فتح في خرائط Google" [ref=f1e3562] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D8%B1%D8%AD%D9%85%D8%A9%2C%20Air%20College%20St.%2C%20Belbeis%2C%20Sharkia%2C%20Egypt
+                - img [ref=f1e3563]
+              - button "نسخ العنوان" [ref=f1e3565] [cursor=pointer]:
+                - img [ref=f1e3566]
+              - button "مشاركة" [ref=f1e3569] [cursor=pointer]:
+                - img [ref=f1e3570]
+              - button "التفاصيل" [ref=f1e3576] [cursor=pointer]:
+                - text: التفاصيل
+                - img [ref=f1e3577]
+          - article [ref=f1e3579]:
+            - generic [ref=f1e3580]:
+              - button "مستشفى الرحمة مستشفيات نشط" [ref=f1e3581] [cursor=pointer]:
+                - heading "مستشفى الرحمة" [level=3] [ref=f1e3582]:
+                  - mark [ref=f1e3583]: مستشفى
+                  - text: الرحمة
+                - generic [ref=f1e3584]:
+                  - generic [ref=f1e3585]: مستشفيات
+                  - generic [ref=f1e3586]: نشط
+              - button "إضافة للمفضلة" [ref=f1e3588] [cursor=pointer]:
+                - img [ref=f1e3589]
+            - generic [ref=f1e3591]:
+              - generic [ref=f1e3592]:
+                - img [ref=f1e3593]
+                - generic [ref=f1e3597]: متعدد التخصصات
+              - generic [ref=f1e3598]:
+                - img [ref=f1e3599]
+                - generic [ref=f1e3601]: علاج داخلي / طوارئ / عيادات خارجية
+              - generic [ref=f1e3602]:
+                - img [ref=f1e3603]
+                - generic [ref=f1e3606]:
+                  - generic [ref=f1e3607]:
+                    - generic [ref=f1e3608]: القاهرة
+                    - generic [ref=f1e3609]: · المعادي
+                  - generic [ref=f1e3610]: مدينة عباد الرحمن ( 1 ) - خلف نادي الصيد القطامية - الطريق الدائري
+            - generic [ref=f1e3612]:
+              - img [ref=f1e3613]
+              - text: RN
+            - generic [ref=f1e3619]:
+              - link "0227254602-0227254603-01060656473-01284523725" [ref=f1e3620] [cursor=pointer]:
+                - /url: tel:022725460202272546030106065647301284523725
+                - img [ref=f1e3621]
+                - text: 0227254602-0227254603-01060656473-01284523725
+              - link "البريد الإلكتروني" [ref=f1e3623] [cursor=pointer]:
+                - /url: mailto:rahma.hospital1@yahoo.com
+                - img [ref=f1e3624]
+              - link "فتح في خرائط Google" [ref=f1e3627] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D8%B1%D8%AD%D9%85%D8%A9%2C%20Ebad%20Al%20Rahman%20City%20-%20Behind%20Shooting%20Club%20-%20Kattamia%2C%20Maadi%2C%20Cairo%2C%20Egypt
+                - img [ref=f1e3628]
+              - button "نسخ العنوان" [ref=f1e3630] [cursor=pointer]:
+                - img [ref=f1e3631]
+              - button "مشاركة" [ref=f1e3634] [cursor=pointer]:
+                - img [ref=f1e3635]
+              - button "التفاصيل" [ref=f1e3641] [cursor=pointer]:
+                - text: التفاصيل
+                - img [ref=f1e3642]
+          - article [ref=f1e3644]:
+            - generic [ref=f1e3645]:
+              - button "مستشفى الرواد مستشفيات نشط" [ref=f1e3646] [cursor=pointer]:
+                - heading "مستشفى الرواد" [level=3] [ref=f1e3647]:
+                  - mark [ref=f1e3648]: مستشفى
+                  - text: الرواد
+                - generic [ref=f1e3649]:
+                  - generic [ref=f1e3650]: مستشفيات
+                  - generic [ref=f1e3651]: نشط
+              - button "إضافة للمفضلة" [ref=f1e3653] [cursor=pointer]:
+                - img [ref=f1e3654]
+            - generic [ref=f1e3656]:
+              - generic [ref=f1e3657]:
+                - img [ref=f1e3658]
+                - generic [ref=f1e3662]: متعدد التخصصات
+              - generic [ref=f1e3663]:
+                - img [ref=f1e3664]
+                - generic [ref=f1e3666]: علاج داخلي / طوارئ / عيادات خارجية
+              - generic [ref=f1e3667]:
+                - img [ref=f1e3668]
+                - generic [ref=f1e3671]:
+                  - generic [ref=f1e3672]:
+                    - generic [ref=f1e3673]: المنوفية
+                    - generic [ref=f1e3674]: · أشمون
+                  - generic [ref=f1e3675]: ش ربيع - متفرع من ش صلاح الدين
+            - generic [ref=f1e3677]:
+              - img [ref=f1e3678]
+              - text: RN
+            - generic [ref=f1e3684]:
+              - link "0483449789-01097061174-01271050720" [ref=f1e3685] [cursor=pointer]:
+                - /url: tel:04834497890109706117401271050720
+                - img [ref=f1e3686]
+                - text: 0483449789-01097061174-01271050720
+              - link "فتح في خرائط Google" [ref=f1e3688] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D8%B1%D9%88%D8%A7%D8%AF%2C%20Rabiee%20St.%20-%20From%20Salah%20El%20Din%20St.%2C%20Ashmoun%2C%20Menufia%2C%20Egypt
+                - img [ref=f1e3689]
+              - button "نسخ العنوان" [ref=f1e3691] [cursor=pointer]:
+                - img [ref=f1e3692]
+              - button "مشاركة" [ref=f1e3695] [cursor=pointer]:
+                - img [ref=f1e3696]
+              - button "التفاصيل" [ref=f1e3702] [cursor=pointer]:
+                - text: التفاصيل
+                - img [ref=f1e3703]
+          - article [ref=f1e3705]:
+            - generic [ref=f1e3706]:
+              - button "مستشفى الزهراء مستشفيات نشط" [ref=f1e3707] [cursor=pointer]:
+                - heading "مستشفى الزهراء" [level=3] [ref=f1e3708]:
+                  - mark [ref=f1e3709]: مستشفى
+                  - text: الزهراء
+                - generic [ref=f1e3710]:
+                  - generic [ref=f1e3711]: مستشفيات
+                  - generic [ref=f1e3712]: نشط
+              - button "إضافة للمفضلة" [ref=f1e3714] [cursor=pointer]:
+                - img [ref=f1e3715]
+            - generic [ref=f1e3717]:
+              - generic [ref=f1e3718]:
+                - img [ref=f1e3719]
+                - generic [ref=f1e3723]: متعدد التخصصات
+              - generic [ref=f1e3724]:
+                - img [ref=f1e3725]
+                - generic [ref=f1e3727]: علاج داخلي / طوارئ / عيادات خارجية
+              - generic [ref=f1e3728]:
+                - img [ref=f1e3729]
+                - generic [ref=f1e3732]:
+                  - generic [ref=f1e3733]:
+                    - generic [ref=f1e3734]: أسيوط
+                    - generic [ref=f1e3735]: · أسيوط
+                  - generic [ref=f1e3736]: ش الجلاء - حي شرق - بجوار شركة فريال
+            - generic [ref=f1e3738]:
+              - img [ref=f1e3739]
+              - text: RN
+            - generic [ref=f1e3745]:
+              - link "0882311600-0100566339" [ref=f1e3746] [cursor=pointer]:
+                - /url: tel:08823116000100566339
+                - img [ref=f1e3747]
+                - text: 0882311600-0100566339
+              - link "فتح في خرائط Google" [ref=f1e3749] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D8%B2%D9%87%D8%B1%D8%A7%D8%A1%2C%20El%20Galaa%20St.%20-%20Feryal%20Company%2C%20Asyut%2C%20Assiut%2C%20Egypt
+                - img [ref=f1e3750]
+              - button "نسخ العنوان" [ref=f1e3752] [cursor=pointer]:
+                - img [ref=f1e3753]
+              - button "مشاركة" [ref=f1e3756] [cursor=pointer]:
+                - img [ref=f1e3757]
+              - button "التفاصيل" [ref=f1e3763] [cursor=pointer]:
+                - text: التفاصيل
+                - img [ref=f1e3764]
+          - article [ref=f1e3766]:
+            - generic [ref=f1e3767]:
+              - button "مستشفى الزهور مستشفيات نشط" [ref=f1e3768] [cursor=pointer]:
+                - heading "مستشفى الزهور" [level=3] [ref=f1e3769]:
+                  - mark [ref=f1e3770]: مستشفى
+                  - text: الزهور
+                - generic [ref=f1e3771]:
+                  - generic [ref=f1e3772]: مستشفيات
+                  - generic [ref=f1e3773]: نشط
+              - button "إضافة للمفضلة" [ref=f1e3775] [cursor=pointer]:
+                - img [ref=f1e3776]
+            - generic [ref=f1e3778]:
+              - generic [ref=f1e3779]:
+                - img [ref=f1e3780]
+                - generic [ref=f1e3784]: متعدد التخصصات
+              - generic [ref=f1e3785]:
+                - img [ref=f1e3786]
+                - generic [ref=f1e3788]: علاج داخلي / طوارئ / عيادات خارجية (عدا الأمراض الجلدية - أمراض النساء و التوليد - الأسنان)
+              - generic [ref=f1e3789]:
+                - img [ref=f1e3790]
+                - generic [ref=f1e3793]:
+                  - generic [ref=f1e3794]:
+                    - generic [ref=f1e3795]: الجيزة
+                    - generic [ref=f1e3796]: · اكتوبر
+                  - generic [ref=f1e3797]: الحي 7 - المحور المركزي - قطعة 15
+            - generic [ref=f1e3799]:
+              - img [ref=f1e3800]
+              - text: RN
+            - generic [ref=f1e3806]:
+              - link "0238362463-0238362464-01001793217" [ref=f1e3807] [cursor=pointer]:
+                - /url: tel:0238362463023836246401001793217
+                - img [ref=f1e3808]
+                - text: 0238362463-0238362464-01001793217
+              - link "فتح في خرائط Google" [ref=f1e3810] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D8%B2%D9%87%D9%88%D8%B1%2C%20Plot%2015%2C%203rd%20Neighbourhood%20%2C%207th%20District%20-%20-%206th%20of%20October%20City%20-%20Giza%2C%20October%20(6th%20of%20October%20City)%2C%20Giza%2C%20Egypt
+                - img [ref=f1e3811]
+              - button "نسخ العنوان" [ref=f1e3813] [cursor=pointer]:
+                - img [ref=f1e3814]
+              - button "مشاركة" [ref=f1e3817] [cursor=pointer]:
+                - img [ref=f1e3818]
+              - button "التفاصيل" [ref=f1e3824] [cursor=pointer]:
+                - text: التفاصيل
+                - img [ref=f1e3825]
+          - article [ref=f1e3827]:
+            - generic [ref=f1e3828]:
+              - button "مستشفى السلام مستشفيات نشط" [ref=f1e3829] [cursor=pointer]:
+                - heading "مستشفى السلام" [level=3] [ref=f1e3830]:
+                  - mark [ref=f1e3831]: مستشفى
+                  - text: السلام
+                - generic [ref=f1e3832]:
+                  - generic [ref=f1e3833]: مستشفيات
+                  - generic [ref=f1e3834]: نشط
+              - button "إضافة للمفضلة" [ref=f1e3836] [cursor=pointer]:
+                - img [ref=f1e3837]
+            - generic [ref=f1e3839]:
+              - generic [ref=f1e3840]:
+                - img [ref=f1e3841]
+                - generic [ref=f1e3845]: متعدد التخصصات
+              - generic [ref=f1e3846]:
+                - img [ref=f1e3847]
+                - generic [ref=f1e3849]: علاج داخلي / طوارئ / عيادات خارجية
+              - generic [ref=f1e3850]:
+                - img [ref=f1e3851]
+                - generic [ref=f1e3854]:
+                  - generic [ref=f1e3855]:
+                    - generic [ref=f1e3856]: الجيزة
+                    - generic [ref=f1e3857]: · المهندسين
+                  - generic [ref=f1e3858]: 3 ش سوريا متفرع من ش جامعة الدول العربية
+            - generic [ref=f1e3860]:
+              - img [ref=f1e3861]
+              - text: EN
+            - generic [ref=f1e3867]:
+              - link "0233030502-0233029091-0233029092-0233029093-01223188977" [ref=f1e3868] [cursor=pointer]:
+                - /url: tel:023303050202330290910233029092023302909301223188977
+                - img [ref=f1e3869]
+                - text: 0233030502-0233029091-0233029092-0233029093-01223188977
+              - link "البريد الإلكتروني" [ref=f1e3871] [cursor=pointer]:
+                - /url: mailto:info@alsalamhospital.org
+                - img [ref=f1e3872]
+              - link "فتح في خرائط Google" [ref=f1e3875] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%2C%203%20Syria%20St.%20%E2%80%93%20Mohandeseen%2C%20Mohandeseen%2C%20Giza%2C%20Egypt
+                - img [ref=f1e3876]
+              - button "نسخ العنوان" [ref=f1e3878] [cursor=pointer]:
+                - img [ref=f1e3879]
+              - button "مشاركة" [ref=f1e3882] [cursor=pointer]:
+                - img [ref=f1e3883]
+              - button "التفاصيل" [ref=f1e3889] [cursor=pointer]:
+                - text: التفاصيل
+                - img [ref=f1e3890]
+          - article [ref=f1e3892]:
+            - generic [ref=f1e3893]:
+              - button "مستشفى الشروق مستشفيات نشط" [ref=f1e3894] [cursor=pointer]:
+                - heading "مستشفى الشروق" [level=3] [ref=f1e3895]:
+                  - mark [ref=f1e3896]: مستشفى
+                  - text: الشروق
+                - generic [ref=f1e3897]:
+                  - generic [ref=f1e3898]: مستشفيات
+                  - generic [ref=f1e3899]: نشط
+              - button "إضافة للمفضلة" [ref=f1e3901] [cursor=pointer]:
+                - img [ref=f1e3902]
+            - generic [ref=f1e3904]:
+              - generic [ref=f1e3905]:
+                - img [ref=f1e3906]
+                - generic [ref=f1e3910]: متعدد التخصصات
+              - generic [ref=f1e3911]:
+                - img [ref=f1e3912]
+                - generic [ref=f1e3914]: علاج داخلي / طوارئ / عيادات خارجية
+              - generic [ref=f1e3915]:
+                - img [ref=f1e3916]
+                - generic [ref=f1e3919]:
+                  - generic [ref=f1e3920]:
+                    - generic [ref=f1e3921]: الجيزة
+                    - generic [ref=f1e3922]: · الهرم
+                  - generic [ref=f1e3923]: 27 ش الأميرة فادية متفرع من ش أبو الهول السياحي
+            - generic [ref=f1e3925]:
+              - img [ref=f1e3926]
+              - text: RN
+            - generic [ref=f1e3932]:
+              - link "0233833730-01224462200" [ref=f1e3933] [cursor=pointer]:
+                - /url: tel:023383373001224462200
+                - img [ref=f1e3934]
+                - text: 0233833730-01224462200
+              - link "فتح في خرائط Google" [ref=f1e3936] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D8%B4%D8%B1%D9%88%D9%82%2C%2027%20El%20Amira%20Fadia%20St.%20Off%20Abou%20El%20Houl%20Touristic%20St.%2C%20Giza%20(Haram)%2C%20Giza%2C%20Egypt
+                - img [ref=f1e3937]
+              - button "نسخ العنوان" [ref=f1e3939] [cursor=pointer]:
+                - img [ref=f1e3940]
+              - button "مشاركة" [ref=f1e3943] [cursor=pointer]:
+                - img [ref=f1e3944]
+              - button "التفاصيل" [ref=f1e3950] [cursor=pointer]:
+                - text: التفاصيل
+                - img [ref=f1e3951]
+          - article [ref=f1e3953]:
+            - generic [ref=f1e3954]:
+              - button "مستشفى الشفا مستشفيات غير نشط" [ref=f1e3955] [cursor=pointer]:
+                - heading "مستشفى الشفا" [level=3] [ref=f1e3956]:
+                  - mark [ref=f1e3957]: مستشفى
+                  - text: الشفا
+                - generic [ref=f1e3958]:
+                  - generic [ref=f1e3959]: مستشفيات
+                  - generic [ref=f1e3960]: غير نشط
+              - button "إضافة للمفضلة" [ref=f1e3962] [cursor=pointer]:
+                - img [ref=f1e3963]
+            - generic [ref=f1e3965]:
+              - generic [ref=f1e3966]:
+                - img [ref=f1e3967]
+                - generic [ref=f1e3971]: متعدد التخصصات
+              - generic [ref=f1e3972]:
+                - img [ref=f1e3973]
+                - generic [ref=f1e3975]: علاج داخلي / عيادات خارجية
+              - generic [ref=f1e3976]:
+                - img [ref=f1e3977]
+                - generic [ref=f1e3980]:
+                  - generic [ref=f1e3981]:
+                    - generic [ref=f1e3982]: قنا
+                    - generic [ref=f1e3983]: · قنا
+                  - generic [ref=f1e3984]: بجوار كورنيش النيل - كوبري دندرة
+            - generic [ref=f1e3986]:
+              - img [ref=f1e3987]
+              - text: RN
+            - generic [ref=f1e3993]:
+              - link "01067770901" [ref=f1e3994] [cursor=pointer]:
+                - /url: tel:01067770901
+                - img [ref=f1e3995]
+                - text: "01067770901"
+              - link "فتح في خرائط Google" [ref=f1e3997] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D8%B4%D9%81%D8%A7%2C%20Next%20to%20the%20Nile%20Corniche%20-%20Dandra%20Bridge%2C%20Qena%2C%20Qena%2C%20Egypt
+                - img [ref=f1e3998]
+              - button "نسخ العنوان" [ref=f1e4000] [cursor=pointer]:
+                - img [ref=f1e4001]
+              - button "مشاركة" [ref=f1e4004] [cursor=pointer]:
+                - img [ref=f1e4005]
+              - button "التفاصيل" [ref=f1e4011] [cursor=pointer]:
+                - text: التفاصيل
+                - img [ref=f1e4012]
+          - article [ref=f1e4014]:
+            - generic [ref=f1e4015]:
+              - button "مستشفى الصفا مستشفيات نشط" [ref=f1e4016] [cursor=pointer]:
+                - heading "مستشفى الصفا" [level=3] [ref=f1e4017]:
+                  - mark [ref=f1e4018]: مستشفى
+                  - text: الصفا
+                - generic [ref=f1e4019]:
+                  - generic [ref=f1e4020]: مستشفيات
+                  - generic [ref=f1e4021]: نشط
+              - button "إضافة للمفضلة" [ref=f1e4023] [cursor=pointer]:
+                - img [ref=f1e4024]
+            - generic [ref=f1e4026]:
+              - generic [ref=f1e4027]:
+                - img [ref=f1e4028]
+                - generic [ref=f1e4032]: متعدد التخصصات
+              - generic [ref=f1e4033]:
+                - img [ref=f1e4034]
+                - generic [ref=f1e4036]: علاج داخلي / طوارئ / عيادات خارجية
+              - generic [ref=f1e4037]:
+                - img [ref=f1e4038]
+                - generic [ref=f1e4041]:
+                  - generic [ref=f1e4042]:
+                    - generic [ref=f1e4043]: دمياط
+                    - generic [ref=f1e4044]: · السنانية
+                  - generic [ref=f1e4045]: أمام الكوبري العلوي
+            - generic [ref=f1e4047]:
+              - img [ref=f1e4048]
+              - text: RN
+            - generic [ref=f1e4054]:
+              - link "0572183301-01206407072" [ref=f1e4055] [cursor=pointer]:
+                - /url: tel:057218330101206407072
+                - img [ref=f1e4056]
+                - text: 0572183301-01206407072
+              - link "فتح في خرائط Google" [ref=f1e4058] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D8%B5%D9%81%D8%A7%2C%20El%20Sanania%20-%20in%20front%20of%20High%20Bridge%2C%20Al%20Sinnaniyah%2C%20Damietta%2C%20Egypt
+                - img [ref=f1e4059]
+              - button "نسخ العنوان" [ref=f1e4061] [cursor=pointer]:
+                - img [ref=f1e4062]
+              - button "مشاركة" [ref=f1e4065] [cursor=pointer]:
+                - img [ref=f1e4066]
+              - button "التفاصيل" [ref=f1e4072] [cursor=pointer]:
+                - text: التفاصيل
+                - img [ref=f1e4073]
+          - article [ref=f1e4075]:
+            - generic [ref=f1e4076]:
+              - button "مستشفى الصفا مستشفيات نشط" [ref=f1e4077] [cursor=pointer]:
+                - heading "مستشفى الصفا" [level=3] [ref=f1e4078]:
+                  - mark [ref=f1e4079]: مستشفى
+                  - text: الصفا
+                - generic [ref=f1e4080]:
+                  - generic [ref=f1e4081]: مستشفيات
+                  - generic [ref=f1e4082]: نشط
+              - button "إضافة للمفضلة" [ref=f1e4084] [cursor=pointer]:
+                - img [ref=f1e4085]
+            - generic [ref=f1e4087]:
+              - generic [ref=f1e4088]:
+                - img [ref=f1e4089]
+                - generic [ref=f1e4093]: متعدد التخصصات
+              - generic [ref=f1e4094]:
+                - img [ref=f1e4095]
+                - generic [ref=f1e4097]: علاج داخلي / طوارئ / عيادات خارجية
+              - generic [ref=f1e4098]:
+                - img [ref=f1e4099]
+                - generic [ref=f1e4102]:
+                  - generic [ref=f1e4103]:
+                    - generic [ref=f1e4104]: البحيرة
+                    - generic [ref=f1e4105]: · البحيرة
+                  - generic [ref=f1e4106]: مدخل كفر الدوار الجديد - برج بانورما العمدة
+            - generic [ref=f1e4108]:
+              - img [ref=f1e4109]
+              - text: RN
+            - generic [ref=f1e4115]:
+              - link "0452243323-0452243322-01275052800" [ref=f1e4116] [cursor=pointer]:
+                - /url: tel:0452243323045224332201275052800
+                - img [ref=f1e4117]
+                - text: 0452243323-0452243322-01275052800
+              - link "البريد الإلكتروني" [ref=f1e4119] [cursor=pointer]:
+                - /url: mailto:elsafahospital967@gmail.com
+                - img [ref=f1e4120]
+              - link "فتح في خرائط Google" [ref=f1e4123] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D8%B5%D9%81%D8%A7%2C%20New%20Kafr%20El%20Dawar%20Entrance%20-%20Panorama%20Tower%20El%20Omda%2C%20Al%20Buhayrah%2C%20Beheira%2C%20Egypt
+                - img [ref=f1e4124]
+              - button "نسخ العنوان" [ref=f1e4126] [cursor=pointer]:
+                - img [ref=f1e4127]
+              - button "مشاركة" [ref=f1e4130] [cursor=pointer]:
+                - img [ref=f1e4131]
+              - button "التفاصيل" [ref=f1e4137] [cursor=pointer]:
+                - text: التفاصيل
+                - img [ref=f1e4138]
+          - article [ref=f1e4140]:
+            - generic [ref=f1e4141]:
+              - button "مستشفى الصفوة مستشفيات نشط 2 موقع" [ref=f1e4142] [cursor=pointer]:
+                - heading "مستشفى الصفوة" [level=3] [ref=f1e4143]:
+                  - mark [ref=f1e4144]: مستشفى
+                  - text: الصفوة
+                - generic [ref=f1e4145]:
+                  - generic [ref=f1e4146]: مستشفيات
+                  - generic [ref=f1e4147]: نشط
+                  - generic [ref=f1e4149]:
+                    - img [ref=f1e4150]
+                    - text: 2 موقع
+              - button "إضافة للمفضلة" [ref=f1e4154] [cursor=pointer]:
+                - img [ref=f1e4155]
+            - generic [ref=f1e4157]:
+              - generic [ref=f1e4158]:
+                - img [ref=f1e4159]
+                - generic [ref=f1e4163]: متعدد التخصصات
+              - generic [ref=f1e4164]:
+                - img [ref=f1e4165]
+                - generic [ref=f1e4167]: علاج داخلي / طوارئ / عيادات خارجية
+              - generic [ref=f1e4168]:
+                - img [ref=f1e4169]
+                - generic [ref=f1e4172]:
+                  - generic [ref=f1e4173]:
+                    - text: القاهرة
+                    - generic [ref=f1e4174]: · شبرا
+                  - generic [ref=f1e4175]: 3 ش منية السيرج
+            - generic [ref=f1e4177]:
+              - link "0222042650-0224302001/2/3/4/5-01099926026" [ref=f1e4178] [cursor=pointer]:
+                - /url: tel:02220426500224302001234501099926026
+                - img [ref=f1e4179]
+                - text: 0222042650-0224302001/2/3/4/5-01099926026
+              - link "فتح في خرائط Google" [ref=f1e4181] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D8%B5%D9%81%D9%88%D8%A9%2C%203%20Menyet%20El-Serg%20St.%2C%20Shoubra%2C%20Shobra%2C%20Cairo%2C%20Egypt
+                - img [ref=f1e4182]
+              - button "نسخ العنوان" [ref=f1e4184] [cursor=pointer]:
+                - img [ref=f1e4185]
+              - button "مشاركة" [ref=f1e4188] [cursor=pointer]:
+                - img [ref=f1e4189]
+              - button "عرض الفروع (2)" [ref=f1e4195] [cursor=pointer]:
+                - text: عرض الفروع
+                - generic [ref=f1e4196]: (2)
+                - img [ref=f1e4197]
+          - article [ref=f1e4199]:
+            - generic [ref=f1e4200]:
+              - button "مستشفى الصفوة مستشفيات نشط" [ref=f1e4201] [cursor=pointer]:
+                - heading "مستشفى الصفوة" [level=3] [ref=f1e4202]:
+                  - mark [ref=f1e4203]: مستشفى
+                  - text: الصفوة
+                - generic [ref=f1e4204]:
+                  - generic [ref=f1e4205]: مستشفيات
+                  - generic [ref=f1e4206]: نشط
+              - button "إضافة للمفضلة" [ref=f1e4208] [cursor=pointer]:
+                - img [ref=f1e4209]
+            - generic [ref=f1e4211]:
+              - generic [ref=f1e4212]:
+                - img [ref=f1e4213]
+                - generic [ref=f1e4217]: متعدد التخصصات
+              - generic [ref=f1e4218]:
+                - img [ref=f1e4219]
+                - generic [ref=f1e4221]: علاج داخلي / طوارئ / عيادات خارجية
+              - generic [ref=f1e4222]:
+                - img [ref=f1e4223]
+                - generic [ref=f1e4226]:
+                  - generic [ref=f1e4227]:
+                    - generic [ref=f1e4228]: الإسكندرية
+                    - generic [ref=f1e4229]: · العامرية
+                  - generic [ref=f1e4230]: تقسيم البردويل - القطعة رقم 12 - مجموعة رقم 13
+            - generic [ref=f1e4232]:
+              - img [ref=f1e4233]
+              - text: RN
+            - generic [ref=f1e4239]:
+              - link "034485872-034482519-01223334992" [ref=f1e4240] [cursor=pointer]:
+                - /url: tel:03448587203448251901223334992
+                - img [ref=f1e4241]
+                - text: 034485872-034482519-01223334992
+              - link "فتح في خرائط Google" [ref=f1e4243] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D8%B5%D9%81%D9%88%D8%A9%2C%20Al%20-%20Bardawil%20Division%20-%20Plot%2012%20-%20Group%2013%2C%20Al%20Amiriya%2C%20Alexandria%2C%20Egypt
+                - img [ref=f1e4244]
+              - button "نسخ العنوان" [ref=f1e4246] [cursor=pointer]:
+                - img [ref=f1e4247]
+              - button "مشاركة" [ref=f1e4250] [cursor=pointer]:
+                - img [ref=f1e4251]
+              - button "التفاصيل" [ref=f1e4257] [cursor=pointer]:
+                - text: التفاصيل
+                - img [ref=f1e4258]
+          - article [ref=f1e4260]:
+            - generic [ref=f1e4261]:
+              - button "مستشفى الصفوة مستشفيات نشط" [ref=f1e4262] [cursor=pointer]:
+                - heading "مستشفى الصفوة" [level=3] [ref=f1e4263]:
+                  - mark [ref=f1e4264]: مستشفى
+                  - text: الصفوة
+                - generic [ref=f1e4265]:
+                  - generic [ref=f1e4266]: مستشفيات
+                  - generic [ref=f1e4267]: نشط
+              - button "إضافة للمفضلة" [ref=f1e4269] [cursor=pointer]:
+                - img [ref=f1e4270]
+            - generic [ref=f1e4272]:
+              - generic [ref=f1e4273]:
+                - img [ref=f1e4274]
+                - generic [ref=f1e4278]: متعدد التخصصات
+              - generic [ref=f1e4279]:
+                - img [ref=f1e4280]
+                - generic [ref=f1e4282]: علاج داخلي / طوارئ / عيادات خارجية
+              - generic [ref=f1e4283]:
+                - img [ref=f1e4284]
+                - generic [ref=f1e4287]:
+                  - generic [ref=f1e4288]:
+                    - generic [ref=f1e4289]: الجيزة
+                    - generic [ref=f1e4290]: · اكتوبر
+                  - generic [ref=f1e4291]: خدمات الحي 1 - بجوار مسجد الحصري
+            - generic [ref=f1e4293]:
+              - img [ref=f1e4294]
+              - text: RN
+            - generic [ref=f1e4300]:
+              - link "16361-0238372255-0238372266-0238372277-0238372288" [ref=f1e4301] [cursor=pointer]:
+                - /url: tel:163610238372255023837226602383722770238372288
+                - img [ref=f1e4302]
+                - text: 16361-0238372255-0238372266-0238372277-0238372288
+              - link "فتح في خرائط Google" [ref=f1e4304] [cursor=pointer]:
+                - /url: https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89%20%D8%A7%D9%84%D8%B5%D9%81%D9%88%D8%A9%2C%201st%20District%20-%20Beside%20El%20Hosary%20Mosque%20-%206th%20of%20October%20City%20-%20Giza%2C%20October%20(6th%20of%20October%20City)%2C%20Giza%2C%20Egypt
+                - img [ref=f1e4305]
+              - button "نسخ العنوان" [ref=f1e4307] [cursor=pointer]:
+                - img [ref=f1e4308]
+              - button "مشاركة" [ref=f1e4311] [cursor=pointer]:
+                - img [ref=f1e4312]
+              - button "التفاصيل" [ref=f1e4318] [cursor=pointer]:
+                - text: التفاصيل
+                - img [ref=f1e4319]
+        - generic [ref=f1e2628]:
+          - button "تحميل المزيد" [ref=f1e2629] [cursor=pointer]
+          - paragraph [ref=f1e2630]: عرض 24 من 415
+  - button "ابحث بالقرب مني" [ref=f1e458] [cursor=pointer]:
+    - img [ref=f1e459]
+    - generic [ref=f1e462]: ابحث بالقرب مني
+  - contentinfo [ref=f1e463]: شبكة أليانز مصر الطبية · دليل مقدمي الخدمة الطبية

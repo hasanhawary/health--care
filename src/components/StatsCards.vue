@@ -1,0 +1,73 @@
+<script setup>
+import { computed } from 'vue'
+import {
+  Database,
+  Stethoscope,
+  Hospital,
+  Pill,
+  FlaskConical,
+  HeartPulse,
+  Network,
+  Filter,
+} from 'lucide-vue-next'
+import { useProviderFilters } from '../composables/useProviderFilters'
+import { normalizeForKey } from '../utils/normalizeText'
+import AnimatedCounter from './AnimatedCounter.vue'
+
+const { stats, statsMode, setStatsMode, setCategory } = useProviderFilters()
+
+const cards = computed(() => [
+  { key: 'total', label: statsMode.value === 'all' ? 'إجمالي الشبكة' : 'النتائج الحالية', value: stats.value.total, icon: Database, color: 'from-brand-500 to-brand-700', filter: '' },
+  { key: 'doctors', label: 'أطباء', value: stats.value.doctors, icon: Stethoscope, color: 'from-indigo-500 to-indigo-700', filter: 'physician clinic' },
+  { key: 'hospitals', label: 'مستشفيات', value: stats.value.hospitals, icon: Hospital, color: 'from-red-500 to-red-700', filter: 'hospital' },
+  { key: 'pharmacies', label: 'صيدليات', value: stats.value.pharmacies, icon: Pill, color: 'from-emerald-500 to-emerald-700', filter: 'pharmacy' },
+  { key: 'labs', label: 'معامل', value: stats.value.labs, icon: FlaskConical, color: 'from-blue-500 to-blue-700', filter: 'laboratory' },
+  { key: 'live', label: 'نشطون', value: stats.value.live, icon: HeartPulse, color: 'from-rose-500 to-rose-700', filter: '' },
+])
+</script>
+
+<template>
+  <div class="mb-4 flex items-center justify-between gap-2">
+    <div class="inline-flex rounded-xl border border-slate-200 bg-white p-1 text-xs font-semibold dark:border-slate-700 dark:bg-slate-900">
+      <button
+        class="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 transition"
+        :class="statsMode === 'current' ? 'bg-brand-600 text-white' : 'text-slate-600 hover:bg-slate-100 dark:text-slate-300'"
+        @click="setStatsMode('current')"
+      >
+        <Filter class="h-3.5 w-3.5" />النتائج الحالية
+      </button>
+      <button
+        class="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 transition"
+        :class="statsMode === 'all' ? 'bg-brand-600 text-white' : 'text-slate-600 hover:bg-slate-100 dark:text-slate-300'"
+        @click="setStatsMode('all')"
+      >
+        <Network class="h-3.5 w-3.5" />كل الشبكة
+      </button>
+    </div>
+  </div>
+  <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+    <button
+      v-for="c in cards"
+      :key="c.key"
+      class="card group relative overflow-hidden p-4 text-start transition duration-200 hover:-translate-y-0.5 hover:shadow-card-hover"
+      @click="c.filter ? setCategory(c.filter) : null"
+    >
+      <div class="flex items-center gap-3">
+        <div
+          class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-sm transition group-hover:scale-110"
+          :class="c.color"
+        >
+          <component :is="c.icon" class="h-5 w-5" />
+        </div>
+        <div class="min-w-0">
+          <div class="text-xl font-extrabold leading-tight text-slate-800 dark:text-slate-100">
+            <AnimatedCounter :value="c.value" />
+          </div>
+          <div class="truncate text-xs font-medium text-slate-500 dark:text-slate-400">
+            {{ c.label }}
+          </div>
+        </div>
+      </div>
+    </button>
+  </div>
+</template>
