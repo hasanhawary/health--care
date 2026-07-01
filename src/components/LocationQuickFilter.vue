@@ -76,8 +76,8 @@ onBeforeUnmount(() => document.removeEventListener('mousedown', onDocClick))
 </script>
 
 <template>
-  <div ref="root" class="flex items-center gap-1.5">
-    <div v-for="panel in panels" :key="panel.name" class="relative">
+  <div ref="root" class="no-scrollbar flex min-w-0 flex-1 items-center gap-1.5 overflow-x-auto sm:flex-none sm:overflow-visible">
+    <div v-for="panel in panels" :key="panel.name" class="relative shrink-0">
       <button
         type="button"
         class="inline-flex items-center gap-1.5 rounded-xl border bg-white px-2 py-2 text-xs font-semibold transition dark:bg-slate-900"
@@ -105,7 +105,7 @@ onBeforeUnmount(() => document.removeEventListener('mousedown', onDocClick))
       <Transition name="fade">
         <div
           v-if="openPanel === panel.name"
-          class="absolute end-0 top-full z-50 mt-1 w-72 max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl sm:end-auto sm:start-0 dark:border-slate-700 dark:bg-slate-900"
+          class="absolute end-0 top-full z-50 mt-1 w-72 max-w-[calc(100vw-1.5rem)] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl sm:end-auto sm:start-0 dark:border-slate-700 dark:bg-slate-900"
         >
           <!-- header -->
           <div class="flex items-center justify-between gap-2 border-b border-slate-100 px-3 py-2 dark:border-slate-800">

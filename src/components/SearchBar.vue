@@ -99,8 +99,8 @@ function onKeydown(e) {
 
 <template>
   <div class="relative z-30">
-    <div class="flex items-center gap-1.5 sm:gap-2">
-      <div class="relative min-w-0 flex-1">
+    <div class="flex flex-wrap items-center gap-2 sm:flex-nowrap">
+      <div class="relative min-w-0 basis-full sm:basis-auto sm:flex-1">
         <Search class="pointer-events-none absolute start-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
         <input
           v-model="input"
@@ -130,7 +130,7 @@ function onKeydown(e) {
       <button
         v-if="showFiltersButton"
         type="button"
-        class="btn-outline relative !rounded-2xl !px-3 lg:hidden"
+        class="btn-outline relative shrink-0 !rounded-2xl !px-3 lg:hidden"
         :title="t('showFilters')"
         :aria-label="t('showFilters')"
         @click="emit('toggle-filters')"

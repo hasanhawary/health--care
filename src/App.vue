@@ -253,7 +253,7 @@ watch(
       </div>
     </div>
 
-    <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6">
+    <main class="mx-auto max-w-7xl px-3 py-5 sm:px-6 sm:py-6">
       <!-- stats -->
       <div class="mb-[25px]">
         <StatsCards />
@@ -268,7 +268,7 @@ watch(
         <!-- results -->
         <section class="min-w-0">
           <!-- toolbar -->
-          <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div class="text-sm text-slate-500 dark:text-slate-400">
               <template v-if="loading && !providers.length">{{ t('loading') }}</template>
               <template v-else-if="error">{{ t('errorTitle') }}</template>
@@ -279,7 +279,7 @@ watch(
               </template>
             </div>
 
-            <div class="flex flex-wrap items-center gap-2">
+            <div class="no-scrollbar -mx-3 flex items-center gap-2 overflow-x-auto px-3 sm:mx-0 sm:flex-wrap sm:justify-end sm:overflow-visible sm:px-0">
               <!-- location -->
               <button
                 v-if="geoSupported"
@@ -297,7 +297,7 @@ watch(
               <div class="relative">
                 <select
                   :value="sortBy"
-                  class="input !w-auto !py-2 !pe-3 text-xs font-semibold"
+                  class="input w-[10rem] !py-2 !pe-3 text-xs font-semibold sm:!w-auto"
                   @change="setSortBy($event.target.value)"
                 >
                   <option v-for="o in sortOptions" :key="o.value" :value="o.value">{{ t('sortBy') }}: {{ o.label }}</option>
@@ -535,8 +535,8 @@ watch(
 
     <!-- find near me (floating) -->
     <button
-      class="fixed bottom-5 end-5 z-40 flex h-12 items-center gap-2 rounded-full bg-brand-600 px-4 text-sm font-bold text-white shadow-lg transition hover:bg-brand-700"
-      :class="showTop ? 'bottom-20' : 'bottom-5'"
+      class="fixed end-4 z-40 flex h-12 items-center gap-2 rounded-full bg-brand-600 px-4 text-sm font-bold text-white shadow-lg transition hover:bg-brand-700 sm:end-5"
+      :class="showTop ? 'safe-bottom-offset-lg' : 'safe-bottom-offset'"
       :title="t('findNearMe')"
       @click="onFindNearMe"
     >
@@ -549,7 +549,7 @@ watch(
     <Transition name="fade">
       <button
         v-if="showTop"
-        class="fixed bottom-5 start-5 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-slate-700 text-white shadow-lg transition hover:bg-slate-800"
+        class="safe-bottom-offset fixed start-4 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-slate-700 text-white shadow-lg transition hover:bg-slate-800 sm:start-5"
         :title="t('backToTop')"
         @click="scrollTop"
       >
@@ -560,6 +560,8 @@ watch(
     <!-- footer -->
     <footer class="border-t border-slate-200 py-6 text-center text-xs text-slate-400 dark:border-slate-800">
       {{ t('appTitle') }} · {{ t('appSubtitle') }}
+      <span class="mx-1.5">·</span>
+      <span>{{ t('madeBy') }} <a href="https://github.com/hasanhawary/" target="_blank" rel="noopener" class="font-semibold text-slate-500 underline-offset-2 hover:text-brand-600 hover:underline dark:text-slate-300 dark:hover:text-brand-400">Elhawary</a></span>
     </footer>
   </div>
 </template>

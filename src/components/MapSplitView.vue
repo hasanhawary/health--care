@@ -53,7 +53,7 @@ async function onLocate() {
 </script>
 
 <template>
-  <div class="relative h-[78vh] overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 lg:h-[80vh]">
+  <div class="relative h-[72dvh] min-h-[28rem] overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 lg:h-[80vh]">
     <!-- map (single instance) -->
     <MapView
       class="absolute inset-0"
@@ -85,7 +85,7 @@ async function onLocate() {
           @mouseleave="hoverProvider(null)"
         >
           <span class="mt-0.5 h-2 w-2 shrink-0 rounded-full" :class="typeBadgeClass(p.typeKey).split(' ')[0]"></span>
-          <span class="min-w-0 flex-1">
+          <span class="min-w-0 flex-1 break-words">
             <span class="block truncate text-sm font-semibold text-slate-800 dark:text-slate-100">{{ p.name }}</span>
             <span class="block truncate text-xs text-slate-500 dark:text-slate-400">
               {{ field(p, 'providerTypeAr', 'providerType') }} · {{ field(p, 'governorateAr', 'governorate') }}<span v-if="field(p, 'areaAr', 'area')"> · {{ field(p, 'areaAr', 'area') }}</span>

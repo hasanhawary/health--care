@@ -73,7 +73,7 @@ async function share() {
 
 <template>
   <article
-    class="card group flex flex-col p-5 transition duration-200 hover:-translate-y-0.5 hover:shadow-card-hover"
+    class="card group flex flex-col p-4 transition duration-200 hover:-translate-y-0.5 hover:shadow-card-hover sm:p-5"
   >
     <!-- header -->
     <div class="flex items-start justify-between gap-3">
@@ -121,7 +121,7 @@ async function share() {
       </div>
       <div class="flex items-start gap-2">
         <MapPin class="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
-        <div class="min-w-0">
+        <div class="min-w-0 break-words">
           <div class="font-medium text-slate-700 dark:text-slate-200">
             <span v-html="hl(field(main(), 'governorateAr', 'governorate'))"></span>
             <span v-if="field(main(), 'areaAr', 'area')"> · <span v-html="hl(field(main(), 'areaAr', 'area'))"></span></span>
@@ -134,8 +134,8 @@ async function share() {
     <!-- main actions -->
     <div class="mt-auto pt-4">
       <div class="flex flex-wrap items-center gap-2">
-        <a v-if="main().phone" :href="buildTelLink(main().phone)" class="btn-primary !px-3 !py-2 text-xs" :title="t('call')">
-          <Phone class="h-4 w-4" />{{ main().phone }}
+        <a v-if="main().phone" :href="buildTelLink(main().phone)" class="btn-primary min-w-0 max-w-full !px-3 !py-2 text-xs" :title="t('call')">
+          <Phone class="h-4 w-4" /><span class="truncate" dir="ltr">{{ main().phone }}</span>
         </a>
         <a :href="buildMapsUrl(main())" target="_blank" rel="noopener" class="icon-btn border border-slate-200 text-brand-600 dark:border-slate-700" :title="t('openMaps')">
           <Navigation class="h-4 w-4" />
@@ -150,7 +150,7 @@ async function share() {
         </button>
         <button
           v-if="group.count > 1"
-          class="ms-auto inline-flex items-center gap-1 rounded-lg bg-brand-50 px-2.5 py-1.5 text-xs font-semibold text-brand-700 transition hover:bg-brand-100 dark:bg-brand-950 dark:text-brand-300 dark:hover:bg-brand-900"
+          class="ms-auto inline-flex shrink-0 items-center gap-1 rounded-lg bg-brand-50 px-2.5 py-1.5 text-xs font-semibold text-brand-700 transition hover:bg-brand-100 dark:bg-brand-950 dark:text-brand-300 dark:hover:bg-brand-900"
           @click="expanded = !expanded"
         >
           {{ expanded ? t('hideBranches') : t('showBranches') }}
@@ -181,13 +181,13 @@ async function share() {
               >
                 {{ b === group.main ? t('mainBranchLabel') : t('branch') }}
               </span>
-              <span class="min-w-0 flex-1">
+                <span class="min-w-0 flex-1 break-words">
                 <span class="block font-medium text-slate-700 dark:text-slate-200">
                   {{ field(b, 'governorateAr', 'governorate') }}<span v-if="field(b, 'areaAr', 'area')"> · {{ field(b, 'areaAr', 'area') }}</span>
                 </span>
                 <span v-if="field(b, 'addressAr', 'address')" class="block truncate text-slate-500 dark:text-slate-400">{{ field(b, 'addressAr', 'address') }}</span>
-                <span v-if="b.phone" class="mt-0.5 inline-flex items-center gap-1 text-brand-600 dark:text-brand-400" dir="ltr">
-                  <Phone class="h-3 w-3" />{{ b.phone }}
+                <span v-if="b.phone" class="mt-0.5 inline-flex max-w-full items-center gap-1 text-brand-600 dark:text-brand-400" dir="ltr">
+                  <Phone class="h-3 w-3 shrink-0" /><span class="truncate">{{ b.phone }}</span>
                 </span>
               </span>
               <a

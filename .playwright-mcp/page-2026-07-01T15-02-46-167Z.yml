@@ -1,0 +1,196 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - button "الرئيسية" [ref=e6] [cursor=pointer]:
+        - img [ref=e8]
+        - generic [ref=e11]:
+          - heading "شبكة أليانز مصر الطبية" [level=1] [ref=e12]
+          - paragraph [ref=e13]: دليل مقدمي الخدمة الطبية
+      - generic [ref=e14]:
+        - button "English" [ref=e15] [cursor=pointer]:
+          - img [ref=e16]
+          - generic [ref=e20]: English
+        - button "الوضع الليلي" [ref=e21] [cursor=pointer]:
+          - img [ref=e22]
+        - button "المفضلة" [ref=e24] [cursor=pointer]:
+          - img [ref=e25]
+          - generic [ref=e27]: المفضلة
+  - generic [ref=e31]:
+    - generic [ref=e32]:
+      - img
+      - combobox "ابحث بالاسم، التخصص، الخدمة، العنوان، المدينة، المحافظة، التليفون…" [ref=e33]
+    - generic [ref=e34]:
+      - button "المحافظة" [ref=e36] [cursor=pointer]:
+        - img [ref=e37]
+        - generic [ref=e40]: المحافظة
+        - img [ref=e41]
+      - button "المدينة" [ref=e44] [cursor=pointer]:
+        - img [ref=e45]
+        - generic [ref=e49]: المدينة
+        - img [ref=e50]
+  - generic [ref=e54]:
+    - button "الكل" [ref=e55] [cursor=pointer]:
+      - img [ref=e56]
+      - generic [ref=e61]: الكل
+    - button "physician clinic" [ref=e62] [cursor=pointer]:
+      - img [ref=e63]
+      - generic [ref=e67]: physician clinic
+    - button "hospital" [ref=e68] [cursor=pointer]:
+      - img [ref=e69]
+      - generic [ref=e72]: hospital
+    - button "pharmacy" [ref=e73] [cursor=pointer]:
+      - img [ref=e74]
+      - generic [ref=e77]: pharmacy
+    - button "laboratory" [ref=e78] [cursor=pointer]:
+      - img [ref=e79]
+      - generic [ref=e81]: laboratory
+    - button "physiotherapy" [ref=e82] [cursor=pointer]:
+      - img [ref=e83]
+      - generic [ref=e85]: physiotherapy
+    - button "dental center" [ref=e86] [cursor=pointer]:
+      - img [ref=e87]
+      - generic [ref=e90]: dental center
+    - button "radiology center" [ref=e91] [cursor=pointer]:
+      - img [ref=e92]
+      - generic [ref=e97]: radiology center
+    - button "optometry - vision service center" [ref=e98] [cursor=pointer]:
+      - img [ref=e99]
+      - generic [ref=e102]: optometry - vision service center
+  - main [ref=e103]:
+    - generic [ref=e104]:
+      - generic [ref=e106]:
+        - button "النتائج الحالية" [ref=e107] [cursor=pointer]:
+          - img [ref=e108]
+          - text: النتائج الحالية
+        - button "كل الشبكة" [ref=e110] [cursor=pointer]:
+          - img [ref=e111]
+          - text: كل الشبكة
+      - generic [ref=e116]:
+        - button "0 النتائج الحالية" [ref=e117] [cursor=pointer]:
+          - generic [ref=e118]:
+            - img [ref=e120]
+            - generic [ref=e124]:
+              - generic [ref=e125]: "0"
+              - generic [ref=e126]: النتائج الحالية
+        - button "0 أطباء" [ref=e127] [cursor=pointer]:
+          - generic [ref=e128]:
+            - img [ref=e130]
+            - generic [ref=e134]:
+              - generic [ref=e135]: "0"
+              - generic [ref=e136]: أطباء
+        - button "0 مستشفيات" [ref=e137] [cursor=pointer]:
+          - generic [ref=e138]:
+            - img [ref=e140]
+            - generic [ref=e143]:
+              - generic [ref=e144]: "0"
+              - generic [ref=e145]: مستشفيات
+        - button "0 صيدليات" [ref=e146] [cursor=pointer]:
+          - generic [ref=e147]:
+            - img [ref=e149]
+            - generic [ref=e152]:
+              - generic [ref=e153]: "0"
+              - generic [ref=e154]: صيدليات
+        - button "0 معامل" [ref=e155] [cursor=pointer]:
+          - generic [ref=e156]:
+            - img [ref=e158]
+            - generic [ref=e160]:
+              - generic [ref=e161]: "0"
+              - generic [ref=e162]: معامل
+        - button "0 نشطون" [ref=e163] [cursor=pointer]:
+          - generic [ref=e164]:
+            - img [ref=e166]
+            - generic [ref=e169]:
+              - generic [ref=e170]: "0"
+              - generic [ref=e171]: نشطون
+    - generic [ref=e172]:
+      - complementary [ref=e173]:
+        - generic [ref=e174]:
+          - heading "تصفية النتائج" [level=2] [ref=e176]:
+            - img [ref=e177]
+            - text: تصفية النتائج
+          - generic [ref=e178]:
+            - button "مشاركة الفلاتر" [ref=e180] [cursor=pointer]:
+              - img [ref=e181]
+              - text: مشاركة الفلاتر
+            - generic [ref=e187]:
+              - textbox "اسم الإعداد" [ref=e188]
+              - button "حفظ الإعداد" [ref=e189] [cursor=pointer]:
+                - img [ref=e190]
+          - button "النشطة (LIVE) فقط" [ref=e194] [cursor=pointer]:
+            - generic [ref=e195]: النشطة (LIVE) فقط
+          - generic [ref=e199]:
+            - generic [ref=e200]:
+              - button "نوع مقدم الخدمة" [ref=e201] [cursor=pointer]:
+                - generic [ref=e202]: نوع مقدم الخدمة
+                - img [ref=e204]
+              - list [ref=e207]:
+                - listitem [ref=e208]: لا توجد بيانات
+            - generic [ref=e209]:
+              - button "التخصص" [ref=e210] [cursor=pointer]:
+                - generic [ref=e211]: التخصص
+                - img [ref=e213]
+              - list [ref=e216]:
+                - listitem [ref=e217]: لا توجد بيانات
+            - generic [ref=e218]:
+              - button "الخدمات" [ref=e219] [cursor=pointer]:
+                - generic [ref=e220]: الخدمات
+                - img [ref=e222]
+              - list [ref=e225]:
+                - listitem [ref=e226]: لا توجد بيانات
+            - generic [ref=e227]:
+              - button "نوع الشبكة" [ref=e228] [cursor=pointer]:
+                - generic [ref=e229]: نوع الشبكة
+                - img [ref=e231]
+              - list [ref=e234]:
+                - listitem [ref=e235]: لا توجد بيانات
+            - generic [ref=e236]:
+              - button "رئيسي / فرع" [ref=e237] [cursor=pointer]:
+                - generic [ref=e238]: رئيسي / فرع
+                - img [ref=e240]
+              - list [ref=e243]:
+                - listitem [ref=e244]: لا توجد بيانات
+            - generic [ref=e245]:
+              - button "حالة PULSE" [ref=e246] [cursor=pointer]:
+                - generic [ref=e247]: حالة PULSE
+                - img [ref=e249]
+              - list [ref=e252]:
+                - listitem [ref=e253]:
+                  - button "نشط 0" [ref=e254] [cursor=pointer]:
+                    - generic [ref=e256]: نشط
+                    - generic [ref=e257]: "0"
+                - listitem [ref=e258]:
+                  - button "غير نشط 0" [ref=e259] [cursor=pointer]:
+                    - generic [ref=e261]: غير نشط
+                    - generic [ref=e262]: "0"
+      - generic [ref=e264]:
+        - generic [ref=e265]: جارٍ تحميل مقدمي الخدمة…
+        - generic [ref=e266]:
+          - button "تحديد موقعي" [ref=e267] [cursor=pointer]:
+            - img [ref=e268]
+            - generic [ref=e271]: تحديد موقعي
+          - combobox [ref=e273]:
+            - 'option "ترتيب حسب: أفضل تطابق" [selected]'
+            - 'option "ترتيب حسب: الاسم"'
+            - 'option "ترتيب حسب: المحافظة"'
+            - 'option "ترتيب حسب: المنطقة"'
+          - generic [ref=e274]:
+            - button "بطاقات" [ref=e275] [cursor=pointer]:
+              - img [ref=e276]
+              - generic [ref=e281]: بطاقات
+            - button "قائمة" [ref=e282] [cursor=pointer]:
+              - img [ref=e283]
+              - generic [ref=e285]: قائمة
+            - button "خريطة" [ref=e286] [cursor=pointer]:
+              - img [ref=e287]
+              - generic [ref=e289]: خريطة
+          - button "تجميع حسب المقدم" [ref=e290] [cursor=pointer]:
+            - img [ref=e291]
+            - generic [ref=e295]: تجميع حسب المقدم
+          - button "تصدير CSV" [disabled] [ref=e297]:
+            - img [ref=e298]
+            - generic [ref=e301]: تصدير CSV
+            - img [ref=e302]
+  - button "ابحث بالقرب مني" [ref=e458] [cursor=pointer]:
+    - img [ref=e459]
+    - generic [ref=e462]: ابحث بالقرب مني
+  - contentinfo [ref=e463]: شبكة أليانز مصر الطبية · دليل مقدمي الخدمة الطبية

@@ -19,7 +19,7 @@ const { coords: userCoords } = useGeolocation()
 
 <template>
   <Transition name="drawer-up">
-    <div v-if="provider" class="absolute inset-x-0 bottom-0 z-[700] mx-auto max-w-md p-2">
+    <div v-if="provider" class="safe-bottom absolute inset-x-0 bottom-0 z-[700] mx-auto max-w-md p-2">
       <div class="card overflow-hidden p-4 shadow-2xl">
         <div class="flex items-start justify-between gap-2">
           <button class="min-w-0 flex-1 text-start" @click="emit('details')">
@@ -45,7 +45,7 @@ const { coords: userCoords } = useGeolocation()
           </span>
         </div>
 
-        <div class="mt-3 flex flex-wrap items-center gap-2">
+        <div class="mt-3 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:items-center">
           <a v-if="provider.phone" :href="buildTelLink(provider.phone)" class="btn-primary !py-2 text-xs"><Phone class="h-4 w-4" />{{ t('call') }}</a>
           <a :href="directionsUrl(provider, userCoords.value)" target="_blank" rel="noopener" class="btn-outline !py-2 text-xs"><Navigation class="h-4 w-4" />{{ t('directions') }}</a>
           <button class="btn-outline !py-2 text-xs" @click="emit('details')"><Eye class="h-4 w-4" />{{ t('details') }}</button>

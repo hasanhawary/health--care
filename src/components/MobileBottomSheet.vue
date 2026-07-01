@@ -31,8 +31,8 @@ function onTouchEnd(e) {
 
 <template>
   <div
-    class="absolute inset-x-0 bottom-0 z-[650] flex flex-col rounded-t-2xl bg-white shadow-2xl transition-[height] duration-300 dark:bg-slate-900 lg:hidden"
-    :class="expanded ? 'h-[78%]' : 'h-[40%]'"
+    class="safe-bottom absolute inset-x-0 bottom-0 z-[650] flex flex-col rounded-t-2xl bg-white shadow-2xl transition-[height] duration-300 dark:bg-slate-900 lg:hidden"
+    :class="expanded ? 'h-[78dvh] max-h-[calc(100dvh-4rem)]' : 'h-[42dvh] max-h-[calc(100dvh-5rem)]'"
     @touchstart.passive="onTouchStart"
     @touchend.passive="onTouchEnd"
   >
@@ -46,7 +46,7 @@ function onTouchEnd(e) {
       <ChevronDown v-if="expanded" class="h-4 w-4 text-slate-400" />
       <ChevronUp v-else class="h-4 w-4 text-slate-400" />
     </button>
-    <div class="scrollbar-thin min-h-0 flex-1 overflow-y-auto px-3 pb-4">
+    <div class="scrollbar-thin min-h-0 flex-1 overflow-y-auto px-3 pb-2">
       <slot />
     </div>
   </div>

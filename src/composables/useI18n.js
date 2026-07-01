@@ -8,6 +8,7 @@ const locale = ref(localStorage.getItem(LOCALE_KEY) === 'en' ? 'en' : 'ar')
 const STRINGS = {
   appTitle: { ar: 'شبكة أليانز مصر الطبية', en: 'Allianz Egypt Medical Network' },
   appSubtitle: { ar: 'دليل مقدمي الخدمة الطبية', en: 'Healthcare Provider Directory' },
+  madeBy: { ar: 'صُنع بواسطة', en: 'Made by' },
   searchPlaceholder: {
     ar: 'ابحث بالاسم، التخصص، الخدمة، العنوان، المدينة، المحافظة، التليفون…',
     en: 'Search by name, specialty, service, address, city, governorate, phone…',

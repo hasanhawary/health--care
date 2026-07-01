@@ -17,7 +17,10 @@ function onKey(e) {
   if (e.key === 'Escape' && props.open) emit('close')
 }
 onMounted(() => window.addEventListener('keydown', onKey))
-onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', onKey)
+  document.body.style.overflow = ''
+})
 
 watch(
   () => props.open,
@@ -32,7 +35,7 @@ watch(
     <Transition name="drawer">
       <div v-if="open" class="fixed inset-0 z-50 lg:hidden">
         <div class="absolute inset-0 bg-slate-900/50 backdrop-blur-sm" @click="emit('close')"></div>
-        <div class="absolute end-0 top-0 flex h-full w-[88%] max-w-sm flex-col bg-slate-50 shadow-2xl dark:bg-slate-950">
+        <div class="absolute end-0 top-0 flex h-dvh w-full max-w-sm flex-col bg-slate-50 shadow-2xl dark:bg-slate-950 sm:w-[88%]">
           <div class="flex items-center justify-between border-b border-slate-200 bg-white px-4 py-3 dark:border-slate-800 dark:bg-slate-900">
             <h2 class="text-base font-bold text-slate-800 dark:text-slate-100">{{ t('filtersTitle') }}</h2>
             <button class="icon-btn" @click="emit('close')">
@@ -42,7 +45,7 @@ watch(
           <div class="scrollbar-thin flex-1 overflow-y-auto p-3">
             <FilterSidebar embedded @close="emit('close')" />
           </div>
-          <div class="border-t border-slate-200 bg-white p-3 dark:border-slate-800 dark:bg-slate-900">
+          <div class="safe-bottom border-t border-slate-200 bg-white p-3 dark:border-slate-800 dark:bg-slate-900">
             <button class="btn-primary w-full" @click="emit('close')">
               <Check class="h-4 w-4" />
               {{ t('apply') }}

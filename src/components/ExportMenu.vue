@@ -55,7 +55,7 @@ async function run(kind) {
     <Transition name="fade">
       <div
         v-if="open"
-        class="absolute end-0 z-30 mt-1 w-44 overflow-hidden rounded-xl border border-slate-200 bg-white py-1 shadow-xl dark:border-slate-700 dark:bg-slate-900"
+        class="absolute end-0 z-30 mt-1 w-44 max-w-[calc(100vw-1.5rem)] overflow-hidden rounded-xl border border-slate-200 bg-white py-1 shadow-xl dark:border-slate-700 dark:bg-slate-900"
       >
         <button class="flex w-full items-center gap-2 px-3 py-2 text-start text-xs hover:bg-slate-100 dark:hover:bg-slate-800" @click="run('csv')">
           <FileDown class="h-4 w-4 text-slate-500" />CSV

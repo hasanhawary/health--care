@@ -167,7 +167,7 @@ async function share() {
     <Transition name="modal">
       <div v-if="provider" class="fixed inset-0 z-50 flex items-end justify-center p-0 sm:items-center sm:p-4">
         <div class="absolute inset-0 bg-slate-900/50 backdrop-blur-sm" @click="emit('close')"></div>
-        <div ref="dialogRef" role="dialog" aria-modal="true" class="relative flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-t-3xl bg-white shadow-2xl dark:bg-slate-900 sm:rounded-3xl">
+        <div ref="dialogRef" role="dialog" aria-modal="true" class="relative flex max-h-[92dvh] w-full max-w-2xl flex-col overflow-hidden rounded-t-3xl bg-white shadow-2xl dark:bg-slate-900 sm:rounded-3xl">
           <!-- header -->
           <div class="relative shrink-0 overflow-hidden bg-gradient-to-br from-brand-600 to-brand-800 p-5 text-white">
             <div class="absolute -end-8 -top-8 h-32 w-32 rounded-full bg-white/10"></div>
@@ -300,8 +300,8 @@ async function share() {
           </div>
 
           <!-- footer -->
-          <div class="shrink-0 border-t border-slate-100 bg-slate-50/80 p-4 dark:border-slate-800 dark:bg-slate-900/80">
-            <div class="flex flex-wrap items-center gap-2">
+          <div class="safe-bottom shrink-0 border-t border-slate-100 bg-slate-50/80 p-4 dark:border-slate-800 dark:bg-slate-900/80">
+            <div class="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:items-center">
               <a :href="buildMapsUrl(provider)" target="_blank" rel="noopener" class="btn-primary flex-1 sm:flex-none"><Navigation class="h-4 w-4" />{{ t('openMaps') }}</a>
               <a v-if="provider.phone" :href="buildTelLink(provider.phone)" class="btn-outline"><Phone class="h-4 w-4" />{{ t('call') }}</a>
               <a :href="dirUrl('driving')" target="_blank" rel="noopener" class="btn-outline"><Navigation class="h-4 w-4" />{{ t('directions') }}</a>

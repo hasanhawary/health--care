@@ -27,8 +27,8 @@ const cards = computed(() => [
 </script>
 
 <template>
-  <div class="mb-4 flex items-center justify-between gap-2">
-    <div class="inline-flex rounded-xl border border-slate-200 bg-white p-1 text-xs font-semibold dark:border-slate-700 dark:bg-slate-900">
+  <div class="mb-4 no-scrollbar flex items-center gap-2 overflow-x-auto">
+    <div class="inline-flex shrink-0 rounded-xl border border-slate-200 bg-white p-1 text-xs font-semibold dark:border-slate-700 dark:bg-slate-900">
       <button
         class="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 transition"
         :class="statsMode === 'current' ? 'bg-brand-600 text-white' : 'text-slate-600 hover:bg-slate-100 dark:text-slate-300'"
@@ -45,22 +45,22 @@ const cards = computed(() => [
       </button>
     </div>
   </div>
-  <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+  <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 lg:grid-cols-6">
     <button
       v-for="c in cards"
       :key="c.key"
-      class="card group relative overflow-hidden p-4 text-start transition duration-200 hover:-translate-y-0.5 hover:shadow-card-hover"
+      class="card group relative overflow-hidden p-3 text-start transition duration-200 hover:-translate-y-0.5 hover:shadow-card-hover sm:p-4"
       @click="c.filter ? setCategory(c.filter) : null"
     >
       <div class="flex items-center gap-3">
         <div
-          class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-sm transition group-hover:scale-110"
+          class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-sm transition group-hover:scale-110 sm:h-10 sm:w-10"
           :class="c.color"
         >
           <component :is="c.icon" class="h-5 w-5" />
         </div>
         <div class="min-w-0">
-          <div class="text-xl font-extrabold leading-tight text-slate-800 dark:text-slate-100">
+          <div class="text-lg font-extrabold leading-tight text-slate-800 dark:text-slate-100 sm:text-xl">
             <AnimatedCounter :value="c.value" />
           </div>
           <div class="truncate text-xs font-medium text-slate-500 dark:text-slate-400">
