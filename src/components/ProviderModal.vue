@@ -10,7 +10,8 @@ import { useFavorites } from '../composables/useFavorites'
 import { useExcelProviders } from '../composables/useExcelProviders'
 import { useGeolocation } from '../composables/useGeolocation'
 import { typeBadgeClass } from '../utils/badges'
-import { buildMapsUrl, buildTelLink, buildAddressText, buildShareText } from '../utils/maps'
+import { buildMapsUrl, buildAddressText, buildShareText, parsePhoneNumbers } from '../utils/maps'
+import PhoneCallSheet from './PhoneCallSheet.vue'
 import { getGeo } from '../utils/geoCache'
 import { haversineKm, formatDistance } from '../utils/distance'
 import { cleanCell } from '../utils/normalizeText'
@@ -20,7 +21,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['close', 'navigate'])
 
-const { t, field } = useI18n()
+const { t, field, locale } = useI18n()
 const { isFavorite, toggleFavorite } = useFavorites()
 const { providers } = useExcelProviders()
 const { coords: userCoords } = useGeolocation()
@@ -130,21 +131,24 @@ function dirUrl(mode) {
 
 async function copyAddress() {
   try {
-    await navigator.clipboard.writeText(buildAddressText(props.provider))
+    await navigator.clipboard.writeText(buildAddressText(props.provider, locale))
     copied.value = true
     setTimeout(() => (copied.value = false), 1500)
   } catch (e) {}
 }
 async function copyPhone() {
   if (!props.provider.phone) return
+  // Copy each number on its own line for clarity when there are multiple
+  const nums = parsePhoneNumbers(props.provider.phone)
+  const text = nums.length > 0 ? nums.join('\n') : String(props.provider.phone)
   try {
-    await navigator.clipboard.writeText(props.provider.phone)
+    await navigator.clipboard.writeText(text)
     copiedPhone.value = true
     setTimeout(() => (copiedPhone.value = false), 1500)
   } catch (e) {}
 }
 async function share() {
-  const text = buildShareText(props.provider)
+  const text = buildShareText(props.provider, locale)
   const url = buildMapsUrl(props.provider)
   if (navigator.share) {
     try {
@@ -172,7 +176,7 @@ async function share() {
           <div class="relative shrink-0 overflow-hidden bg-gradient-to-br from-brand-600 to-brand-800 p-5 text-white">
             <div class="absolute -end-8 -top-8 h-32 w-32 rounded-full bg-white/10"></div>
             <div class="absolute -start-10 -bottom-12 h-32 w-32 rounded-full bg-white/10"></div>
-            <button data-close class="absolute end-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur transition hover:bg-white/25" aria-label="close" @click="emit('close')">
+            <button data-close class="absolute end-4 top-4 z-20 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur transition hover:bg-white/25" :aria-label="t('close')" @click="emit('close')">
               <X class="h-5 w-5" />
             </button>
             <div class="relative">
@@ -194,7 +198,7 @@ async function share() {
           <div class="scrollbar-thin flex-1 overflow-y-auto p-5">
             <!-- quick actions -->
             <div class="mb-4 flex flex-wrap gap-2">
-              <a v-if="provider.phone" :href="buildTelLink(provider.phone)" class="btn-primary !py-2 text-xs"><Phone class="h-4 w-4" />{{ t('call') }}</a>
+              <PhoneCallSheet v-if="provider.phone" :phone="provider.phone" trigger-class="btn-primary !py-2 text-xs" />
               <button v-if="provider.phone" class="btn-outline !py-2 text-xs" @click="copyPhone">
                 <Check v-if="copiedPhone" class="h-4 w-4 text-green-600" /><Copy v-else class="h-4 w-4" />{{ copiedPhone ? t('copied') : t('copyPhone') }}
               </button>
@@ -222,7 +226,11 @@ async function share() {
               </div>
               <div v-if="provider.phone" class="flex items-start gap-2.5">
                 <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-green-50 text-green-600 dark:bg-green-950 dark:text-green-300"><Phone class="h-4 w-4" /></div>
-                <div class="min-w-0"><div class="text-xs text-slate-400">{{ t('phone') }}</div><a :href="buildTelLink(provider.phone)" class="font-medium text-brand-600 hover:underline dark:text-brand-400" dir="ltr">{{ provider.phone }}</a></div>
+                <div class="min-w-0"><div class="text-xs text-slate-400">{{ t('phone') }}</div>
+                  <PhoneCallSheet :phone="provider.phone" trigger-class="font-medium text-brand-600 hover:underline dark:text-brand-400" dir="ltr">
+                    <span dir="ltr">{{ provider.phone }}</span>
+                  </PhoneCallSheet>
+                </div>
               </div>
               <div v-if="provider.email" class="flex items-start gap-2.5">
                 <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 dark:bg-indigo-950 dark:text-indigo-300"><Mail class="h-4 w-4" /></div>
@@ -242,7 +250,7 @@ async function share() {
                 <div v-if="field(provider, 'addressAr', 'address')" class="text-slate-500 dark:text-slate-400">{{ field(provider, 'addressAr', 'address') }}</div>
                 <!-- distance + travel -->
                 <div v-if="distanceKm != null" class="mt-2 flex flex-wrap items-center gap-2">
-                  <span class="badge bg-brand-100 text-brand-700 dark:bg-brand-950 dark:text-brand-300"><Compass class="h-3 w-3" />{{ formatDistance(distanceKm) }}</span>
+                  <span class="badge bg-brand-100 text-brand-700 dark:bg-brand-950 dark:text-brand-300"><Compass class="h-3 w-3" />{{ formatDistance(distanceKm, { km: t('km'), m: t('m') }) }}</span>
                   <a :href="dirUrl('walking')" target="_blank" rel="noopener" class="badge bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300">
                     <Footprints class="h-3 w-3" />{{ travelMin(distanceKm, 'walking') }} {{ t('minutes') }}
                   </a>
@@ -303,7 +311,7 @@ async function share() {
           <div class="safe-bottom shrink-0 border-t border-slate-100 bg-slate-50/80 p-4 dark:border-slate-800 dark:bg-slate-900/80">
             <div class="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:items-center">
               <a :href="buildMapsUrl(provider)" target="_blank" rel="noopener" class="btn-primary flex-1 sm:flex-none"><Navigation class="h-4 w-4" />{{ t('openMaps') }}</a>
-              <a v-if="provider.phone" :href="buildTelLink(provider.phone)" class="btn-outline"><Phone class="h-4 w-4" />{{ t('call') }}</a>
+              <PhoneCallSheet v-if="provider.phone" :phone="provider.phone" trigger-class="btn-outline" />
               <a :href="dirUrl('driving')" target="_blank" rel="noopener" class="btn-outline"><Navigation class="h-4 w-4" />{{ t('directions') }}</a>
               <button class="btn" :class="isFavorite(provider.id) ? 'bg-rose-100 text-rose-600 dark:bg-rose-950 dark:text-rose-300' : 'btn-outline'" @click="toggleFavorite(provider)">
                 <Heart class="h-4 w-4" :class="isFavorite(provider.id) ? 'fill-current' : ''" />

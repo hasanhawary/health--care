@@ -1,0 +1,136 @@
+- generic [ref=f19e3]:
+  - banner [ref=f19e4]:
+    - generic [ref=f19e5]:
+      - button "الرئيسية" [ref=f19e6] [cursor=pointer]:
+        - img [ref=f19e8]
+        - generic [ref=f19e11]:
+          - heading "شبكة أليانز مصر الطبية" [level=1] [ref=f19e12]
+          - paragraph [ref=f19e13]: دليل مقدمي الخدمة الطبية
+      - generic [ref=f19e14]:
+        - button "English" [ref=f19e15] [cursor=pointer]:
+          - img [ref=f19e16]
+        - button "الوضع الليلي" [ref=f19e20] [cursor=pointer]:
+          - img [ref=f19e21]
+        - button "المفضلة" [ref=f19e23] [cursor=pointer]:
+          - img [ref=f19e24]
+  - generic [ref=f19e29]:
+    - generic [ref=f19e30]:
+      - img
+      - combobox "ابحث بالاسم، التخصص، الخدمة، العنوان، المدينة، المحافظة، التليفون…" [ref=f19e31]
+    - generic [ref=f19e32]:
+      - button "المحافظة" [ref=f19e34] [cursor=pointer]:
+        - img [ref=f19e35]
+        - generic [ref=f19e38]: المحافظة
+        - img [ref=f19e39]
+      - button "المدينة" [ref=f19e42] [cursor=pointer]:
+        - img [ref=f19e43]
+        - generic [ref=f19e47]: المدينة
+        - img [ref=f19e48]
+    - button "الفلاتر" [ref=f19e50] [cursor=pointer]:
+      - img [ref=f19e51]
+  - generic [ref=f19e54]:
+    - button "الكل" [ref=f19e55] [cursor=pointer]:
+      - img [ref=f19e56]
+      - generic [ref=f19e61]: الكل
+    - button "physician clinic" [ref=f19e62] [cursor=pointer]:
+      - img [ref=f19e63]
+      - generic [ref=f19e67]: physician clinic
+    - button "hospital" [ref=f19e68] [cursor=pointer]:
+      - img [ref=f19e69]
+      - generic [ref=f19e72]: hospital
+    - button "pharmacy" [ref=f19e73] [cursor=pointer]:
+      - img [ref=f19e74]
+      - generic [ref=f19e77]: pharmacy
+    - button "laboratory" [ref=f19e78] [cursor=pointer]:
+      - img [ref=f19e79]
+      - generic [ref=f19e81]: laboratory
+    - button "physiotherapy" [ref=f19e82] [cursor=pointer]:
+      - img [ref=f19e83]
+      - generic [ref=f19e85]: physiotherapy
+    - button "dental center" [ref=f19e86] [cursor=pointer]:
+      - img [ref=f19e87]
+      - generic [ref=f19e90]: dental center
+    - button "radiology center" [ref=f19e91] [cursor=pointer]:
+      - img [ref=f19e92]
+      - generic [ref=f19e97]: radiology center
+    - button "optometry - vision service center" [ref=f19e98] [cursor=pointer]:
+      - img [ref=f19e99]
+      - generic [ref=f19e102]: optometry - vision service center
+  - main [ref=f19e103]:
+    - generic [ref=f19e104]:
+      - generic [ref=f19e106]:
+        - button "النتائج الحالية" [ref=f19e107] [cursor=pointer]:
+          - img [ref=f19e108]
+          - text: النتائج الحالية
+        - button "كل الشبكة" [ref=f19e110] [cursor=pointer]:
+          - img [ref=f19e111]
+          - text: كل الشبكة
+      - generic [ref=f19e116]:
+        - button "0 النتائج الحالية" [ref=f19e117] [cursor=pointer]:
+          - generic [ref=f19e118]:
+            - img [ref=f19e120]
+            - generic [ref=f19e124]:
+              - generic [ref=f19e125]: "0"
+              - generic [ref=f19e126]: النتائج الحالية
+        - button "0 أطباء" [ref=f19e127] [cursor=pointer]:
+          - generic [ref=f19e128]:
+            - img [ref=f19e130]
+            - generic [ref=f19e134]:
+              - generic [ref=f19e135]: "0"
+              - generic [ref=f19e136]: أطباء
+        - button "0 مستشفيات" [ref=f19e137] [cursor=pointer]:
+          - generic [ref=f19e138]:
+            - img [ref=f19e140]
+            - generic [ref=f19e143]:
+              - generic [ref=f19e144]: "0"
+              - generic [ref=f19e145]: مستشفيات
+        - button "0 صيدليات" [ref=f19e146] [cursor=pointer]:
+          - generic [ref=f19e147]:
+            - img [ref=f19e149]
+            - generic [ref=f19e152]:
+              - generic [ref=f19e153]: "0"
+              - generic [ref=f19e154]: صيدليات
+        - button "0 معامل" [ref=f19e155] [cursor=pointer]:
+          - generic [ref=f19e156]:
+            - img [ref=f19e158]
+            - generic [ref=f19e160]:
+              - generic [ref=f19e161]: "0"
+              - generic [ref=f19e162]: معامل
+        - button "0 نشطون" [ref=f19e163] [cursor=pointer]:
+          - generic [ref=f19e164]:
+            - img [ref=f19e166]
+            - generic [ref=f19e169]:
+              - generic [ref=f19e170]: "0"
+              - generic [ref=f19e171]: نشطون
+    - generic [ref=f19e174]:
+      - generic [ref=f19e175]: جارٍ تحميل مقدمي الخدمة…
+      - generic [ref=f19e176]:
+        - button "بطاقات" [ref=f19e177] [cursor=pointer]:
+          - img [ref=f19e178]
+          - generic [ref=f19e183]: بطاقات
+        - button "قائمة" [ref=f19e184] [cursor=pointer]:
+          - img [ref=f19e185]
+          - generic [ref=f19e187]: قائمة
+        - button "خريطة" [ref=f19e188] [cursor=pointer]:
+          - img [ref=f19e189]
+          - generic [ref=f19e191]: خريطة
+      - generic [ref=f19e192]:
+        - button "تحديد موقعي" [ref=f19e193] [cursor=pointer]:
+          - img [ref=f19e194]
+          - generic [ref=f19e197]: تحديد موقعي
+        - combobox [ref=f19e199]:
+          - 'option "ترتيب حسب: أفضل تطابق" [selected]'
+          - 'option "ترتيب حسب: الاسم"'
+          - 'option "ترتيب حسب: المحافظة"'
+          - 'option "ترتيب حسب: المنطقة"'
+        - button "تجميع حسب المقدم" [ref=f19e200] [cursor=pointer]:
+          - img [ref=f19e201]
+        - button [disabled] [ref=f19e206]:
+          - img [ref=f19e207]
+          - img [ref=f19e210]
+  - contentinfo [ref=f19e366]:
+    - text: شبكة أليانز مصر الطبية · دليل مقدمي الخدمة الطبية ·
+    - generic [ref=f19e367]:
+      - text: صُنع بواسطة
+      - link "Elhawary" [ref=f19e368] [cursor=pointer]:
+        - /url: https://github.com/hasanhawary/

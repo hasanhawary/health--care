@@ -22,11 +22,11 @@ import { highlightHtml } from '../utils/normalizeText'
 import { typeBadgeClass } from '../utils/badges'
 import {
   buildMapsUrl,
-  buildTelLink,
   buildAddressText,
   buildShareText,
 } from '../utils/maps'
 import { formatDistance } from '../utils/distance'
+import PhoneCallSheet from './PhoneCallSheet.vue'
 
 const props = defineProps({
   provider: { type: Object, required: true },
@@ -34,7 +34,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['open'])
 
-const { t, field } = useI18n()
+const { t, field, locale } = useI18n()
 const { isFavorite, toggleFavorite } = useFavorites()
 const { distOf } = useProviderFilters()
 
@@ -62,14 +62,14 @@ function onFav() {
 
 async function copyAddress() {
   try {
-    await navigator.clipboard.writeText(buildAddressText(props.provider))
+    await navigator.clipboard.writeText(buildAddressText(props.provider, locale))
     copied.value = true
     setTimeout(() => (copied.value = false), 1500)
   } catch (e) {}
 }
 
 async function share() {
-  const text = buildShareText(props.provider)
+  const text = buildShareText(props.provider, locale)
   const url = buildMapsUrl(props.provider)
   if (navigator.share) {
     try {
@@ -89,7 +89,7 @@ async function share() {
 
 <template>
   <article
-    class="card group flex flex-col p-4 transition duration-200 hover:-translate-y-0.5 hover:shadow-card-hover sm:p-5"
+    class="card group flex min-w-0 max-w-full flex-col overflow-hidden p-4 transition duration-200 hover:-translate-y-0.5 hover:shadow-card-hover sm:p-5"
   >
     <!-- header -->
     <div class="flex items-start justify-between gap-3">
@@ -145,7 +145,7 @@ async function share() {
           <div class="flex flex-wrap items-center gap-1.5 font-medium text-slate-700 dark:text-slate-200">
             <span v-html="hl(governorate())"></span>
             <span v-if="area()"> · <span v-html="hl(area())"></span></span>
-            <span v-if="distOf(provider) != null" class="badge bg-brand-100 text-brand-700 dark:bg-brand-950 dark:text-brand-300">📍 {{ formatDistance(distOf(provider)) }}</span>
+            <span v-if="distOf(provider) != null" class="badge bg-brand-100 text-brand-700 dark:bg-brand-950 dark:text-brand-300">📍 {{ formatDistance(distOf(provider), { km: t('km'), m: t('m') }) }}</span>
           </div>
           <div
             v-if="address()"
@@ -170,16 +170,15 @@ async function share() {
 
     <!-- actions -->
     <div class="mt-auto pt-4">
-      <div class="flex flex-wrap items-center gap-2">
-        <a
+      <div class="flex min-w-0 flex-wrap items-center gap-2">
+        <PhoneCallSheet
           v-if="provider.phone"
-          :href="buildTelLink(provider.phone)"
-          class="btn-primary min-w-0 max-w-full !px-3 !py-2 text-xs"
-          :title="t('call')"
+          :phone="provider.phone"
+          trigger-class="btn-primary min-w-0 max-w-full !px-3 !py-2 text-xs"
         >
           <Phone class="h-4 w-4" />
           <span class="truncate" dir="ltr">{{ provider.phone }}</span>
-        </a>
+        </PhoneCallSheet>
         <a
           v-if="provider.email"
           :href="`mailto:${provider.email}`"

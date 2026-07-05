@@ -10,7 +10,7 @@ import { useFavorites } from '../composables/useFavorites'
 import { useGeolocation } from '../composables/useGeolocation'
 import { useI18n } from '../composables/useI18n'
 import { typeBadgeClass } from '../utils/badges'
-import { buildTelLink, buildMapsUrl } from '../utils/maps'
+import { buildMapsUrl } from '../utils/maps'
 import { formatDistance } from '../utils/distance'
 
 const props = defineProps({
@@ -91,7 +91,7 @@ async function onLocate() {
               {{ field(p, 'providerTypeAr', 'providerType') }} · {{ field(p, 'governorateAr', 'governorate') }}<span v-if="field(p, 'areaAr', 'area')"> · {{ field(p, 'areaAr', 'area') }}</span>
             </span>
             <span class="mt-1 flex items-center gap-1.5">
-              <span v-if="distOf(p) != null" class="badge bg-brand-100 text-brand-700 dark:bg-brand-950 dark:text-brand-300"><Compass class="h-3 w-3" />{{ formatDistance(distOf(p)) }}</span>
+              <span v-if="distOf(p) != null" class="badge bg-brand-100 text-brand-700 dark:bg-brand-950 dark:text-brand-300"><Compass class="h-3 w-3" />{{ formatDistance(distOf(p), { km: t('km'), m: t('m') }) }}</span>
               <a :href="buildMapsUrl(p)" target="_blank" rel="noopener" class="badge bg-slate-100 text-slate-500 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400"><Navigation class="h-3 w-3" />{{ t('mapView') }}</a>
             </span>
           </span>
@@ -101,8 +101,8 @@ async function onLocate() {
       </div>
     </aside>
 
-    <!-- mobile bottom sheet -->
-    <MobileBottomSheet class="lg:hidden" :title="t('results')" :count="total">
+    <!-- mobile bottom sheet (collapses when a provider popup is open to avoid overlap) -->
+    <MobileBottomSheet class="lg:hidden" :title="t('results')" :count="total" :force-collapsed="!!selectedPopup">
       <button
         v-for="p in list"
         :key="p.id"
@@ -114,7 +114,7 @@ async function onLocate() {
         <span class="min-w-0 flex-1">
           <span class="block truncate text-sm font-semibold text-slate-800 dark:text-slate-100">{{ p.name }}</span>
           <span class="block truncate text-xs text-slate-500 dark:text-slate-400">{{ field(p, 'providerTypeAr', 'providerType') }} · {{ field(p, 'governorateAr', 'governorate') }}</span>
-          <span v-if="distOf(p) != null" class="badge mt-1 bg-brand-100 text-brand-700 dark:bg-brand-950 dark:text-brand-300"><Compass class="h-3 w-3" />{{ formatDistance(distOf(p)) }}</span>
+          <span v-if="distOf(p) != null" class="badge mt-1 bg-brand-100 text-brand-700 dark:bg-brand-950 dark:text-brand-300"><Compass class="h-3 w-3" />{{ formatDistance(distOf(p), { km: t('km'), m: t('m') }) }}</span>
         </span>
       </button>
       <button v-if="listLimit < filtered.length" class="btn-ghost mt-2 w-full text-xs" @click="listLimit += 30">{{ t('loadMore') }}</button>

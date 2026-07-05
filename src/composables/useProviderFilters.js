@@ -1,6 +1,10 @@
 // Central filter/search/sort/pagination state + URL sync. Shared singleton.
 // `filtered` is the single source of truth: search + structured filters +
 // LIVE-only + location radius + map-bounds ("search this area").
+//
+// All `computed`/helpers live at MODULE SCOPE so every component calling
+// useProviderFilters() shares ONE cached evaluation (previous per-instance
+// design re-ran the same Fuse searches + provider scans once per consumer).
 import { computed, reactive, ref, nextTick, watch } from 'vue'
 import { normalizeArabic, normalizeForKey } from '../utils/normalizeText'
 import { haversineKm } from '../utils/distance'
@@ -176,387 +180,404 @@ function inBounds(lat, lon, b) {
   return lat <= b.north && lat >= b.south && lon <= b.east && lon >= b.west
 }
 
-export function useProviderFilters() {
-  const { locale, field, t } = useI18n()
-  const { matchIds, searchRanked, isReady: searchReady } = useSearch()
-  const { coords: userCoords } = useGeolocation()
+// ---- module-scope composable handles (singletons) ----
+const { locale, field, t } = useI18n()
+const { searchBatch, isReady: searchReady } = useSearch()
+const { coords: userCoords } = useGeolocation()
 
-  const providers = computed(() => useProvidersValue())
+const providers = computed(() => useProvidersValue())
 
-  // ---- distance ----
-  const distanceById = computed(() => {
-    const uc = userCoords.value
-    const out = new Map()
-    if (!uc) return out
-    for (const p of providers.value) {
-      const g = getGeo(p)
-      if (g) out.set(p.id, haversineKm(uc.lat, uc.lon, g.lat, g.lon))
-    }
-    return out
-  })
-  function distOf(p) {
-    return distanceById.value.get(p.id) ?? null
+// ---- distance ----
+const distanceById = computed(() => {
+  const uc = userCoords.value
+  const out = new Map()
+  if (!uc) return out
+  for (const p of providers.value) {
+    const g = getGeo(p)
+    if (g) out.set(p.id, haversineKm(uc.lat, uc.lon, g.lat, g.lon))
   }
+  return out
+})
+function distOf(p) {
+  return distanceById.value.get(p.id) ?? null
+}
 
-  // ---- query match set (consistent for counts + filtering) ----
-  const qnorm = computed(() => normalizeArabic(query.value))
-  const queryMatchSet = computed(() => {
-    const q = qnorm.value
-    if (!q) return null
-    if (searchReady()) return matchIds(q)
-    return new Set(providers.value.filter((p) => p.searchBlob.includes(q)).map((p) => p.id))
-  })
-
-  function structuredMatchesExcept(p, exceptName) {
-    const f = filters
-    if (exceptName !== 'providerType' && f.providerType.length && !f.providerType.includes(p.typeKey)) return false
-    if (exceptName !== 'specialty' && f.specialty.length && !f.specialty.includes(p.specialtyKey)) return false
-    if (exceptName !== 'governorate' && f.governorate.length && !f.governorate.includes(p.govKey)) return false
-    if (exceptName !== 'area' && f.area.length && !f.area.includes(p.areaKey)) return false
-    if (exceptName !== 'services' && f.services.length && !f.services.includes(p.servicesKey)) return false
-    if (exceptName !== 'networkType' && f.networkType.length && !f.networkType.includes(normalizeForKey(p.networkType))) return false
-    if (exceptName !== 'mainBranch' && f.mainBranch.length && !f.mainBranch.includes(normalizeForKey(p.mainBranch))) return false
-    if (exceptName !== 'pulseStatus' && f.pulseStatus.length) {
-      const pk = p.live ? 'live' : 'notlive'
-      if (!f.pulseStatus.includes(pk)) return false
+// ---- query match set (consistent for counts + filtering) ----
+// ONE Fuse traversal feeds both the matched-id Set (for filtering/counts) and
+// the rank-ordered list (for best-match sorting).
+const qnorm = computed(() => normalizeArabic(query.value))
+const searchResult = computed(() => {
+  const q = qnorm.value
+  if (!q) return null
+  if (searchReady()) return searchBatch(q)
+  // fallback before the Fuse index is built
+  const set = new Set()
+  const ranked = []
+  for (const p of providers.value) {
+    if (p.searchBlob.includes(q)) {
+      set.add(p.id)
+      ranked.push(p)
     }
-    if (exceptName !== 'liveOnly' && f.liveOnly && !p.live) return false
-    return true
   }
+  return { ids: set, ranked }
+})
+const queryMatchSet = computed(() => searchResult.value?.ids ?? null)
 
-  function locationMatches(p) {
-    if (radius.value > 0) {
-      const d = distOf(p)
-      if (d == null || d > radius.value) return false
-    }
-    if (searchAreaActive.value && mapBounds.value) {
-      const g = getGeo(p)
-      if (!g || !inBounds(g.lat, g.lon, mapBounds.value)) return false
-    }
-    return true
+function structuredMatchesExcept(p, exceptName) {
+  const f = filters
+  if (exceptName !== 'providerType' && f.providerType.length && !f.providerType.includes(p.typeKey)) return false
+  if (exceptName !== 'specialty' && f.specialty.length && !f.specialty.includes(p.specialtyKey)) return false
+  if (exceptName !== 'governorate' && f.governorate.length && !f.governorate.includes(p.govKey)) return false
+  if (exceptName !== 'area' && f.area.length && !f.area.includes(p.areaKey)) return false
+  if (exceptName !== 'services' && f.services.length && !f.services.includes(p.servicesKey)) return false
+  if (exceptName !== 'networkType' && f.networkType.length && !f.networkType.includes(p.networkTypeKey)) return false
+  if (exceptName !== 'mainBranch' && f.mainBranch.length && !f.mainBranch.includes(p.mainBranchKey)) return false
+  if (exceptName !== 'pulseStatus' && f.pulseStatus.length) {
+    const pk = p.live ? 'live' : 'notlive'
+    if (!f.pulseStatus.includes(pk)) return false
   }
+  if (exceptName !== 'liveOnly' && f.liveOnly && !p.live) return false
+  return true
+}
 
-  function passesAll(p) {
-    const qs = queryMatchSet.value
+function locationMatches(p) {
+  if (radius.value > 0) {
+    const d = distOf(p)
+    if (d == null || d > radius.value) return false
+  }
+  if (searchAreaActive.value && mapBounds.value) {
+    const g = getGeo(p)
+    if (!g || !inBounds(g.lat, g.lon, mapBounds.value)) return false
+  }
+  return true
+}
+
+function passesAll(p) {
+  const qs = queryMatchSet.value
+  if (qs && !qs.has(p.id)) return false
+  if (!structuredMatchesExcept(p, null)) return false
+  if (!locationMatches(p)) return false
+  return true
+}
+
+// single source of truth
+const filtered = computed(() => providers.value.filter(passesAll))
+
+// list filtered by everything EXCEPT one facet (for faceted counts)
+function filteredByOthers(exceptName) {
+  const qs = queryMatchSet.value
+  return providers.value.filter((p) => {
     if (qs && !qs.has(p.id)) return false
-    if (!structuredMatchesExcept(p, null)) return false
+    if (!structuredMatchesExcept(p, exceptName)) return false
     if (!locationMatches(p)) return false
     return true
+  })
+}
+
+// ---- sorted ----
+const sorted = computed(() => {
+  const list = filtered.value
+  const q = qnorm.value
+  const loc = locale.value
+  const byDistance = () => {
+    const d = (p) => (distOf(p) == null ? Infinity : distOf(p))
+    return [...list].sort((a, b) => d(a) - d(b) || a.nameKey.localeCompare(b.nameKey, loc))
   }
-
-  // single source of truth
-  const filtered = computed(() => providers.value.filter(passesAll))
-
-  // list filtered by everything EXCEPT one facet (for faceted counts)
-  function filteredByOthers(exceptName) {
-    const qs = queryMatchSet.value
-    return providers.value.filter((p) => {
-      if (qs && !qs.has(p.id)) return false
-      if (!structuredMatchesExcept(p, exceptName)) return false
-      if (!locationMatches(p)) return false
-      return true
-    })
+  if (nearMe.value) return byDistance()
+  if (sortBy.value === 'distance') return byDistance()
+  if (sortBy.value === 'name') return [...list].sort((a, b) => a.nameKey.localeCompare(b.nameKey, loc))
+  if (sortBy.value === 'governorate') {
+    return [...list].sort(
+      (a, b) =>
+        field(a, 'governorateAr', 'governorate').localeCompare(field(b, 'governorateAr', 'governorate'), loc) ||
+        a.nameKey.localeCompare(b.nameKey, loc)
+    )
   }
-
-  // ---- sorted ----
-  const sorted = computed(() => {
-    const list = filtered.value
-    const q = qnorm.value
-    const loc = locale.value
-    const byDistance = () => {
-      const d = (p) => (distOf(p) == null ? Infinity : distOf(p))
-      return [...list].sort((a, b) => d(a) - d(b) || a.nameKey.localeCompare(b.nameKey, loc))
-    }
-    if (nearMe.value) return byDistance()
-    if (sortBy.value === 'distance') return byDistance()
-    if (sortBy.value === 'name') return [...list].sort((a, b) => a.nameKey.localeCompare(b.nameKey, loc))
-    if (sortBy.value === 'governorate') {
-      return [...list].sort(
-        (a, b) =>
-          field(a, 'governorateAr', 'governorate').localeCompare(field(b, 'governorateAr', 'governorate'), loc) ||
-          a.nameKey.localeCompare(b.nameKey, loc)
-      )
-    }
-    if (sortBy.value === 'area') {
-      return [...list].sort(
-        (a, b) =>
-          field(a, 'areaAr', 'area').localeCompare(field(b, 'areaAr', 'area'), loc) ||
-          a.nameKey.localeCompare(b.nameKey, loc)
-      )
-    }
-    // best match: Fuse rank when a query is present
-    if (q && searchReady()) {
+  if (sortBy.value === 'area') {
+    return [...list].sort(
+      (a, b) =>
+        field(a, 'areaAr', 'area').localeCompare(field(b, 'areaAr', 'area'), loc) ||
+        a.nameKey.localeCompare(b.nameKey, loc)
+    )
+  }
+  // best match: Fuse rank when a query is present (reuses the single search)
+  if (q && searchReady()) {
+    const ranked = searchResult.value?.ranked
+    if (ranked && ranked.length) {
       const idSet = new Set(list.map((p) => p.id))
-      const ranked = searchRanked(q, (p) => idSet.has(p.id))
-      return ranked && ranked.length ? ranked : [...list].sort((a, b) => a.nameKey.localeCompare(b.nameKey, loc))
-    }
-    if (q) {
-      const score = (p) => {
-        let s = 0
-        if (p.nameKey.startsWith(q)) s += 1000
-        else if (p.nameKey.includes(q)) s += 500
-        if (p.typeKey.includes(q)) s += 40
-        if (p.specialtyKey.includes(q)) s += 30
-        if (p.govKey.includes(q) || p.areaKey.includes(q)) s += 10
-        return s
-      }
-      return [...list].sort((a, b) => score(b) - score(a) || a.nameKey.localeCompare(b.nameKey, loc))
+      const filt = ranked.filter((p) => idSet.has(p.id))
+      if (filt.length) return filt
     }
     return [...list].sort((a, b) => a.nameKey.localeCompare(b.nameKey, loc))
-  })
-
-  // ---- grouping ----
-  function groupKey(p) {
-    return p.providerKey || p.externalRef || p.tatshName || 's:' + p.id
   }
-  const groups = computed(() => {
-    const map = new Map()
-    const order = []
-    for (const p of sorted.value) {
-      const k = groupKey(p)
-      let g = map.get(k)
-      if (!g) {
-        g = { key: k, items: [], name: p.name, typeKey: p.typeKey, providerType: p.providerType, providerTypeAr: p.providerTypeAr, main: null }
-        map.set(k, g)
-        order.push(g)
-      }
-      g.items.push(p)
+  if (q) {
+    const score = (p) => {
+      let s = 0
+      if (p.nameKey.startsWith(q)) s += 1000
+      else if (p.nameKey.includes(q)) s += 500
+      if (p.typeKey.includes(q)) s += 40
+      if (p.specialtyKey.includes(q)) s += 30
+      if (p.govKey.includes(q) || p.areaKey.includes(q)) s += 10
+      return s
     }
-    for (const g of order) {
-      const mainCandidate = g.items.find((p) => normalizeForKey(p.mainBranch) === 'main')
-      g.main = mainCandidate || g.items[0]
-      const nameCount = new Map()
-      for (const p of g.items) nameCount.set(p.name, (nameCount.get(p.name) || 0) + 1)
-      let bestName = g.items[0].name
-      let best = -1
-      for (const [n, c] of nameCount) if (c > best) { best = c; bestName = n }
-      g.name = bestName
-      g.count = g.items.length
-      g.branches = g.items.filter((p) => p !== g.main)
-      g.live = g.items.some((p) => p.live)
-      g.liveCount = g.items.filter((p) => p.live).length
+    return [...list].sort((a, b) => score(b) - score(a) || a.nameKey.localeCompare(b.nameKey, loc))
+  }
+  return [...list].sort((a, b) => a.nameKey.localeCompare(b.nameKey, loc))
+})
+
+// ---- grouping ----
+function groupKey(p) {
+  return p.providerKey || p.externalRef || p.tatshName || 's:' + p.id
+}
+const groups = computed(() => {
+  const map = new Map()
+  const order = []
+  for (const p of sorted.value) {
+    const k = groupKey(p)
+    let g = map.get(k)
+    if (!g) {
+      g = { key: k, items: [], name: p.name, typeKey: p.typeKey, providerType: p.providerType, providerTypeAr: p.providerTypeAr, main: null }
+      map.set(k, g)
+      order.push(g)
     }
-    return order
-  })
+    g.items.push(p)
+  }
+  for (const g of order) {
+    const mainCandidate = g.items.find((p) => p.mainBranchKey === normalizeForKey('Main'))
+    g.main = mainCandidate || g.items[0]
+    const nameCount = new Map()
+    for (const p of g.items) nameCount.set(p.name, (nameCount.get(p.name) || 0) + 1)
+    let bestName = g.items[0].name
+    let best = -1
+    for (const [n, c] of nameCount) if (c > best) { best = c; bestName = n }
+    g.name = bestName
+    g.count = g.items.length
+    g.branches = g.items.filter((p) => p !== g.main)
+    g.live = g.items.some((p) => p.live)
+    g.liveCount = g.items.filter((p) => p.live).length
+  }
+  return order
+})
 
-  const displayItems = computed(() => (groupBy.value ? groups.value : sorted.value))
-  const displayTotal = computed(() => displayItems.value.length)
-  const visible = computed(() => displayItems.value.slice(0, visibleCount.value))
-  const hasMore = computed(() => visibleCount.value < displayTotal.value)
-  const total = computed(() => filtered.value.length)
+const displayItems = computed(() => (groupBy.value ? groups.value : sorted.value))
+const displayTotal = computed(() => displayItems.value.length)
+const visible = computed(() => displayItems.value.slice(0, visibleCount.value))
+const hasMore = computed(() => visibleCount.value < displayTotal.value)
+const total = computed(() => filtered.value.length)
 
-  // ---- facet option lists (counts reflect current filtered context) ----
-  const typeOptions = computed(() =>
-    buildKeyedOptions(filteredByOthers('providerType'), (p) => p.typeKey, (p) => field(p, 'providerTypeAr', 'providerType'))
-  )
-  const specialtyOptions = computed(() =>
-    buildKeyedOptions(filteredByOthers('specialty'), (p) => p.specialtyKey, (p) => field(p, 'specialtyAr', 'specialty'))
-  )
-  const governorateOptions = computed(() =>
-    buildKeyedOptions(filteredByOthers('governorate'), (p) => p.govKey, (p) => field(p, 'governorateAr', 'governorate'))
-  )
-  const areaOptions = computed(() =>
-    buildKeyedOptions(filteredByOthers('area'), (p) => p.areaKey, (p) => field(p, 'areaAr', 'area'))
-  )
-  const servicesOptions = computed(() =>
-    buildKeyedOptions(filteredByOthers('services'), (p) => p.servicesKey, (p) => field(p, 'servicesAr', 'services'))
-  )
-  const networkOptions = computed(() =>
-    buildKeyedOptions(filteredByOthers('networkType'), (p) => normalizeForKey(p.networkType), (p) => p.networkType)
-  )
-  const mainBranchOptions = computed(() =>
-    buildKeyedOptions(filteredByOthers('mainBranch'), (p) => normalizeForKey(p.mainBranch), (p) => p.mainBranch)
-  )
-  const pulseOptions = computed(() => [
-    { key: 'live', label: t('live'), count: filteredByOthers('pulseStatus').filter((p) => p.live).length },
-    { key: 'notlive', label: t('notLive'), count: filteredByOthers('pulseStatus').filter((p) => !p.live).length },
-  ])
+// ---- facet option lists (counts reflect current filtered context) ----
+const typeOptions = computed(() =>
+  buildKeyedOptions(filteredByOthers('providerType'), (p) => p.typeKey, (p) => field(p, 'providerTypeAr', 'providerType'))
+)
+const specialtyOptions = computed(() =>
+  buildKeyedOptions(filteredByOthers('specialty'), (p) => p.specialtyKey, (p) => field(p, 'specialtyAr', 'specialty'))
+)
+const governorateOptions = computed(() =>
+  buildKeyedOptions(filteredByOthers('governorate'), (p) => p.govKey, (p) => field(p, 'governorateAr', 'governorate'))
+)
+const areaOptions = computed(() =>
+  buildKeyedOptions(filteredByOthers('area'), (p) => p.areaKey, (p) => field(p, 'areaAr', 'area'))
+)
+const servicesOptions = computed(() =>
+  buildKeyedOptions(filteredByOthers('services'), (p) => p.servicesKey, (p) => field(p, 'servicesAr', 'services'))
+)
+const networkOptions = computed(() =>
+  buildKeyedOptions(filteredByOthers('networkType'), (p) => p.networkTypeKey, (p) => p.networkType)
+)
+const mainBranchOptions = computed(() =>
+  buildKeyedOptions(filteredByOthers('mainBranch'), (p) => p.mainBranchKey, (p) => p.mainBranch)
+)
+const pulseOptions = computed(() => [
+  { key: 'live', label: t('live'), count: filteredByOthers('pulseStatus').filter((p) => p.live).length },
+  { key: 'notlive', label: t('notLive'), count: filteredByOthers('pulseStatus').filter((p) => !p.live).length },
+])
 
-  // ---- facets for stats / chips ----
-  const facets = computed(() => {
-    const list = filtered.value
-    const docKey = normalizeForKey('Physician Clinic')
-    const hospKey = normalizeForKey('Hospital')
-    const pharmKey = normalizeForKey('Pharmacy')
-    const labKey = normalizeForKey('Laboratory')
-    let doctors = 0, hospitals = 0, pharmacies = 0, labs = 0, live = 0
-    const byType = new Map()
-    for (const p of list) {
-      if (p.live) live++
-      if (p.typeKey === docKey) doctors++
-      else if (p.typeKey === hospKey) hospitals++
-      else if (p.typeKey === pharmKey) pharmacies++
-      else if (p.typeKey === labKey) labs++
-      byType.set(p.typeKey, (byType.get(p.typeKey) || 0) + 1)
-    }
-    return { total: list.length, doctors, hospitals, pharmacies, labs, live, byType }
-  })
+// ---- facets for stats / chips ----
+const facets = computed(() => {
+  const list = filtered.value
+  const docKey = normalizeForKey('Physician Clinic')
+  const hospKey = normalizeForKey('Hospital')
+  const pharmKey = normalizeForKey('Pharmacy')
+  const labKey = normalizeForKey('Laboratory')
+  let doctors = 0, hospitals = 0, pharmacies = 0, labs = 0, live = 0
+  const byType = new Map()
+  for (const p of list) {
+    if (p.live) live++
+    if (p.typeKey === docKey) doctors++
+    else if (p.typeKey === hospKey) hospitals++
+    else if (p.typeKey === pharmKey) pharmacies++
+    else if (p.typeKey === labKey) labs++
+    byType.set(p.typeKey, (byType.get(p.typeKey) || 0) + 1)
+  }
+  return { total: list.length, doctors, hospitals, pharmacies, labs, live, byType }
+})
 
-  const allFacets = computed(() => {
-    const list = providers.value
-    const docKey = normalizeForKey('Physician Clinic')
-    const hospKey = normalizeForKey('Hospital')
-    const pharmKey = normalizeForKey('Pharmacy')
-    const labKey = normalizeForKey('Laboratory')
-    let doctors = 0, hospitals = 0, pharmacies = 0, labs = 0, live = 0
-    for (const p of list) {
-      if (p.live) live++
-      if (p.typeKey === docKey) doctors++
-      else if (p.typeKey === hospKey) hospitals++
-      else if (p.typeKey === pharmKey) pharmacies++
-      else if (p.typeKey === labKey) labs++
-    }
-    return { total: list.length, doctors, hospitals, pharmacies, labs, live }
-  })
+const allFacets = computed(() => {
+  const list = providers.value
+  const docKey = normalizeForKey('Physician Clinic')
+  const hospKey = normalizeForKey('Hospital')
+  const pharmKey = normalizeForKey('Pharmacy')
+  const labKey = normalizeForKey('Laboratory')
+  let doctors = 0, hospitals = 0, pharmacies = 0, labs = 0, live = 0
+  for (const p of list) {
+    if (p.live) live++
+    if (p.typeKey === docKey) doctors++
+    else if (p.typeKey === hospKey) hospitals++
+    else if (p.typeKey === pharmKey) pharmacies++
+    else if (p.typeKey === labKey) labs++
+  }
+  return { total: list.length, doctors, hospitals, pharmacies, labs, live }
+})
 
-  const stats = computed(() => (statsMode.value === 'all' ? allFacets.value : facets.value))
+const stats = computed(() => (statsMode.value === 'all' ? allFacets.value : facets.value))
 
-  const activeFilterCount = computed(() => {
-    let n = 0
-    for (const k of ['providerType', 'specialty', 'governorate', 'area', 'services', 'networkType', 'mainBranch', 'pulseStatus']) {
-      n += filters[k].length
-    }
-    if (filters.liveOnly) n++
-    if (query.value) n++
-    if (radius.value) n++
-    if (nearMe.value) n++
-    if (searchAreaActive.value) n++
-    return n
-  })
+const activeFilterCount = computed(() => {
+  let n = 0
+  for (const k of ['providerType', 'specialty', 'governorate', 'area', 'services', 'networkType', 'mainBranch', 'pulseStatus']) {
+    n += filters[k].length
+  }
+  if (filters.liveOnly) n++
+  if (query.value) n++
+  if (radius.value) n++
+  if (nearMe.value) n++
+  if (searchAreaActive.value) n++
+  return n
+})
 
-  const activeCategory = computed(() =>
-    filters.providerType.length === 1 ? filters.providerType[0] : ''
-  )
+const activeCategory = computed(() =>
+  filters.providerType.length === 1 ? filters.providerType[0] : ''
+)
 
-  // ---- actions ----
-  function resetPage() {
-    if (!applyingUrl) visibleCount.value = PAGE_SIZE
-  }
-  function setQuery(v) {
-    query.value = (v || '').trim()
-    resetPage()
-  }
-  function setSortBy(v) {
-    sortBy.value = v
-    resetPage()
-  }
-  function setView(v) {
-    view.value = v
-  }
-  function toggleGrouping() {
-    groupBy.value = !groupBy.value
-    resetPage()
-  }
-  function setStatsMode(v) {
-    statsMode.value = v
-  }
-  function toggleFilter(name, key) {
-    const arr = filters[name]
-    const i = arr.indexOf(key)
-    if (i >= 0) arr.splice(i, 1)
-    else arr.push(key)
-    resetPage()
-  }
-  function toggleLiveOnly() {
-    filters.liveOnly = !filters.liveOnly
-    resetPage()
-  }
-  function setCategory(key) {
-    if (key && filters.providerType.length === 1 && filters.providerType[0] === key) {
-      filters.providerType = []
-    } else {
-      filters.providerType = key ? [key] : []
-    }
-    resetPage()
-  }
-  function setRadius(r) {
-    radius.value = Number.isFinite(+r) ? +r : 0
-    if (radius.value > 0) nearMe.value = true
-    resetPage()
-  }
-  function toggleNearMe() {
-    nearMe.value = !nearMe.value
-    if (nearMe.value) {
-      sortBy.value = 'distance'
-    }
-    resetPage()
-  }
-  async function findNearMe(detectFn) {
-    try {
-      await detectFn()
-      nearMe.value = true
-      sortBy.value = 'distance'
-      if (!radius.value) radius.value = 10
-      resetPage()
-    } catch (e) {}
-  }
-  function clearMapFilters() {
-    clearSearchArea()
-    resetMapBounds()
-    resetPage()
-  }
-  function clearFilters() {
-    query.value = ''
+// ---- actions ----
+function resetPage() {
+  if (!applyingUrl) visibleCount.value = PAGE_SIZE
+}
+function setQuery(v) {
+  query.value = (v || '').trim()
+  resetPage()
+}
+function setSortBy(v) {
+  sortBy.value = v
+  resetPage()
+}
+function setView(v) {
+  view.value = v
+}
+function toggleGrouping() {
+  groupBy.value = !groupBy.value
+  resetPage()
+}
+function setStatsMode(v) {
+  statsMode.value = v
+}
+function toggleFilter(name, key) {
+  const arr = filters[name]
+  const i = arr.indexOf(key)
+  if (i >= 0) arr.splice(i, 1)
+  else arr.push(key)
+  resetPage()
+}
+function toggleLiveOnly() {
+  filters.liveOnly = !filters.liveOnly
+  resetPage()
+}
+function setCategory(key) {
+  if (key && filters.providerType.length === 1 && filters.providerType[0] === key) {
     filters.providerType = []
-    filters.specialty = []
-    filters.governorate = []
-    filters.area = []
-    filters.services = []
-    filters.networkType = []
-    filters.mainBranch = []
-    filters.pulseStatus = []
-    filters.liveOnly = false
-    sortBy.value = 'best'
-    radius.value = 0
-    nearMe.value = false
-    clearSearchArea()
-    resetMapBounds()
+  } else {
+    filters.providerType = key ? [key] : []
+  }
+  resetPage()
+}
+function setRadius(r) {
+  radius.value = Number.isFinite(+r) ? +r : 0
+  if (radius.value > 0) nearMe.value = true
+  resetPage()
+}
+function toggleNearMe() {
+  nearMe.value = !nearMe.value
+  if (nearMe.value) {
+    sortBy.value = 'distance'
+  }
+  resetPage()
+}
+async function findNearMe(detectFn) {
+  try {
+    await detectFn()
+    nearMe.value = true
+    sortBy.value = 'distance'
+    if (!radius.value) radius.value = 10
     resetPage()
-  }
-  function loadMore() {
-    visibleCount.value += PAGE_SIZE
-  }
+  } catch (e) {}
+}
+function clearMapFilters() {
+  clearSearchArea()
+  resetMapBounds()
+  resetPage()
+}
+function clearFilters() {
+  query.value = ''
+  filters.providerType = []
+  filters.specialty = []
+  filters.governorate = []
+  filters.area = []
+  filters.services = []
+  filters.networkType = []
+  filters.mainBranch = []
+  filters.pulseStatus = []
+  filters.liveOnly = false
+  sortBy.value = 'best'
+  radius.value = 0
+  nearMe.value = false
+  clearSearchArea()
+  resetMapBounds()
+  resetPage()
+}
+function loadMore() {
+  visibleCount.value += PAGE_SIZE
+}
 
-  function snapshot() {
-    return {
-      query: query.value, sortBy: sortBy.value, view: view.value, groupBy: groupBy.value,
-      providerType: [...filters.providerType], specialty: [...filters.specialty],
-      governorate: [...filters.governorate], area: [...filters.area],
-      services: [...filters.services], networkType: [...filters.networkType],
-      mainBranch: [...filters.mainBranch], pulseStatus: [...filters.pulseStatus],
-      liveOnly: filters.liveOnly, radius: radius.value, nearMe: nearMe.value,
-    }
+function snapshot() {
+  return {
+    query: query.value, sortBy: sortBy.value, view: view.value, groupBy: groupBy.value,
+    providerType: [...filters.providerType], specialty: [...filters.specialty],
+    governorate: [...filters.governorate], area: [...filters.area],
+    services: [...filters.services], networkType: [...filters.networkType],
+    mainBranch: [...filters.mainBranch], pulseStatus: [...filters.pulseStatus],
+    liveOnly: filters.liveOnly, radius: radius.value, nearMe: nearMe.value,
   }
-  function applySnapshot(s) {
-    if (!s) return
-    applyingUrl = true
-    query.value = s.query || ''
-    sortBy.value = s.sortBy || 'best'
-    view.value = s.view || 'cards'
-    groupBy.value = s.groupBy != null ? s.groupBy : true
-    filters.providerType = s.providerType || []
-    filters.specialty = s.specialty || []
-    filters.governorate = s.governorate || []
-    filters.area = s.area || []
-    filters.services = s.services || []
-    filters.networkType = s.networkType || []
-    filters.mainBranch = s.mainBranch || []
-    filters.pulseStatus = s.pulseStatus || []
-    filters.liveOnly = !!s.liveOnly
-    radius.value = s.radius || 0
-    nearMe.value = !!s.nearMe
-    nextTick(() => { applyingUrl = false })
-    resetPage()
+}
+function applySnapshot(s) {
+  if (!s) return
+  applyingUrl = true
+  query.value = s.query || ''
+  sortBy.value = s.sortBy || 'best'
+  view.value = s.view || 'cards'
+  groupBy.value = s.groupBy != null ? s.groupBy : true
+  filters.providerType = s.providerType || []
+  filters.specialty = s.specialty || []
+  filters.governorate = s.governorate || []
+  filters.area = s.area || []
+  filters.services = s.services || []
+  filters.networkType = s.networkType || []
+  filters.mainBranch = s.mainBranch || []
+  filters.pulseStatus = s.pulseStatus || []
+  filters.liveOnly = !!s.liveOnly
+  radius.value = s.radius || 0
+  nearMe.value = !!s.nearMe
+  nextTick(() => { applyingUrl = false })
+  resetPage()
+}
+async function shareFilters() {
+  try {
+    await navigator.clipboard.writeText(location.href)
+    return true
+  } catch (e) {
+    return false
   }
-  async function shareFilters() {
-    try {
-      await navigator.clipboard.writeText(location.href)
-      return true
-    } catch (e) {
-      return false
-    }
-  }
+}
 
+export function useProviderFilters() {
   return {
     // state
     query, sortBy, view, groupBy, statsMode, radius, nearMe, filters, visibleCount,

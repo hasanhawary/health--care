@@ -1,0 +1,27 @@
+[ 1550595ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/components/StatsCards.vue?t=1783196134030:0
+[ 1550596ms] [ERROR] [vite] Failed to reload /src/components/StatsCards.vue. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[ 1594017ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/components/StatsCards.vue?t=1783196177388:0
+[ 1594017ms] [ERROR] [vite] Failed to reload /src/components/StatsCards.vue. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[ 1594017ms] [ERROR] [vite] Failed to reload /src/App.vue. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[ 1604648ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/components/StatsCards.vue?t=1783196187955:0
+[ 1611992ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/components/StatsCards.vue?t=1783196195327:0
+[ 1616320ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/components/StatsCards.vue?t=1783196195327:0
+[ 1618164ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/components/StatsCards.vue?t=1783196201544:0
+[ 1632596ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/components/StatsCards.vue?t=1783196201544:0
+[ 1652639ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/components/StatsCards.vue?t=1783196201544:0
+[ 1664652ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/components/StatsCards.vue?t=1783196201544:0
+[ 1680647ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/components/StatsCards.vue?t=1783196201544:0
+[ 1691580ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/components/StatsCards.vue?t=1783196201544:0
+[ 1707621ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/components/StatsCards.vue?t=1783196290945:0
+[ 1718275ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/components/StatsCards.vue?t=1783196301606:0
+[ 1724250ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/components/StatsCards.vue?t=1783196307633:0
+[ 1744746ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/components/StatsCards.vue?t=1783196307633:0
+[ 1764233ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/components/StatsCards.vue?t=1783196307633:0
+[ 2313729ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:5173/@vite/client:963
+[ 2313730ms] [ERROR] WebSocket connection to 'ws://localhost:5173/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/@vite/client:1034
+[ 2527516ms] [WARNING] [Vue warn]: Failed to resolve component: Download
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <App> @ http://localhost:5173/node_modules/.vite/deps/chunk-PXEDVV5W.js?v=f44836b0:2225
+[ 2737214ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:5173/api/track:0
+[ 3243989ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ https://allianz-egypt-medical-directory.vercel.app/:0
+[ 3245333ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ https://allianz-egypt-medical-directory.vercel.app/:0

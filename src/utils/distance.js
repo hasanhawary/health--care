@@ -21,10 +21,11 @@ export function haversineKm(lat1, lon1, lat2, lon2) {
   return 2 * R * Math.asin(Math.sqrt(a))
 }
 
-/** Human-friendly distance label. */
-export function formatDistance(km) {
+/** Human-friendly distance label. Pass localized units via the second arg. */
+export function formatDistance(km, units) {
   if (km == null) return null
-  if (km < 1) return `${Math.round(km * 1000)} m`
-  if (km < 10) return `${km.toFixed(1)} km`
-  return `${Math.round(km)} km`
+  const u = units || { km: 'km', m: 'm' }
+  if (km < 1) return `${Math.round(km * 1000)} ${u.m}`
+  if (km < 10) return `${km.toFixed(1)} ${u.km}`
+  return `${Math.round(km)} ${u.km}`
 }

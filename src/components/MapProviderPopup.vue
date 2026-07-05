@@ -3,9 +3,10 @@ import { Phone, Navigation, Eye, Heart, X, MapPin, Compass } from 'lucide-vue-ne
 import { useI18n } from '../composables/useI18n'
 import { useGeolocation } from '../composables/useGeolocation'
 import { typeBadgeClass } from '../utils/badges'
-import { buildTelLink } from '../utils/maps'
+import { buildMapsUrl } from '../utils/maps'
 import { directionsUrl } from '../utils/directions'
 import { formatDistance } from '../utils/distance'
+import PhoneCallSheet from './PhoneCallSheet.vue'
 
 const props = defineProps({
   provider: { type: Object, default: null },
@@ -30,7 +31,7 @@ const { coords: userCoords } = useGeolocation()
                 {{ provider.live ? t('live') : t('notLive') }}
               </span>
               <span v-if="distance != null" class="badge bg-brand-100 text-brand-700 dark:bg-brand-950 dark:text-brand-300">
-                <Compass class="h-3 w-3" />{{ formatDistance(distance) }}
+                <Compass class="h-3 w-3" />{{ formatDistance(distance, { km: t('km'), m: t('m') }) }}
               </span>
             </div>
           </button>
@@ -46,7 +47,7 @@ const { coords: userCoords } = useGeolocation()
         </div>
 
         <div class="mt-3 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:items-center">
-          <a v-if="provider.phone" :href="buildTelLink(provider.phone)" class="btn-primary !py-2 text-xs"><Phone class="h-4 w-4" />{{ t('call') }}</a>
+          <PhoneCallSheet v-if="provider.phone" :phone="provider.phone" trigger-class="btn-primary !py-2 text-xs" />
           <a :href="directionsUrl(provider, userCoords.value)" target="_blank" rel="noopener" class="btn-outline !py-2 text-xs"><Navigation class="h-4 w-4" />{{ t('directions') }}</a>
           <button class="btn-outline !py-2 text-xs" @click="emit('details')"><Eye class="h-4 w-4" />{{ t('details') }}</button>
           <button class="btn !py-2 text-xs" :class="isFav ? 'bg-rose-100 text-rose-600 dark:bg-rose-950 dark:text-rose-300' : 'btn-outline'" @click="emit('favorite')">

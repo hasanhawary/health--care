@@ -16,7 +16,7 @@ import { useGeolocation } from '../composables/useGeolocation'
 import { useExcelProviders } from '../composables/useExcelProviders'
 import { getGeo } from '../utils/geoCache'
 import { markerIcon, selectedIcon, userIcon, needsCoordIcon, styleFor } from '../utils/mapIcons'
-import { buildTelLink, buildMapsUrl } from '../utils/maps'
+import { buildTelLink, buildMapsUrl, parsePhoneNumbers } from '../utils/maps'
 import { directionsUrl } from '../utils/directions'
 import { formatDistance } from '../utils/distance'
 import { escapeHtml } from '../utils/normalizeText'
@@ -30,7 +30,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['select', 'details', 'favorite', 'ready', 'locate', 'clear-area', 'fullscreen', 'show-list'])
 
-const { t, field } = useI18n()
+const { t, field, locale } = useI18n()
 const { isDark } = useTheme()
 const { geocodeMany } = useGeocoding()
 const { setMapBounds, markMoved, activateSearchArea, clearSearchArea, searchAreaActive, mapMoved } = useMapBounds()
@@ -57,22 +57,28 @@ const TILES_DARK = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.pn
 
 function popupHtml(p) {
   const d = distOf(p)
-  const dist = d != null ? `<span class="mp-dist">📍 ${formatDistance(d)}</span>` : ''
+  const dist = d != null ? `<span class="mp-dist">📍 ${formatDistance(d, { km: t('km'), m: t('m') })}</span>` : ''
   const typeLabel = field(p, 'providerTypeAr', 'providerType')
   const addr = field(p, 'governorateAr', 'governorate') + (field(p, 'areaAr', 'area') ? ' · ' + field(p, 'areaAr', 'area') : '')
-  return `<div class="mp" dir="rtl">
+  const dir = locale.value === 'en' ? 'ltr' : 'rtl'
+  return `<div class="mp" dir="${dir}">
     <div class="mp-head">
       <div class="mp-name">${escapeHtml(p.name)}</div>
-      <span class="mp-live ${p.live ? 'is-live' : ''}">${p.live ? 'LIVE' : 'NOT LIVE'}</span>
+      <span class="mp-live ${p.live ? 'is-live' : ''}">${p.live ? t('live') : t('notLive')}</span>
     </div>
     <div class="mp-type">${escapeHtml(typeLabel)}${p.specialty ? ' · ' + escapeHtml(field(p, 'specialtyAr', 'specialty')) : ''}</div>
     <div class="mp-addr">📍 ${escapeHtml(addr)}</div>
     ${dist}
     <div class="mp-actions">
-      <a class="mp-btn mp-call" href="${buildTelLink(p.phone)}">${p.phone ? '☎ ' + escapeHtml(p.phone) : '☎ اتصل'}</a>
-      <a class="mp-btn" href="${directionsUrl(p, userCoords.value)}" target="_blank" rel="noopener">🧭 الاتجاهات</a>
-      <a class="mp-btn" href="${buildMapsUrl(p)}" target="_blank" rel="noopener">🗺️ الخريطة</a>
-      <button class="mp-btn" data-action="details" data-pid="${p.id}">التفاصيل</button>
+      ${p.phone
+        ? parsePhoneNumbers(p.phone)
+            .map((n) => `<a class="mp-btn mp-call" href="${buildTelLink(n)}" dir="ltr">☎ ${escapeHtml(n)}</a>`)
+            .join('')
+        : `<a class="mp-btn mp-call" href="tel:">☎ ${escapeHtml(t('call'))}</a>`
+      }
+      <a class="mp-btn" href="${directionsUrl(p, userCoords.value)}" target="_blank" rel="noopener">🧭 ${escapeHtml(t('directions'))}</a>
+      <a class="mp-btn" href="${buildMapsUrl(p)}" target="_blank" rel="noopener">🗺️ ${escapeHtml(t('mapView'))}</a>
+      <button class="mp-btn" data-action="details" data-pid="${p.id}">${escapeHtml(t('details'))}</button>
       <button class="mp-btn ${false ? 'is-fav' : ''}" data-action="fav" data-pid="${p.id}">♥</button>
     </div>
   </div>`
@@ -294,7 +300,7 @@ const isEmpty = computed(() => shownCount.value === 0 && !geoProgress.value.acti
     </div>
 
     <!-- geocoding progress -->
-    <div v-if="geoProgress.active" class="glass absolute end-3 top-24 z-[500] flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-md dark:text-slate-200">
+    <div v-if="geoProgress.active" class="glass absolute start-3 top-24 z-[500] flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-md dark:text-slate-200">
       <Loader2 class="h-3.5 w-3.5 animate-spin" />{{ geoProgress.done }}/{{ geoProgress.total }}
     </div>
 

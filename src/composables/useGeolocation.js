@@ -63,11 +63,12 @@ export function useGeolocation() {
       coords.value = pos
       return pos
     } catch (err) {
-      // Retry once with more lenient settings for transient failures.
+      // Retry once with high accuracy for transient failures (iOS Safari often
+      // only resolves a fix with enableHighAccuracy: true).
       if (err && (err.code === 2 || err.code === 3)) {
         try {
           const pos = await getPosition({
-            enableHighAccuracy: false,
+            enableHighAccuracy: true,
             timeout: 25000,
             maximumAge: 600000,
           })

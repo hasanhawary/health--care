@@ -93,6 +93,8 @@ export function parseRows(rows) {
     p.govKey = normalizeForKey(p.governorate || p.governorateAr)
     p.areaKey = normalizeForKey(p.area || p.areaAr)
     p.servicesKey = normalizeForKey(p.services || p.servicesAr)
+    p.networkTypeKey = normalizeForKey(p.networkType)
+    p.mainBranchKey = normalizeForKey(p.mainBranch)
     p.nameKey = normalizeArabic(p.name)
     p.searchBlob = normalizeArabic(
       [

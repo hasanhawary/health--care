@@ -45,7 +45,6 @@ export function useSearch() {
       list.map(docFor),
       {
         keys: KEYS,
-        includeScore: true,
         threshold: 0.4,
         ignoreLocation: true,
         minMatchCharLength: 2,
@@ -71,6 +70,21 @@ export function useSearch() {
     return out
   }
 
+  /** Single Fuse search returning BOTH the matched-id Set and rank-ordered
+   *  provider list, so queryMatchSet + best-match sort can share one traversal. */
+  function searchBatch(q) {
+    if (!fuse.value || !q) return null
+    const res = fuse.value.search(q)
+    const ids = new Set()
+    const ranked = new Array(res.length)
+    for (let i = 0; i < res.length; i++) {
+      const p = res[i].item._p
+      ids.add(p.id)
+      ranked[i] = p
+    }
+    return { ids, ranked }
+  }
+
   /** Autocomplete suggestions. */
   function suggest(q, limit = 8) {
     if (!fuse.value || !q) return []
@@ -85,5 +99,5 @@ export function useSearch() {
     return out
   }
 
-  return { fuse, indexedCount, buildIndex, isReady, searchRanked, suggest, matchIds }
+  return { fuse, indexedCount, buildIndex, isReady, searchRanked, searchBatch, suggest, matchIds }
 }

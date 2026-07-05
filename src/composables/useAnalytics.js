@@ -1,5 +1,6 @@
-// Anonymous, local-only analytics. Nothing leaves the device.
-import { computed } from 'vue'
+// Anonymous analytics: local search/view stats (device-only) + a lightweight
+// server-side unique-visitor counter backed by Vercel KV (see /api/track.js).
+import { computed, ref } from 'vue'
 import { useStorage } from '@vueuse/core'
 import { normalizeArabic } from '../utils/normalizeText'
 
@@ -9,6 +10,39 @@ const store = useStorage('allianz_analytics_v1', {
   specialties: {}, // specialtyKey -> count
   cities: {}, // govKey -> count
 })
+
+// Fire-and-forget visit tracking. Gated to once per browser session via
+// sessionStorage so a page refresh does not inflate the counters.
+const VISIT_FLAG = 'allianz_visit_tracked'
+let visitPromise = null
+
+export function trackVisit() {
+  if (typeof window === 'undefined') return Promise.resolve(false)
+  try {
+    if (sessionStorage.getItem(VISIT_FLAG)) return Promise.resolve(false)
+  } catch (e) {}
+  if (!visitPromise) {
+    visitPromise = fetch('/api/track', { method: 'POST' })
+      .then(() => {
+        try { sessionStorage.setItem(VISIT_FLAG, '1') } catch (e) {}
+        return true
+      })
+      .catch(() => false)
+  }
+  return visitPromise
+}
+
+export function useVisitorStats() {
+  const stats = ref({ totalVisits: 0, todayVisits: 0, weekVisits: 0, uniqueVisitors: 0, configured: false })
+  async function refresh() {
+    try {
+      const res = await fetch('/api/stats')
+      stats.value = await res.json()
+    } catch (e) {}
+    return stats.value
+  }
+  return { stats, refresh }
+}
 
 export function useAnalytics() {
   function trackSearch(term) {

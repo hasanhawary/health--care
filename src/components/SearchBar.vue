@@ -33,12 +33,14 @@ const { suggest } = useSearch()
 const { t, field } = useI18n()
 
 const input = ref(query.value)
+const debouncedSuggest = ref('')
 const focused = ref(false)
 const activeIndex = ref(-1)
 let timer = null
+let suggestTimer = null
 
 const suggestions = computed(() => {
-  const q = normalizeArabic(input.value)
+  const q = normalizeArabic(debouncedSuggest.value)
   if (!q || q.length < 2) return []
   return suggest(q, 8)
 })
@@ -46,6 +48,10 @@ const suggestions = computed(() => {
 watch(input, (val) => {
   clearTimeout(timer)
   timer = setTimeout(() => setQuery(val), 220)
+  // debounce the Fuse autocomplete search so it doesn't run on every keystroke
+  clearTimeout(suggestTimer)
+  if (!val) { debouncedSuggest.value = ''; return }
+  suggestTimer = setTimeout(() => { debouncedSuggest.value = val }, 120)
 })
 watch(query, (val) => {
   if (val !== input.value) input.value = val
@@ -196,7 +202,7 @@ function onKeydown(e) {
         <!-- trending -->
         <div v-else-if="!input && topSearches.length" class="px-4 py-3">
           <div class="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase text-slate-400">
-            <TrendingUp class="h-3.5 w-3.5" />{{ t('recentSearches') }}
+            <TrendingUp class="h-3.5 w-3.5" />{{ t('trending') }}
           </div>
           <div class="flex flex-wrap gap-1.5">
             <button

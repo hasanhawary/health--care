@@ -1,0 +1,3 @@
+[   95720ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ https://allianz-egypt-medical-directory.vercel.app/:0
+[   96909ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ https://allianz-egypt-medical-directory.vercel.app/:0
+[  281490ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ https://allianz-egypt-medical-directory.vercel.app/:0

@@ -21,10 +21,10 @@ import { highlightHtml } from '../utils/normalizeText'
 import { typeBadgeClass } from '../utils/badges'
 import {
   buildMapsUrl,
-  buildTelLink,
   buildAddressText,
   buildShareText,
 } from '../utils/maps'
+import PhoneCallSheet from './PhoneCallSheet.vue'
 
 const props = defineProps({
   group: { type: Object, required: true },
@@ -32,7 +32,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['open'])
 
-const { t, field } = useI18n()
+const { t, field, locale } = useI18n()
 const { isFavorite, toggleFavorite } = useFavorites()
 
 const expanded = ref(false)
@@ -47,13 +47,13 @@ const fav = () => isFavorite(main().id)
 
 async function copyAddress() {
   try {
-    await navigator.clipboard.writeText(buildAddressText(main()))
+    await navigator.clipboard.writeText(buildAddressText(main(), locale))
     copied.value = true
     setTimeout(() => (copied.value = false), 1500)
   } catch (e) {}
 }
 async function share() {
-  const text = buildShareText(main())
+  const text = buildShareText(main(), locale)
   const url = buildMapsUrl(main())
   if (navigator.share) {
     try {
@@ -73,7 +73,7 @@ async function share() {
 
 <template>
   <article
-    class="card group flex flex-col p-4 transition duration-200 hover:-translate-y-0.5 hover:shadow-card-hover sm:p-5"
+    class="card group flex min-w-0 max-w-full flex-col overflow-hidden p-4 transition duration-200 hover:-translate-y-0.5 hover:shadow-card-hover sm:p-5"
   >
     <!-- header -->
     <div class="flex items-start justify-between gap-3">
@@ -133,10 +133,14 @@ async function share() {
 
     <!-- main actions -->
     <div class="mt-auto pt-4">
-      <div class="flex flex-wrap items-center gap-2">
-        <a v-if="main().phone" :href="buildTelLink(main().phone)" class="btn-primary min-w-0 max-w-full !px-3 !py-2 text-xs" :title="t('call')">
+      <div class="flex min-w-0 flex-wrap items-center gap-2">
+        <PhoneCallSheet
+          v-if="main().phone"
+          :phone="main().phone"
+          trigger-class="btn-primary min-w-0 max-w-full !px-3 !py-2 text-xs"
+        >
           <Phone class="h-4 w-4" /><span class="truncate" dir="ltr">{{ main().phone }}</span>
-        </a>
+        </PhoneCallSheet>
         <a :href="buildMapsUrl(main())" target="_blank" rel="noopener" class="icon-btn border border-slate-200 text-brand-600 dark:border-slate-700" :title="t('openMaps')">
           <Navigation class="h-4 w-4" />
         </a>

@@ -9,7 +9,7 @@ const props = defineProps({
   disabled: { type: Boolean, default: false },
 })
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const open = ref(false)
 const busy = ref(false)
 const el = ref(null)
@@ -35,9 +35,9 @@ async function run(kind) {
       exportProvidersCsv(props.providers)
     } else {
       const mod = await import('../utils/exportDocs')
-      if (kind === 'excel') mod.exportExcel(props.providers)
-      else if (kind === 'pdf') mod.exportPdf(props.providers)
-      else if (kind === 'print') mod.printView(props.providers)
+      if (kind === 'excel') mod.exportExcel(props.providers, locale.value)
+      else if (kind === 'pdf') mod.exportPdf(props.providers, locale.value)
+      else if (kind === 'print') mod.printView(props.providers, locale.value)
     }
   } finally {
     busy.value = false

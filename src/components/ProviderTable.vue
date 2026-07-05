@@ -14,8 +14,9 @@ import { useFavorites } from '../composables/useFavorites'
 import { useProviderFilters } from '../composables/useProviderFilters'
 import { highlightHtml } from '../utils/normalizeText'
 import { typeBadgeClass } from '../utils/badges'
-import { buildMapsUrl, buildTelLink } from '../utils/maps'
+import { buildMapsUrl } from '../utils/maps'
 import { formatDistance } from '../utils/distance'
+import PhoneCallSheet from './PhoneCallSheet.vue'
 
 const props = defineProps({
   items: { type: Array, default: () => [] },
@@ -93,9 +94,15 @@ function isExpanded(key) {
                 <td class="px-4 py-3 align-top text-slate-600 dark:text-slate-300" v-html="hl(field(g.main, 'governorateAr', 'governorate'))"></td>
                 <td class="px-4 py-3 align-top text-slate-600 dark:text-slate-300" v-html="hl(field(g.main, 'areaAr', 'area'))"></td>
                 <td class="px-4 py-3 align-top">
-                  <a v-if="g.main.phone" :href="buildTelLink(g.main.phone)" class="inline-flex items-center gap-1 text-brand-600 hover:underline dark:text-brand-400" @click.stop>
+                  <PhoneCallSheet
+                    v-if="g.main.phone"
+                    :phone="g.main.phone"
+                    trigger-class="inline-flex items-center gap-1 text-brand-600 hover:underline dark:text-brand-400 text-sm"
+                    icon-only
+                    @click.stop
+                  >
                     <Phone class="h-3.5 w-3.5" />{{ g.main.phone }}
-                  </a>
+                  </PhoneCallSheet>
                 </td>
                 <td class="px-4 py-3 align-top">
                   <span class="badge bg-brand-100 text-brand-700 dark:bg-brand-950 dark:text-brand-300">
@@ -136,9 +143,15 @@ function isExpanded(key) {
                   <td class="px-4 py-2 align-top text-slate-600 dark:text-slate-300" v-html="hl(field(b, 'governorateAr', 'governorate'))"></td>
                   <td class="px-4 py-2 align-top text-slate-600 dark:text-slate-300" v-html="hl(field(b, 'areaAr', 'area'))"></td>
                   <td class="px-4 py-2 align-top">
-                    <a v-if="b.phone" :href="buildTelLink(b.phone)" class="inline-flex items-center gap-1 text-brand-600 hover:underline dark:text-brand-400" @click.stop>
+                    <PhoneCallSheet
+                      v-if="b.phone"
+                      :phone="b.phone"
+                      trigger-class="inline-flex items-center gap-1 text-brand-600 hover:underline dark:text-brand-400 text-xs"
+                      icon-only
+                      @click.stop
+                    >
                       <Phone class="h-3 w-3" />{{ b.phone }}
-                    </a>
+                    </PhoneCallSheet>
                   </td>
                   <td class="px-4 py-2 align-top"></td>
                   <td class="px-4 py-2 align-top">
@@ -187,13 +200,19 @@ function isExpanded(key) {
               <td class="px-4 py-3 align-top text-slate-600 dark:text-slate-300" v-html="hl(field(p, 'specialtyAr', 'specialty'))"></td>
               <td class="px-4 py-3 align-top">
                 <span class="text-slate-600 dark:text-slate-300" v-html="hl(field(p, 'governorateAr', 'governorate'))"></span>
-                <span v-if="distOf(p) != null" class="badge mt-1 bg-brand-100 text-brand-700 dark:bg-brand-950 dark:text-brand-300">📍 {{ formatDistance(distOf(p)) }}</span>
+                <span v-if="distOf(p) != null" class="badge mt-1 bg-brand-100 text-brand-700 dark:bg-brand-950 dark:text-brand-300">📍 {{ formatDistance(distOf(p), { km: t('km'), m: t('m') }) }}</span>
               </td>
               <td class="px-4 py-3 align-top text-slate-600 dark:text-slate-300" v-html="hl(field(p, 'areaAr', 'area'))"></td>
               <td class="px-4 py-3 align-top">
-                <a v-if="p.phone" :href="buildTelLink(p.phone)" class="inline-flex items-center gap-1 text-brand-600 hover:underline dark:text-brand-400" @click.stop>
+                <PhoneCallSheet
+                  v-if="p.phone"
+                  :phone="p.phone"
+                  trigger-class="inline-flex items-center gap-1 text-brand-600 hover:underline dark:text-brand-400 text-sm"
+                  icon-only
+                  @click.stop
+                >
                   <Phone class="h-3.5 w-3.5" />{{ p.phone }}
-                </a>
+                </PhoneCallSheet>
               </td>
               <td class="px-4 py-3 align-top">
                 <span class="badge whitespace-nowrap" :class="p.live ? 'bg-green-100 text-green-700 dark:bg-green-950/60 dark:text-green-300' : 'bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400'">

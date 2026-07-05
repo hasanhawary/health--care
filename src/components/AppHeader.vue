@@ -16,6 +16,7 @@ const { isDark, toggle: toggleTheme } = useTheme()
 <template>
   <header
     class="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/80"
+    style="padding-top: env(safe-area-inset-top)"
   >
     <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-3 sm:gap-3 sm:px-6">
       <!-- brand -->
@@ -43,10 +44,10 @@ const { isDark, toggle: toggleTheme } = useTheme()
       <div class="flex shrink-0 items-center gap-0.5 sm:gap-2">
         <button
           v-if="canInstall"
-          class="btn-soft !px-3 !py-2 text-xs font-bold"
+          class="btn-soft hidden !px-3 !py-2 text-xs font-bold sm:inline-flex"
           @click="emit('install')"
         >
-          <Download class="h-4 w-4" /><span class="hidden sm:inline">{{ t('installApp') }}</span>
+          <Download class="h-4 w-4" /><span>{{ t('installApp') }}</span>
         </button>
         <button
           class="btn-ghost !px-2 !py-2 text-xs font-bold sm:!px-2.5"

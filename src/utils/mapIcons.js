@@ -3,19 +3,19 @@ import L from 'leaflet'
 import { normalizeForKey } from './normalizeText'
 
 const TYPE_STYLE = [
-  { match: 'physician', color: '#6366f1', emoji: '🩺', label: 'Doctor' },
-  { match: 'hospital', color: '#ef4444', emoji: '🏥', label: 'Hospital' },
-  { match: 'pharmac', color: '#10b981', emoji: '💊', label: 'Pharmacy' },
-  { match: 'lab', color: '#3b82f6', emoji: '🧪', label: 'Lab' },
-  { match: 'dental', color: '#ec4899', emoji: '🦷', label: 'Dental' },
-  { match: 'physio', color: '#14b8a6', emoji: '💪', label: 'Physiotherapy' },
-  { match: 'radiology', color: '#a855f7', emoji: '🩻', label: 'Radiology' },
-  { match: 'optom', color: '#f59e0b', emoji: '👁', label: 'Optometry' },
-  { match: 'polyclinic', color: '#f97316', emoji: '🏢', label: 'Polyclinic' },
-  { match: 'diagnostic', color: '#06b6d4', emoji: '🔬', label: 'Diagnostic' },
-  { match: 'supplier', color: '#d946ef', emoji: '🚚', label: 'Supplier' },
+  { match: 'physician', color: '#6366f1', emoji: '🩺', label: 'Doctor', labelAr: 'طبيب' },
+  { match: 'hospital', color: '#ef4444', emoji: '🏥', label: 'Hospital', labelAr: 'مستشفى' },
+  { match: 'pharmac', color: '#10b981', emoji: '💊', label: 'Pharmacy', labelAr: 'صيدلية' },
+  { match: 'lab', color: '#3b82f6', emoji: '🧪', label: 'Lab', labelAr: 'معمل' },
+  { match: 'dental', color: '#ec4899', emoji: '🦷', label: 'Dental', labelAr: 'أسنان' },
+  { match: 'physio', color: '#14b8a6', emoji: '💪', label: 'Physiotherapy', labelAr: 'علاج طبيعي' },
+  { match: 'radiology', color: '#a855f7', emoji: '🩻', label: 'Radiology', labelAr: 'أشعة' },
+  { match: 'optom', color: '#f59e0b', emoji: '👁', label: 'Optometry', labelAr: 'بصريات' },
+  { match: 'polyclinic', color: '#f97316', emoji: '🏢', label: 'Polyclinic', labelAr: 'مجمع عيادات' },
+  { match: 'diagnostic', color: '#06b6d4', emoji: '🔬', label: 'Diagnostic', labelAr: 'تشخيصي' },
+  { match: 'supplier', color: '#d946ef', emoji: '🚚', label: 'Supplier', labelAr: 'مورد' },
 ]
-const DEFAULT_STYLE = { color: '#64748b', emoji: '📍', label: 'Other' }
+const DEFAULT_STYLE = { color: '#64748b', emoji: '📍', label: 'Other', labelAr: 'أخرى' }
 
 export function styleFor(typeKey) {
   const k = normalizeForKey(typeKey)
@@ -24,7 +24,7 @@ export function styleFor(typeKey) {
 }
 
 export function legendItems() {
-  return TYPE_STYLE.map((s) => ({ color: s.color, emoji: s.emoji, label: s.label }))
+  return TYPE_STYLE.map((s) => ({ color: s.color, emoji: s.emoji, label: s.label, labelAr: s.labelAr }))
 }
 
 function pinHtml(color, emoji) {

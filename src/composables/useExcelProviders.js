@@ -2,15 +2,17 @@
 // provider objects. Parsing runs in a Web Worker to keep the UI responsive.
 // Results are cached in localStorage. Shared singleton state.
 import * as XLSX from 'xlsx'
-import { ref } from 'vue'
+import { ref, shallowRef } from 'vue'
 import { parseRows } from '../utils/parseProviders'
-import { setGeoMany } from '../utils/geoCache'
+import { setGeo, setGeoMany } from '../utils/geoCache'
 
 const DATA_URL = `${import.meta.env.BASE_URL}data/Allianz%20Egypt%20GN.xlsx`
 const COORDS_URL = `${import.meta.env.BASE_URL}data/provider-coordinates.json`
-const CACHE_KEY = 'allianz_providers_v2'
+const CACHE_KEY = 'allianz_providers_v3'
 
-const providers = ref([])
+// shallowRef: providers are immutable parsed data — no deep reactivity needed.
+// This keeps every filter/facet scan off the reactive-proxy path (big perf win).
+const providers = shallowRef([])
 const loading = ref(false)
 const error = ref(null)
 const loaded = ref(false)

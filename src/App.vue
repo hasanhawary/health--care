@@ -22,11 +22,13 @@ import {
   Info,
   ArrowLeft,
   Layers,
+  Download,
 } from 'lucide-vue-next'
 
 import AppHeader from './components/AppHeader.vue'
 import SearchBar from './components/SearchBar.vue'
 import LocationQuickFilter from './components/LocationQuickFilter.vue'
+import ActiveFilters from './components/ActiveFilters.vue'
 import FilterSidebar from './components/FilterSidebar.vue'
 import FilterDrawer from './components/FilterDrawer.vue'
 import ProviderCard from './components/ProviderCard.vue'
@@ -45,7 +47,7 @@ import { useGeolocation } from './composables/useGeolocation'
 import { useFavorites } from './composables/useFavorites'
 import { useI18n } from './composables/useI18n'
 import { useSearch } from './composables/useSearch'
-import { useAnalytics } from './composables/useAnalytics'
+import { useAnalytics, trackVisit } from './composables/useAnalytics'
 import { typeBadgeClass } from './utils/badges'
 
 const { load, reload, loading, error, providers } = useExcelProviders()
@@ -53,11 +55,11 @@ const {
   query, sortBy, view, groupBy, filters, filtered, total, displayTotal,
   visible, hasMore, loadMore, setSortBy, setView, toggleGrouping, setCategory,
   clearFilters, activeFilterCount, activeCategory, typeOptions, QUICK_CATEGORIES,
-  facets, radius, nearMe, setRadius, toggleNearMe, findNearMe, distOf, statsMode, setStatsMode,
+  facets, radius, nearMe, setRadius, findNearMe, distOf, statsMode, setStatsMode,
 } = useProviderFilters()
 const { coords, loading: locating, error: geoError, supported: geoSupported, detect } = useGeolocation()
 const { favorites, recentViews, isFavorite, toggleFavorite, addRecentView } = useFavorites()
-const { t, locale } = useI18n()
+const { t, locale, field } = useI18n()
 const { buildIndex } = useSearch()
 const { trackView } = useAnalytics()
 
@@ -67,8 +69,22 @@ const favoritesOpen = ref(false)
 const showTop = ref(false)
 const scrolled = ref(false)
 const canInstall = ref(false)
+const installDismissed = ref(localStorage.getItem('allianz_install_dismissed') === '1')
 const mapFullscreen = ref(false)
 let deferredPrompt = null
+
+function dismissInstall() {
+  installDismissed.value = true
+  try { localStorage.setItem('allianz_install_dismissed', '1') } catch (e) {}
+}
+function onInstallClick() {
+  if (!deferredPrompt) return
+  deferredPrompt.prompt()
+  deferredPrompt.userChoice?.finally(() => {
+    deferredPrompt = null
+    canInstall.value = false
+  })
+}
 
 const chipIcons = {
   LayoutGrid, Stethoscope, Hospital, Pill, FlaskConical, Activity, Smile, ScanLine, Eye,
@@ -142,8 +158,10 @@ function goHome() {
 }
 
 async function onDetect() {
+  // Detecting location also activates nearby mode (10 km radius + distance sort)
+  // so mobile users get a useful "near me" result in one tap.
   try {
-    await detect()
+    await findNearMe(detect)
   } catch (e) {}
 }
 
@@ -172,30 +190,38 @@ function onKeydown(e) {
   }
 }
 
-function onInstallClick() {
-  if (!deferredPrompt) return
-  deferredPrompt.prompt()
-  deferredPrompt.userChoice?.finally(() => {
-    deferredPrompt = null
-    canInstall.value = false
-  })
-}
-
 function onBeforeInstall(e) {
   e.preventDefault()
   deferredPrompt = e
   canInstall.value = true
 }
 
+function onAppInstalled() {
+  deferredPrompt = null
+  canInstall.value = false
+}
+
+// Detect standalone (already installed) so the install banner never shows there.
+function isRunningStandalone() {
+  return (
+    (typeof window !== 'undefined' && window.matchMedia('(display-mode: standalone)').matches) ||
+    (typeof navigator !== 'undefined' && navigator.standalone === true)
+  )
+}
+
 onMounted(() => {
   load().catch(() => {})
+  trackVisit()
   window.addEventListener('scroll', onScroll, { passive: true })
   window.addEventListener('beforeinstallprompt', onBeforeInstall)
+  window.addEventListener('appinstalled', onAppInstalled)
   window.addEventListener('keydown', onKeydown)
+  if (isRunningStandalone()) canInstall.value = false
 })
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', onScroll)
   window.removeEventListener('beforeinstallprompt', onBeforeInstall)
+  window.removeEventListener('appinstalled', onAppInstalled)
   window.removeEventListener('keydown', onKeydown)
 })
 
@@ -222,7 +248,7 @@ watch(
 
     <!-- sticky floating glass search -->
     <div
-      class="sticky top-16 z-20 glass-search border-x-0 border-t-0 transition-all"
+      class="sticky top-[calc(4rem+env(safe-area-inset-top))] z-20 glass-search border-x-0 border-t-0 transition-all"
       :class="scrolled ? 'shadow-lg' : ''"
     >
       <div class="mx-auto max-w-7xl px-4 py-3 sm:px-6" :class="scrolled ? 'py-2' : ''">
@@ -237,6 +263,7 @@ watch(
     <!-- quick category chips -->
     <div class="border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
       <div class="mx-auto max-w-7xl px-4 py-3 sm:px-6">
+        <ActiveFilters />
         <div class="no-scrollbar flex items-center gap-2 overflow-x-auto">
           <button
             v-for="cat in chipList"
@@ -279,6 +306,34 @@ watch(
               </template>
             </div>
 
+            <!-- view toggle (mobile): full-width segmented control with labels -->
+            <div class="flex overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700 sm:hidden">
+              <button
+                class="flex-1 inline-flex h-10 items-center justify-center gap-1.5 text-xs font-semibold transition"
+                :class="view === 'cards' ? 'bg-brand-600 text-white' : 'bg-white text-slate-600 dark:bg-slate-900 dark:text-slate-300'"
+                :title="t('viewCards')"
+                @click="setView('cards')"
+              >
+                <LayoutGrid class="h-4 w-4" /><span>{{ t('cards') }}</span>
+              </button>
+              <button
+                class="flex-1 inline-flex h-10 items-center justify-center gap-1.5 text-xs font-semibold transition"
+                :class="view === 'table' ? 'bg-brand-600 text-white' : 'bg-white text-slate-600 dark:bg-slate-900 dark:text-slate-300'"
+                :title="t('viewTable')"
+                @click="setView('table')"
+              >
+                <Rows3 class="h-4 w-4" /><span>{{ t('listView') }}</span>
+              </button>
+              <button
+                class="flex-1 inline-flex h-10 items-center justify-center gap-1.5 text-xs font-semibold transition"
+                :class="view === 'map' ? 'bg-brand-600 text-white' : 'bg-white text-slate-600 dark:bg-slate-900 dark:text-slate-300'"
+                :title="t('mapView')"
+                @click="setView('map')"
+              >
+                <MapIcon class="h-4 w-4" /><span>{{ t('mapView') }}</span>
+              </button>
+            </div>
+
             <div class="no-scrollbar flex w-full items-center gap-2 overflow-x-auto pb-1 sm:w-auto sm:flex-wrap sm:justify-end sm:overflow-visible sm:pb-0">
               <!-- location -->
               <button
@@ -290,11 +345,11 @@ watch(
               >
                 <Loader2 v-if="locating" class="h-4 w-4 animate-spin" />
                 <LocateFixed v-else class="h-4 w-4" />
-                <span class="hidden sm:inline">{{ coords ? t('locationOn') : t('detectLocation') }}</span>
+                <span>{{ coords ? t('locationOn') : t('detectLocation') }}</span>
               </button>
 
-              <!-- sort -->
-              <div class="relative">
+              <!-- sort (desktop only) -->
+              <div class="relative hidden sm:block">
                 <select
                   :value="sortBy"
                   class="input w-[10rem] !py-2 !pe-3 text-xs font-semibold sm:!w-auto"
@@ -304,8 +359,8 @@ watch(
                 </select>
               </div>
 
-              <!-- view toggle -->
-              <div class="flex overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700">
+              <!-- view toggle (desktop) -->
+              <div class="hidden overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700 sm:flex">
                 <button
                   class="inline-flex h-9 items-center gap-1.5 px-3 text-xs font-semibold transition"
                   :class="view === 'cards' ? 'bg-brand-600 text-white' : 'bg-white text-slate-600 hover:bg-slate-100 dark:bg-slate-900 dark:text-slate-300'"
@@ -386,13 +441,13 @@ watch(
             <button
               v-for="r in radiusOptions"
               :key="r"
-              class="rounded-full px-3 py-1 text-xs font-semibold transition"
+              class="rounded-full px-3 py-1.5 text-xs font-semibold transition"
               :class="radius === r ? 'bg-brand-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300'"
               @click="setRadius(r)"
             >
-              {{ r === 0 ? t('allDistances') : `${r} km` }}
+              {{ r === 0 ? t('allDistances') : `${r} ${t('km')}` }}
             </button>
-            <span v-if="radius > 0" class="text-xs text-amber-600 dark:text-amber-400">{{ t('radiusNotice') }}</span>
+            <span v-if="radius > 0" class="w-full text-xs text-amber-600 dark:text-amber-400">{{ t('radiusNotice') }}</span>
           </div>
 
           <!-- content states -->
@@ -490,11 +545,11 @@ watch(
                   <button class="min-w-0 flex-1 text-start" @click="favoritesOpen = false; openProvider(p)">
                     <div class="truncate font-semibold text-slate-800 dark:text-slate-100">{{ p.name }}</div>
                     <div class="mt-1 flex flex-wrap items-center gap-1.5">
-                      <span class="badge" :class="typeBadgeClass(p.typeKey)">{{ locale === 'ar' ? p.providerTypeAr : p.providerType }}</span>
+                      <span class="badge" :class="typeBadgeClass(p.typeKey)">{{ field(p, 'providerTypeAr', 'providerType') }}</span>
                       <span v-if="p.live" class="badge bg-green-100 text-green-700 dark:bg-green-950/60 dark:text-green-300">{{ t('live') }}</span>
                     </div>
                     <div class="mt-1 truncate text-xs text-slate-500 dark:text-slate-400">
-                      {{ locale === 'ar' ? p.governorateAr : p.governorate }}<span v-if="locale === 'ar' ? p.areaAr : p.area"> · {{ locale === 'ar' ? p.areaAr : p.area }}</span>
+                      {{ field(p, 'governorateAr', 'governorate') }}<span v-if="field(p, 'areaAr', 'area')"> · {{ field(p, 'areaAr', 'area') }}</span>
                     </div>
                   </button>
                   <button class="icon-btn shrink-0 text-rose-500" @click="toggleFavorite(p)">
@@ -522,7 +577,7 @@ watch(
                     <ArrowLeft class="h-4 w-4 shrink-0 text-slate-400 rtl:rotate-180" />
                     <span class="min-w-0 flex-1 truncate">
                       <span class="block truncate font-medium text-slate-700 dark:text-slate-200">{{ p.name }}</span>
-                      <span class="block truncate text-xs text-slate-400">{{ locale === 'ar' ? p.governorateAr : p.governorate }}</span>
+                      <span class="block truncate text-xs text-slate-400">{{ field(p, 'governorateAr', 'governorate') }}</span>
                     </span>
                   </button>
                 </div>
@@ -535,15 +590,31 @@ watch(
 
     <!-- find near me (floating) -->
     <button
-      class="fixed end-4 z-40 flex h-12 items-center gap-2 rounded-full bg-brand-600 px-4 text-sm font-bold text-white shadow-lg transition hover:bg-brand-700 sm:end-5"
+      class="fixed end-4 z-40 hidden h-12 items-center gap-2 rounded-full bg-brand-600 px-4 text-sm font-bold text-white shadow-lg transition hover:bg-brand-700 sm:flex sm:end-5"
       :class="showTop ? 'safe-bottom-offset-lg' : 'safe-bottom-offset'"
       :title="t('findNearMe')"
       @click="onFindNearMe"
     >
       <Loader2 v-if="locating" class="h-4 w-4 animate-spin" />
       <LocateFixed v-else class="h-5 w-5" />
-      <span class="hidden sm:inline">{{ t('findNearMe') }}</span>
+      <span>{{ t('findNearMe') }}</span>
     </button>
+
+    <!-- install banner (mobile only, dismissible) -->
+    <Transition name="fade">
+      <div
+        v-if="canInstall && !installDismissed"
+        class="safe-bottom-offset fixed inset-x-3 z-40 flex items-center gap-2 rounded-2xl border border-brand-200 bg-white/95 p-2 shadow-xl backdrop-blur dark:border-brand-800 dark:bg-slate-900/95 sm:hidden"
+      >
+        <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 text-white"><Download class="h-5 w-5" /></div>
+        <div class="min-w-0 flex-1">
+          <div class="truncate text-xs font-bold text-slate-800 dark:text-slate-100">{{ t('installApp') }}</div>
+          <div class="truncate text-[11px] text-slate-500 dark:text-slate-400">{{ t('appSubtitle') }}</div>
+        </div>
+        <button class="btn-primary !px-3 !py-1.5 text-xs" @click="onInstallClick">{{ t('installApp') }}</button>
+        <button class="icon-btn !h-8 !w-8" :aria-label="t('close')" @click="dismissInstall"><X class="h-4 w-4" /></button>
+      </div>
+    </Transition>
 
     <!-- back to top -->
     <Transition name="fade">
@@ -558,7 +629,7 @@ watch(
     </Transition>
 
     <!-- footer -->
-    <footer class="border-t border-slate-200 py-6 text-center text-xs text-slate-400 dark:border-slate-800">
+    <footer class="border-t border-slate-200 pt-6 text-center text-xs text-slate-400 dark:border-slate-800" style="padding-bottom: max(1.5rem, env(safe-area-inset-bottom))">
       {{ t('appTitle') }} · {{ t('appSubtitle') }}
       <span class="mx-1.5">·</span>
       <span>{{ t('madeBy') }} <a href="https://github.com/hasanhawary/" target="_blank" rel="noopener" class="font-semibold text-slate-500 underline-offset-2 hover:text-brand-600 hover:underline dark:text-slate-300 dark:hover:text-brand-400">Elhawary</a></span>
