@@ -9,6 +9,9 @@ const STRINGS = {
   appTitle: { ar: 'شبكة أليانز مصر الطبية', en: 'Allianz Egypt Medical Network' },
   appSubtitle: { ar: 'دليل مقدمي الخدمة الطبية', en: 'Healthcare Provider Directory' },
   madeBy: { ar: 'صُنع بواسطة', en: 'Made by' },
+  siteVisits: { ar: 'إجمالي زيارات الموقع', en: 'Total site visits' },
+  uniqueVisitors: { ar: 'الزوار الفريدون', en: 'Unique visitors' },
+  analyticsUnavailable: { ar: 'العداد غير مفعّل حاليًا', en: 'Counter unavailable' },
   searchPlaceholder: {
     ar: 'ابحث بالاسم، التخصص، الخدمة، العنوان، المدينة، المحافظة، التليفون…',
     en: 'Search by name, specialty, service, address, city, governorate, phone…',

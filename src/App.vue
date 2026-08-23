@@ -47,7 +47,7 @@ import { useGeolocation } from './composables/useGeolocation'
 import { useFavorites } from './composables/useFavorites'
 import { useI18n } from './composables/useI18n'
 import { useSearch } from './composables/useSearch'
-import { useAnalytics, trackVisit } from './composables/useAnalytics'
+import { useAnalytics, trackVisit, useVisitorStats } from './composables/useAnalytics'
 import { typeBadgeClass } from './utils/badges'
 
 const { load, reload, loading, error, providers } = useExcelProviders()
@@ -62,6 +62,7 @@ const { favorites, recentViews, isFavorite, toggleFavorite, addRecentView } = us
 const { t, locale, field } = useI18n()
 const { buildIndex } = useSearch()
 const { trackView } = useAnalytics()
+const { stats: visitorStats, refresh: refreshVisitorStats } = useVisitorStats()
 
 const selected = ref(null)
 const drawerOpen = ref(false)
@@ -211,7 +212,7 @@ function isRunningStandalone() {
 
 onMounted(() => {
   load().catch(() => {})
-  trackVisit()
+  trackVisit().finally(() => refreshVisitorStats())
   window.addEventListener('scroll', onScroll, { passive: true })
   window.addEventListener('beforeinstallprompt', onBeforeInstall)
   window.addEventListener('appinstalled', onAppInstalled)
@@ -284,6 +285,23 @@ watch(
       <!-- stats -->
       <div class="mb-[25px]">
         <StatsCards />
+      </div>
+
+      <!-- public visitor counter -->
+      <div class="mb-5 flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-violet-700 text-white shadow-sm">
+          <Eye class="h-5 w-5" />
+        </div>
+        <div class="min-w-0">
+          <div class="text-lg font-extrabold leading-tight text-slate-800 dark:text-slate-100">
+            {{ visitorStats.configured ? visitorStats.totalVisits.toLocaleString() : '—' }}
+          </div>
+          <div class="text-xs font-medium text-slate-500 dark:text-slate-400">{{ t('siteVisits') }}</div>
+        </div>
+        <div class="ms-auto text-end text-xs text-slate-400 dark:text-slate-500">
+          <div v-if="visitorStats.configured">{{ t('uniqueVisitors') }}: {{ visitorStats.uniqueVisitors.toLocaleString() }}</div>
+          <div v-else>{{ t('analyticsUnavailable') }}</div>
+        </div>
       </div>
 
       <div class="grid gap-6 lg:grid-cols-[280px_1fr]">
