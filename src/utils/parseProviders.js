@@ -44,6 +44,28 @@ const HEADER_MAP = (() => {
   return m
 })()
 
+const SUSPENDED_ANDALUSIA_HOSPITALS = [
+  'al salama hospital_ shalalat',
+  'al salama hospital_ smoha',
+  'el nakhel hospital',
+]
+
+function isSuspendedAndalusiaService(provider) {
+  const hospitalKey = String(provider.tatshName || '').toLowerCase().trim()
+  if (!SUSPENDED_ANDALUSIA_HOSPITALS.some((name) => hospitalKey.includes(name))) return false
+
+  const serviceText = [
+    provider.name,
+    provider.providerType,
+    provider.providerTypeAr,
+    provider.services,
+    provider.servicesAr,
+    provider.specialty,
+    provider.specialtyAr,
+  ].join(' ').toLowerCase()
+  return /laboratory|laboratories|lab|radiology|radiography|x[- ]?ray|تحاليل|معامل|أشعة/.test(serviceText)
+}
+
 function detectHeaderRow(rows) {
   const limit = Math.min(rows.length, 6)
   let bestIdx = 0
@@ -103,6 +125,7 @@ export function parseRows(rows) {
         p.governorateAr, p.governorate, p.phone, p.email, p.tatshName,
       ].join(' ')
     )
+    if (isSuspendedAndalusiaService(p)) continue
     out.push(p)
   }
   return out
