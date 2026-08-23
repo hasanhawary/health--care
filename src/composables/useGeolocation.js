@@ -1,6 +1,8 @@
 // Browser Geolocation API wrapper. Shared singleton state.
 // Uses low-accuracy mode (IP/Wi-Fi) by default for reliability, retries once
-// on transient failures, and exposes localized error messages.
+// on transient failures, and exposes localized error messages. Keep the
+// timeout short enough that a blocked mobile permission prompt cannot leave
+// the Near Me action spinning for nearly a minute.
 import { ref, computed } from 'vue'
 import { useI18n } from './useI18n'
 
@@ -57,7 +59,7 @@ export function useGeolocation() {
     try {
       const pos = await getPosition({
         enableHighAccuracy: false,
-        timeout: 15000,
+        timeout: 8000,
         maximumAge: 300000,
       })
       coords.value = pos
@@ -69,7 +71,7 @@ export function useGeolocation() {
         try {
           const pos = await getPosition({
             enableHighAccuracy: true,
-            timeout: 25000,
+            timeout: 12000,
             maximumAge: 600000,
           })
           coords.value = pos
