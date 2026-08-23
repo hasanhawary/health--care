@@ -4,6 +4,7 @@
 // browser session (sessionStorage) so a page refresh does not inflate counters.
 import { kv } from '@vercel/kv'
 import { dayKey, weekKey, kvConfigured } from './_time.js'
+import { getRedis } from './redis-client.js'
 
 const SECRET = process.env.ANALYTICS_SECRET || 'allianz-dev-secret'
 
@@ -28,6 +29,20 @@ export default async function handler(req, res) {
     const hash = await sha256(`${ip}:${SECRET}`)
     const day = dayKey()
     const week = weekKey()
+
+    if (process.env.REDIS_URL) {
+      const redis = await getRedis()
+      await redis
+        .multi()
+        .pfAdd('u:total', hash)
+        .pfAdd(`u:day:${day}`, hash)
+        .pfAdd(`u:week:${week}`, hash)
+        .incr('v:total')
+        .incr(`v:day:${day}`)
+        .incr(`v:week:${week}`)
+        .exec()
+      return res.status(200).json({ ok: true })
+    }
 
     const pipe = kv.pipeline()
     pipe.pfadd('u:total', hash)

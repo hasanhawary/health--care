@@ -15,5 +15,5 @@ export function weekKey(d = new Date()) {
 }
 
 export function kvConfigured() {
-  return !!(process.env.KV_REST_API_URL || process.env.KV_URL)
+  return !!(process.env.REDIS_URL || process.env.KV_REST_API_URL || process.env.KV_URL)
 }
