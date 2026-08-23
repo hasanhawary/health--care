@@ -62,6 +62,7 @@ const { favorites, recentViews, isFavorite, toggleFavorite, addRecentView } = us
 const { t, locale, field } = useI18n()
 const { buildIndex } = useSearch()
 const { trackView } = useAnalytics()
+const alternativesUrl = `${import.meta.env.BASE_URL}data/Andalusia%20Hospitals%20Alternatives.xlsx`
 
 const selected = ref(null)
 const drawerOpen = ref(false)
@@ -245,6 +246,21 @@ watch(
       @install="onInstallClick"
       @home="goHome"
     />
+
+    <!-- Andalusia service suspension notice -->
+    <section class="mx-auto max-w-7xl px-4 pt-4 sm:px-6 no-print" aria-label="Service update">
+      <div class="flex flex-col gap-3 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-950 shadow-sm dark:border-amber-900/70 dark:bg-amber-950/30 dark:text-amber-100 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex items-start gap-3">
+          <Info class="mt-0.5 h-5 w-5 shrink-0 text-amber-600 dark:text-amber-300" />
+          <p class="leading-6">{{ t('andalusiaSuspensionNotice') }}</p>
+        </div>
+        <a
+          :href="alternativesUrl"
+          download
+          class="inline-flex shrink-0 items-center justify-center rounded-xl bg-amber-600 px-3 py-2 text-xs font-bold text-white transition hover:bg-amber-700 dark:bg-amber-500 dark:hover:bg-amber-400"
+        >{{ t('downloadAndalusiaAlternatives') }}</a>
+      </div>
+    </section>
 
     <!-- sticky floating glass search -->
     <div

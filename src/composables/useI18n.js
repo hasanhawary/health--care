@@ -9,6 +9,11 @@ const STRINGS = {
   appTitle: { ar: 'شبكة أليانز مصر الطبية', en: 'Allianz Egypt Medical Network' },
   appSubtitle: { ar: 'دليل مقدمي الخدمة الطبية', en: 'Healthcare Provider Directory' },
   madeBy: { ar: 'صُنع بواسطة', en: 'Made by' },
+  andalusiaSuspensionNotice: {
+    ar: 'اعتبارًا من 15 أغسطس 2026، تم تعليق خدمات المعامل والأشعة الخارجية في مستشفى السلامة بالشلالات وسموحة بالإسكندرية ومستشفى النخيل بالقاهرة. تتوفر قائمة البدائل أدناه.',
+    en: 'Effective 15 August 2026, outpatient laboratory and radiology services are suspended at Al Salama Hospitals (Shalalat and Smouha, Alexandria) and El Nakhel Hospital, Cairo. Download the alternative providers list below.',
+  },
+  downloadAndalusiaAlternatives: { ar: 'تحميل قائمة البدائل', en: 'Download alternatives' },
   searchPlaceholder: {
     ar: 'ابحث بالاسم، التخصص، الخدمة، العنوان، المدينة، المحافظة، التليفون…',
     en: 'Search by name, specialty, service, address, city, governorate, phone…',
