@@ -1,6 +1,6 @@
 // Pure Excel->provider parsing logic. Shared by the main thread (fallback) and
 // the parse Web Worker. No DOM/window dependencies.
-import { cleanCell, normalizeArabic, normalizeForKey } from './normalizeText'
+import { cleanCell, normalizeArabic, normalizeForKey } from './normalizeText.js'
 
 const HEADER_ALIASES = {
   name: ['مقدم الخدمة', 'مقدم الخدمه', 'Provider Name', 'Name'],

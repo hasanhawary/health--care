@@ -9,6 +9,7 @@
 // Output: public/data/provider-coordinates.json   { "<id>": { "lat": .., "lon": .. } }
 import * as XLSX from 'xlsx'
 import { readFileSync, writeFileSync, existsSync } from 'fs'
+import { parseRows } from '../src/utils/parseProviders.js'
 
 const XLSX_PATH = 'public/data/Allianz Egypt GN.xlsx'
 const OUT_PATH = 'public/data/provider-coordinates.json'
@@ -29,32 +30,13 @@ function readProviders() {
   const wb = XLSX.read(buf, { type: 'buffer' })
   const sheet = wb.Sheets[wb.SheetNames[0]]
   const rows = XLSX.utils.sheet_to_json(sheet, { header: 1, raw: false, defval: '' })
-  const hdr = rows[0] || []
-  const findCol = (names) => {
-    for (let i = 0; i < hdr.length; i++) {
-      const c = clean(hdr[i])
-      if (names.some((n) => c.includes(n))) return i
-    }
-    return -1
-  }
-  const govCol = findCol(['المحافظة', 'Governate', 'Governorate'])
-  const areaCol = findCol(['المنطقة', 'Area'])
-  const nameCol = findCol(['مقدم الخدمة', 'Provider'])
-  const addrCol = findCol(['العنوان', 'Address'])
-  const out = []
-  for (let r = 1; r < rows.length; r++) {
-    const row = rows[r] || []
-    const name = clean(row[nameCol])
-    if (!name && !clean(row[govCol]) && !clean(row[areaCol])) continue
-    out.push({
-      id: out.length,
-      name,
-      address: clean(row[addrCol]),
-      area: clean(row[areaCol]),
-      governorate: clean(row[govCol]),
-    })
-  }
-  return out
+  return parseRows(rows).map((p) => ({
+    id: p.id,
+    name: clean(p.name),
+    address: clean(p.addressAr || p.address),
+    area: clean(p.areaAr || p.area),
+    governorate: clean(p.governorateAr || p.governorate),
+  }))
 }
 
 function loadAreaCache() {

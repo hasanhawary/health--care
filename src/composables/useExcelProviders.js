@@ -8,7 +8,9 @@ import { setGeo, setGeoMany } from '../utils/geoCache'
 
 const DATA_URL = `${import.meta.env.BASE_URL}data/Allianz%20Egypt%20GN.xlsx`
 const COORDS_URL = `${import.meta.env.BASE_URL}data/provider-coordinates.json`
-const CACHE_KEY = 'allianz_providers_v3'
+// Bump when the source workbook changes so browsers do not keep an older
+// provider ordering that would mismatch the pre-generated coordinates.
+const CACHE_KEY = 'allianz_providers_v4'
 
 // shallowRef: providers are immutable parsed data — no deep reactivity needed.
 // This keeps every filter/facet scan off the reactive-proxy path (big perf win).
