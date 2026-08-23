@@ -633,6 +633,8 @@ watch(
       {{ t('appTitle') }} · {{ t('appSubtitle') }}
       <span class="mx-1.5">·</span>
       <span>{{ t('madeBy') }} <a href="https://github.com/hasanhawary/" target="_blank" rel="noopener" class="font-semibold text-slate-500 underline-offset-2 hover:text-brand-600 hover:underline dark:text-slate-300 dark:hover:text-brand-400">Elhawary</a></span>
+      <span class="mx-1.5">·</span>
+      <span>v1.0.1</span>
     </footer>
   </div>
 </template>
