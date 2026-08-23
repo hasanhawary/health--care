@@ -477,6 +477,14 @@ function toggleFilter(name, key) {
   else arr.push(key)
   resetPage()
 }
+function setPulseStatus(key) {
+  if (filters.pulseStatus.length === 1 && filters.pulseStatus[0] === key) {
+    filters.pulseStatus = []
+  } else {
+    filters.pulseStatus = [key]
+  }
+  resetPage()
+}
 function toggleLiveOnly() {
   filters.liveOnly = !filters.liveOnly
   resetPage()
@@ -589,7 +597,7 @@ export function useProviderFilters() {
     activeFilterCount, activeCategory, distanceById,
     // actions
     setQuery, setSortBy, setView, toggleGrouping, setStatsMode, toggleFilter,
-    toggleLiveOnly, setCategory, setRadius, toggleNearMe, findNearMe, clearMapFilters,
+    toggleLiveOnly, setPulseStatus, setCategory, setRadius, toggleNearMe, findNearMe, clearMapFilters,
     clearFilters, loadMore, snapshot, applySnapshot, shareFilters, distOf,
   }
 }

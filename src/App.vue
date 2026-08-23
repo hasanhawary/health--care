@@ -54,7 +54,7 @@ const { load, reload, loading, error, providers } = useExcelProviders()
 const {
   query, sortBy, view, groupBy, filters, filtered, total, displayTotal,
   visible, hasMore, loadMore, setSortBy, setView, toggleGrouping, setCategory,
-  clearFilters, activeFilterCount, activeCategory, typeOptions, QUICK_CATEGORIES,
+  clearFilters, activeFilterCount, activeCategory, typeOptions, QUICK_CATEGORIES, setPulseStatus,
   facets, radius, nearMe, setRadius, findNearMe, distOf, statsMode, setStatsMode,
 } = useProviderFilters()
 const { coords, loading: locating, error: geoError, supported: geoSupported, detect } = useGeolocation()
@@ -276,6 +276,22 @@ watch(
             <component :is="chipIcons[cat.icon]" class="h-4 w-4" />
             <span>{{ cat.label }}</span>
             <span v-if="cat.count" class="text-xs opacity-70">{{ cat.count }}</span>
+          </button>
+          <button
+            class="chip shrink-0"
+            :class="filters.pulseStatus.includes('live') ? 'chip-active' : ''"
+            @click="setPulseStatus('live')"
+          >
+            <span class="h-2 w-2 rounded-full bg-green-500"></span>
+            <span>{{ t('live') }}</span>
+          </button>
+          <button
+            class="chip shrink-0"
+            :class="filters.pulseStatus.includes('notlive') ? 'chip-active' : ''"
+            @click="setPulseStatus('notlive')"
+          >
+            <span class="h-2 w-2 rounded-full bg-slate-400"></span>
+            <span>{{ t('notLive') }}</span>
           </button>
         </div>
       </div>
